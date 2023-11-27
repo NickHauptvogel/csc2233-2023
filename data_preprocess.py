@@ -8,7 +8,7 @@ from pickle import dump
 import numpy as np
 from tfsnippet.utils import makedirs
 
-output_folder = '/content/drive/MyDrive/CSC2233/processed_data'
+output_folder = '/content/drive/MyDrive/CSC2233/processed_data_pre'
 makedirs(output_folder, exist_ok=True)
 
 
@@ -24,7 +24,7 @@ def load_and_save(category, filename, dataset, dataset_folder):
 def load_data(dataset):
     serial_number_dict = {}
     if dataset == 'Backblaze':
-        dataset_folder = '/content/drive/MyDrive/CSC2233/ST12000NM0008_final_dataset_Nov26'
+        dataset_folder = '/content/drive/MyDrive/CSC2233/ST8000NM0055_final_dataset_Nov26'
         filelist = os.listdir(dataset_folder)
         for filename in filelist:
             if filename.startswith('0'):
