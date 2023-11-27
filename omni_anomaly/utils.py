@@ -5,7 +5,7 @@ import pickle
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
-prefix = "processed"
+prefix = '/content/drive/MyDrive/CSC2233/processed_data'
 
 
 def save_z(z, filename='z'):

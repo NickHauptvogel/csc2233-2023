@@ -8,7 +8,7 @@ from pickle import dump
 import numpy as np
 from tfsnippet.utils import makedirs
 
-output_folder = 'processed'
+output_folder = '/content/drive/MyDrive/CSC2233/processed_data'
 makedirs(output_folder, exist_ok=True)
 
 
