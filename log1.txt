@@ -1,0 +1,1104 @@
+/home/nick/anaconda3/bin/conda run -n WSL_OmniAnomaly --no-capture-output python /mnt/c/Users/Nick/Documents/Projects/OmniAnomaly/main.py 
+Console output is saving to: C:\Program Files\JetBrains\PyCharm 2020.2.3\jbr\bin\log.txt
+/home/nick/anaconda3/envs/WSL_OmniAnomaly/lib/python3.6/site-packages/tfsnippet/utils/tfver.py:22: DeprecationWarning: Function 'semver.compare' is deprecated. Deprecated since version 2.10.0.  This function will be removed in semver 3. Use the respective 'semver.VersionInfo.compare' instead.
+  compare_result = semver.compare(version, tf.__version__)
+/home/nick/anaconda3/envs/WSL_OmniAnomaly/lib/python3.6/site-packages/tfsnippet/utils/tfver.py:22: DeprecationWarning: Function 'semver.compare' is deprecated. Deprecated since version 2.10.0.  This function will be removed in semver 3. Use the respective 'semver.VersionInfo.compare' instead.
+  compare_result = semver.compare(version, tf.__version__)
+Configurations
+===========================================
+{'batch_size': 50,
+ 'bf_search_max': 5000.0,
+ 'bf_search_min': -20000.0,
+ 'bf_search_step_size': 10.0,
+ 'dataset': 'Backblaze',
+ 'dense_dim': 500,
+ 'early_stop': True,
+ 'get_score_on_dim': False,
+ 'gradient_clip_norm': 10.0,
+ 'initial_lr': 0.0001,
+ 'level': 0.01,
+ 'lr_anneal_epoch_freq': 20,
+ 'lr_anneal_factor': 0.5,
+ 'max_epoch': 100,
+ 'max_test_size': None,
+ 'max_train_size': None,
+ 'nf_layers': 20,
+ 'posterior_flow_type': 'nf',
+ 'restore_dir': None,
+ 'result_dir': 'result',
+ 'rnn_cell': 'GRU',
+ 'rnn_num_hidden': 500,
+ 'save_dir': 'model',
+ 'save_z': False,
+ 'std_epsilon': 0.0001,
+ 'test_batch_size': 50,
+ 'test_n_z': 1,
+ 'test_score_filename': 'test_score.pkl',
+ 'test_start': 0,
+ 'train_score_filename': 'train_score.pkl',
+ 'train_start': 0,
+ 'use_connected_z_p': False,
+ 'use_connected_z_q': False,
+ 'valid_step_freq': 100,
+ 'window_length': 25,
+ 'x_dim': 19,
+ 'z_dim': 3}
+
+load data of: Backblaze
+train:  0 None
+test:  0 None
+0_ST4000DM000_S300A3S4_train.pkl
+0_ST4000DM000_S300ACMY_train.pkl
+0_ST4000DM000_S300BBHQ_train.pkl
+0_ST4000DM000_S300BM2S_train.pkl
+0_ST4000DM000_S300CWX4_train.pkl
+0_ST4000DM000_S300DGJF_train.pkl
+0_ST4000DM000_S300E23F_train.pkl
+0_ST4000DM000_S300FEX3_train.pkl
+0_ST4000DM000_S300FYK9_train.pkl
+0_ST4000DM000_S300H162_train.pkl
+0_ST4000DM000_S300J8F0_train.pkl
+0_ST4000DM000_S300KRVB_train.pkl
+0_ST4000DM000_S300LK3M_train.pkl
+0_ST4000DM000_S300N7Y7_train.pkl
+0_ST4000DM000_S300Q465_train.pkl
+0_ST4000DM000_S300Q6SL_train.pkl
+0_ST4000DM000_S300RNPL_train.pkl
+0_ST4000DM000_S300RSAF_train.pkl
+0_ST4000DM000_S300T9PS_train.pkl
+0_ST4000DM000_S300TKPH_train.pkl
+0_ST4000DM000_S300VD8H_train.pkl
+0_ST4000DM000_S300VDH2_train.pkl
+0_ST4000DM000_S300VG7R_train.pkl
+0_ST4000DM000_S300VKLL_train.pkl
+0_ST4000DM000_S300VKLM_train.pkl
+0_ST4000DM000_S300VKLS_train.pkl
+0_ST4000DM000_S300VKM5_train.pkl
+0_ST4000DM000_S300VKM9_train.pkl
+0_ST4000DM000_S300VKME_train.pkl
+0_ST4000DM000_S300VKMK_train.pkl
+0_ST4000DM000_S300VKMX_train.pkl
+0_ST4000DM000_S300VKN7_train.pkl
+0_ST4000DM000_S300VKNA_train.pkl
+0_ST4000DM000_S300VKNT_train.pkl
+0_ST4000DM000_S300VKP1_train.pkl
+0_ST4000DM000_S300VKP2_train.pkl
+0_ST4000DM000_S300VKP9_train.pkl
+0_ST4000DM000_S300VKQ8_train.pkl
+0_ST4000DM000_S300VKQN_train.pkl
+0_ST4000DM000_S300VKQS_train.pkl
+0_ST4000DM000_S300VKR0_train.pkl
+0_ST4000DM000_S300VKRB_train.pkl
+0_ST4000DM000_S300VKRE_train.pkl
+0_ST4000DM000_S300VKRF_train.pkl
+0_ST4000DM000_S300VKSJ_train.pkl
+0_ST4000DM000_S300VKSQ_train.pkl
+0_ST4000DM000_S300VKT4_train.pkl
+0_ST4000DM000_S300VKTD_train.pkl
+0_ST4000DM000_S300VKTJ_train.pkl
+0_ST4000DM000_S300VKV8_train.pkl
+0_ST4000DM000_S300VKVA_train.pkl
+0_ST4000DM000_S300VKVC_train.pkl
+0_ST4000DM000_S300VKVG_train.pkl
+0_ST4000DM000_S300VKVL_train.pkl
+0_ST4000DM000_S300VKVY_train.pkl
+0_ST4000DM000_S300VKW6_train.pkl
+0_ST4000DM000_S300VKWR_train.pkl
+0_ST4000DM000_S300VKWT_train.pkl
+0_ST4000DM000_S300VKX0_train.pkl
+0_ST4000DM000_S300VKXH_train.pkl
+0_ST4000DM000_S300VKXZ_train.pkl
+0_ST4000DM000_S300VKY0_train.pkl
+0_ST4000DM000_S300VKY1_train.pkl
+0_ST4000DM000_S300VKYC_train.pkl
+0_ST4000DM000_S300VKYD_train.pkl
+0_ST4000DM000_S300VKYT_train.pkl
+0_ST4000DM000_S300VKZ0_train.pkl
+0_ST4000DM000_S300VKZC_train.pkl
+0_ST4000DM000_S300VKZN_train.pkl
+0_ST4000DM000_S300VKZR_train.pkl
+0_ST4000DM000_S300VKZS_train.pkl
+0_ST4000DM000_S300VKZY_train.pkl
+0_ST4000DM000_S300VL06_train.pkl
+0_ST4000DM000_S300VL07_train.pkl
+0_ST4000DM000_S300VL0F_train.pkl
+0_ST4000DM000_S300VL0K_train.pkl
+0_ST4000DM000_S300VL1H_train.pkl
+0_ST4000DM000_S300VL1N_train.pkl
+0_ST4000DM000_S300VL2B_train.pkl
+0_ST4000DM000_S300VL2E_train.pkl
+0_ST4000DM000_S300VL3A_train.pkl
+0_ST4000DM000_S300VL3E_train.pkl
+0_ST4000DM000_S300VL3L_train.pkl
+0_ST4000DM000_S300VL3P_train.pkl
+0_ST4000DM000_S300VL3Y_train.pkl
+0_ST4000DM000_S300VL4C_train.pkl
+0_ST4000DM000_S300VL4F_train.pkl
+0_ST4000DM000_S300VL4H_train.pkl
+0_ST4000DM000_S300VL4K_train.pkl
+0_ST4000DM000_S300VL4R_train.pkl
+0_ST4000DM000_S300VL4T_train.pkl
+0_ST4000DM000_S300VL5F_train.pkl
+0_ST4000DM000_S300VL5G_train.pkl
+0_ST4000DM000_S300VL5H_train.pkl
+0_ST4000DM000_S300VL6E_train.pkl
+0_ST4000DM000_S300VL6H_train.pkl
+0_ST4000DM000_S300VL6Z_train.pkl
+0_ST4000DM000_S300VL7F_train.pkl
+0_ST4000DM000_S300VL7R_train.pkl
+0_ST4000DM000_S300VL7S_train.pkl
+1_ST4000DM000_S300VLHX_test.pkl
+1_ST4000DM000_S300WCSA_test.pkl
+1_ST4000DM000_S300WD56_test.pkl
+1_ST4000DM000_S300WD67_test.pkl
+1_ST4000DM000_S300WDBV_test.pkl
+1_ST4000DM000_S300WS3F_test.pkl
+1_ST4000DM000_S300XAAX_test.pkl
+1_ST4000DM000_S300XAWB_test.pkl
+1_ST4000DM000_S300XB38_test.pkl
+1_ST4000DM000_S300YCSY_test.pkl
+1_ST4000DM000_S300YPNZ_test.pkl
+1_ST4000DM000_S300YQ9R_test.pkl
+1_ST4000DM000_S300YSET_test.pkl
+1_ST4000DM000_S300Z3XD_test.pkl
+1_ST4000DM000_S300Z41Y_test.pkl
+1_ST4000DM000_S300Z4B7_test.pkl
+1_ST4000DM000_S300Z4LC_test.pkl
+1_ST4000DM000_S300Z4PP_test.pkl
+1_ST4000DM000_S300Z4WH_test.pkl
+1_ST4000DM000_S300Z53J_test.pkl
+1_ST4000DM000_S300Z5DY_test.pkl
+1_ST4000DM000_S300Z5KL_test.pkl
+1_ST4000DM000_S300Z5VY_test.pkl
+1_ST4000DM000_S300Z63K_test.pkl
+1_ST4000DM000_S300Z67T_test.pkl
+1_ST4000DM000_S300Z6D2_test.pkl
+1_ST4000DM000_S300Z6PE_test.pkl
+1_ST4000DM000_S300Z6SV_test.pkl
+1_ST4000DM000_S300Z6VE_test.pkl
+1_ST4000DM000_S300Z6WB_test.pkl
+1_ST4000DM000_S300Z70N_test.pkl
+1_ST4000DM000_S300Z75T_test.pkl
+1_ST4000DM000_S300Z76T_test.pkl
+1_ST4000DM000_S300Z7F6_test.pkl
+1_ST4000DM000_S300Z7GW_test.pkl
+1_ST4000DM000_S300Z9XP_test.pkl
+1_ST4000DM000_S300ZBAG_test.pkl
+1_ST4000DM000_S300ZNFK_test.pkl
+1_ST4000DM000_S300ZREF_test.pkl
+1_ST4000DM000_S300ZS6E_test.pkl
+1_ST4000DM000_S301ECK4_test.pkl
+1_ST4000DM000_S301FGVJ_test.pkl
+1_ST4000DM000_S301FLB0_test.pkl
+1_ST4000DM000_S301GM55_test.pkl
+1_ST4000DM000_S301GMAB_test.pkl
+1_ST4000DM000_S301GMDY_test.pkl
+1_ST4000DM000_S301GML1_test.pkl
+1_ST4000DM000_S301GMMY_test.pkl
+1_ST4000DM000_S301GMNG_test.pkl
+1_ST4000DM000_S301GMPN_test.pkl
+1_ST4000DM000_S301GN9A_test.pkl
+1_ST4000DM000_S301GNDT_test.pkl
+1_ST4000DM000_S301GNN0_test.pkl
+1_ST4000DM000_S301GNZJ_test.pkl
+1_ST4000DM000_S301GP0K_test.pkl
+1_ST4000DM000_S301GP33_test.pkl
+1_ST4000DM000_S301GP51_test.pkl
+1_ST4000DM000_S301GPML_test.pkl
+1_ST4000DM000_S301GPTQ_test.pkl
+1_ST4000DM000_S301GPVX_test.pkl
+1_ST4000DM000_S301GQ9B_test.pkl
+1_ST4000DM000_S301GQQS_test.pkl
+1_ST4000DM000_S301GRA2_test.pkl
+1_ST4000DM000_S301GT5F_test.pkl
+1_ST4000DM000_S301GT83_test.pkl
+1_ST4000DM000_S301GTLV_test.pkl
+1_ST4000DM000_S301GVWF_test.pkl
+1_ST4000DM000_S301JQ43_test.pkl
+1_ST4000DM000_S301K16Z_test.pkl
+1_ST4000DM000_S301K17N_test.pkl
+1_ST4000DM000_S301K4BF_test.pkl
+1_ST4000DM000_S301K6RG_test.pkl
+1_ST4000DM000_S301K6TW_test.pkl
+1_ST4000DM000_S301KDVL_test.pkl
+1_ST4000DM000_S301KE0M_test.pkl
+1_ST4000DM000_S301KE5C_test.pkl
+1_ST4000DM000_S301L17R_test.pkl
+1_ST4000DM000_S301LB50_test.pkl
+1_ST4000DM000_S301LBCC_test.pkl
+1_ST4000DM000_S301M88K_test.pkl
+1_ST4000DM000_S301N5C5_test.pkl
+1_ST4000DM000_S301NB23_test.pkl
+1_ST4000DM000_S301NDB6_test.pkl
+1_ST4000DM000_S301NHK7_test.pkl
+1_ST4000DM000_S301NJE9_test.pkl
+1_ST4000DM000_S301NJGV_test.pkl
+1_ST4000DM000_S301NK4A_test.pkl
+1_ST4000DM000_S301NKAW_test.pkl
+1_ST4000DM000_S301NKL5_test.pkl
+1_ST4000DM000_S301NL6Z_test.pkl
+1_ST4000DM000_S301NMPV_test.pkl
+1_ST4000DM000_S301NXN1_test.pkl
+1_ST4000DM000_S301PQ41_test.pkl
+1_ST4000DM000_S301PQJ0_test.pkl
+1_ST4000DM000_S301PRH9_test.pkl
+1_ST4000DM000_S301PRHA_test.pkl
+1_ST4000DM000_S301PS18_test.pkl
+1_ST4000DM000_S301PS2M_test.pkl
+1_ST4000DM000_S301PS2Z_test.pkl
+1_ST4000DM000_S301PS36_test.pkl
+1_ST4000DM000_S300VLHX_test_label.pkl
+1_ST4000DM000_S300WCSA_test_label.pkl
+1_ST4000DM000_S300WD56_test_label.pkl
+1_ST4000DM000_S300WD67_test_label.pkl
+1_ST4000DM000_S300WDBV_test_label.pkl
+1_ST4000DM000_S300WS3F_test_label.pkl
+1_ST4000DM000_S300XAAX_test_label.pkl
+1_ST4000DM000_S300XAWB_test_label.pkl
+1_ST4000DM000_S300XB38_test_label.pkl
+1_ST4000DM000_S300YCSY_test_label.pkl
+1_ST4000DM000_S300YPNZ_test_label.pkl
+1_ST4000DM000_S300YQ9R_test_label.pkl
+1_ST4000DM000_S300YSET_test_label.pkl
+1_ST4000DM000_S300Z3XD_test_label.pkl
+1_ST4000DM000_S300Z41Y_test_label.pkl
+1_ST4000DM000_S300Z4B7_test_label.pkl
+1_ST4000DM000_S300Z4LC_test_label.pkl
+1_ST4000DM000_S300Z4PP_test_label.pkl
+1_ST4000DM000_S300Z4WH_test_label.pkl
+1_ST4000DM000_S300Z53J_test_label.pkl
+1_ST4000DM000_S300Z5DY_test_label.pkl
+1_ST4000DM000_S300Z5KL_test_label.pkl
+1_ST4000DM000_S300Z5VY_test_label.pkl
+1_ST4000DM000_S300Z63K_test_label.pkl
+1_ST4000DM000_S300Z67T_test_label.pkl
+1_ST4000DM000_S300Z6D2_test_label.pkl
+1_ST4000DM000_S300Z6PE_test_label.pkl
+1_ST4000DM000_S300Z6SV_test_label.pkl
+1_ST4000DM000_S300Z6VE_test_label.pkl
+1_ST4000DM000_S300Z6WB_test_label.pkl
+1_ST4000DM000_S300Z70N_test_label.pkl
+1_ST4000DM000_S300Z75T_test_label.pkl
+1_ST4000DM000_S300Z76T_test_label.pkl
+1_ST4000DM000_S300Z7F6_test_label.pkl
+1_ST4000DM000_S300Z7GW_test_label.pkl
+1_ST4000DM000_S300Z9XP_test_label.pkl
+1_ST4000DM000_S300ZBAG_test_label.pkl
+1_ST4000DM000_S300ZNFK_test_label.pkl
+1_ST4000DM000_S300ZREF_test_label.pkl
+1_ST4000DM000_S300ZS6E_test_label.pkl
+1_ST4000DM000_S301ECK4_test_label.pkl
+1_ST4000DM000_S301FGVJ_test_label.pkl
+1_ST4000DM000_S301FLB0_test_label.pkl
+1_ST4000DM000_S301GM55_test_label.pkl
+1_ST4000DM000_S301GMAB_test_label.pkl
+1_ST4000DM000_S301GMDY_test_label.pkl
+1_ST4000DM000_S301GML1_test_label.pkl
+1_ST4000DM000_S301GMMY_test_label.pkl
+1_ST4000DM000_S301GMNG_test_label.pkl
+1_ST4000DM000_S301GMPN_test_label.pkl
+1_ST4000DM000_S301GN9A_test_label.pkl
+1_ST4000DM000_S301GNDT_test_label.pkl
+1_ST4000DM000_S301GNN0_test_label.pkl
+1_ST4000DM000_S301GNZJ_test_label.pkl
+1_ST4000DM000_S301GP0K_test_label.pkl
+1_ST4000DM000_S301GP33_test_label.pkl
+1_ST4000DM000_S301GP51_test_label.pkl
+1_ST4000DM000_S301GPML_test_label.pkl
+1_ST4000DM000_S301GPTQ_test_label.pkl
+1_ST4000DM000_S301GPVX_test_label.pkl
+1_ST4000DM000_S301GQ9B_test_label.pkl
+1_ST4000DM000_S301GQQS_test_label.pkl
+1_ST4000DM000_S301GRA2_test_label.pkl
+1_ST4000DM000_S301GT5F_test_label.pkl
+1_ST4000DM000_S301GT83_test_label.pkl
+1_ST4000DM000_S301GTLV_test_label.pkl
+1_ST4000DM000_S301GVWF_test_label.pkl
+1_ST4000DM000_S301JQ43_test_label.pkl
+1_ST4000DM000_S301K16Z_test_label.pkl
+1_ST4000DM000_S301K17N_test_label.pkl
+1_ST4000DM000_S301K4BF_test_label.pkl
+1_ST4000DM000_S301K6RG_test_label.pkl
+1_ST4000DM000_S301K6TW_test_label.pkl
+1_ST4000DM000_S301KDVL_test_label.pkl
+1_ST4000DM000_S301KE0M_test_label.pkl
+1_ST4000DM000_S301KE5C_test_label.pkl
+1_ST4000DM000_S301L17R_test_label.pkl
+1_ST4000DM000_S301LB50_test_label.pkl
+1_ST4000DM000_S301LBCC_test_label.pkl
+1_ST4000DM000_S301M88K_test_label.pkl
+1_ST4000DM000_S301N5C5_test_label.pkl
+1_ST4000DM000_S301NB23_test_label.pkl
+1_ST4000DM000_S301NDB6_test_label.pkl
+1_ST4000DM000_S301NHK7_test_label.pkl
+1_ST4000DM000_S301NJE9_test_label.pkl
+1_ST4000DM000_S301NJGV_test_label.pkl
+1_ST4000DM000_S301NK4A_test_label.pkl
+1_ST4000DM000_S301NKAW_test_label.pkl
+1_ST4000DM000_S301NKL5_test_label.pkl
+1_ST4000DM000_S301NL6Z_test_label.pkl
+1_ST4000DM000_S301NMPV_test_label.pkl
+1_ST4000DM000_S301NXN1_test_label.pkl
+1_ST4000DM000_S301PQ41_test_label.pkl
+1_ST4000DM000_S301PQJ0_test_label.pkl
+1_ST4000DM000_S301PRH9_test_label.pkl
+1_ST4000DM000_S301PRHA_test_label.pkl
+1_ST4000DM000_S301PS18_test_label.pkl
+1_ST4000DM000_S301PS2M_test_label.pkl
+1_ST4000DM000_S301PS2Z_test_label.pkl
+1_ST4000DM000_S301PS36_test_label.pkl
+Data normalized
+Data normalized
+train set shape:  (33306, 20)
+test set shape:  (16610, 20)
+test set label shape:  (16610,)
+2023-11-26 14:54:57.695085: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+Trainable Parameters                                            (2,560,184 in total)
+------------------------------------------------------------------------------------
+model/q_z_given_x/hidden/rnn_q_z/rnn/gru_cell/gates/kernel      (519, 1000)  519,000
+model/q_z_given_x/hidden/rnn_q_z/rnn/gru_cell/gates/bias        (1000,)        1,000
+model/q_z_given_x/hidden/rnn_q_z/rnn/gru_cell/candidate/kernel  (519, 500)   259,500
+model/q_z_given_x/hidden/rnn_q_z/rnn/gru_cell/candidate/bias    (500,)           500
+model/q_z_given_x/hidden/rnn_q_z/dense/kernel                   (500, 500)   250,000
+model/q_z_given_x/hidden/rnn_q_z/dense/bias                     (500,)           500
+model/q_z_given_x/hidden/rnn_q_z/dense_1/kernel                 (500, 500)   250,000
+model/q_z_given_x/hidden/rnn_q_z/dense_1/bias                   (500,)           500
+model/q_z_given_x/z_mean/kernel                                 (500, 3)       1,500
+model/q_z_given_x/z_mean/bias                                   (3,)               3
+model/q_z_given_x/z_std/kernel                                  (500, 3)       1,500
+model/q_z_given_x/z_std/bias                                    (3,)               3
+model/posterior_flow/_0/w                                       (1, 3)             3
+model/posterior_flow/_0/b                                       (1,)               1
+model/posterior_flow/_0/u                                       (1, 3)             3
+model/posterior_flow/_1/w                                       (1, 3)             3
+model/posterior_flow/_1/b                                       (1,)               1
+model/posterior_flow/_1/u                                       (1, 3)             3
+model/posterior_flow/_2/w                                       (1, 3)             3
+model/posterior_flow/_2/b                                       (1,)               1
+model/posterior_flow/_2/u                                       (1, 3)             3
+model/posterior_flow/_3/w                                       (1, 3)             3
+model/posterior_flow/_3/b                                       (1,)               1
+model/posterior_flow/_3/u                                       (1, 3)             3
+model/posterior_flow/_4/w                                       (1, 3)             3
+model/posterior_flow/_4/b                                       (1,)               1
+model/posterior_flow/_4/u                                       (1, 3)             3
+model/posterior_flow/_5/w                                       (1, 3)             3
+model/posterior_flow/_5/b                                       (1,)               1
+model/posterior_flow/_5/u                                       (1, 3)             3
+model/posterior_flow/_6/w                                       (1, 3)             3
+model/posterior_flow/_6/b                                       (1,)               1
+model/posterior_flow/_6/u                                       (1, 3)             3
+model/posterior_flow/_7/w                                       (1, 3)             3
+model/posterior_flow/_7/b                                       (1,)               1
+model/posterior_flow/_7/u                                       (1, 3)             3
+model/posterior_flow/_8/w                                       (1, 3)             3
+model/posterior_flow/_8/b                                       (1,)               1
+model/posterior_flow/_8/u                                       (1, 3)             3
+model/posterior_flow/_9/w                                       (1, 3)             3
+model/posterior_flow/_9/b                                       (1,)               1
+model/posterior_flow/_9/u                                       (1, 3)             3
+model/posterior_flow/_10/w                                      (1, 3)             3
+model/posterior_flow/_10/b                                      (1,)               1
+model/posterior_flow/_10/u                                      (1, 3)             3
+model/posterior_flow/_11/w                                      (1, 3)             3
+model/posterior_flow/_11/b                                      (1,)               1
+model/posterior_flow/_11/u                                      (1, 3)             3
+model/posterior_flow/_12/w                                      (1, 3)             3
+model/posterior_flow/_12/b                                      (1,)               1
+model/posterior_flow/_12/u                                      (1, 3)             3
+model/posterior_flow/_13/w                                      (1, 3)             3
+model/posterior_flow/_13/b                                      (1,)               1
+model/posterior_flow/_13/u                                      (1, 3)             3
+model/posterior_flow/_14/w                                      (1, 3)             3
+model/posterior_flow/_14/b                                      (1,)               1
+model/posterior_flow/_14/u                                      (1, 3)             3
+model/posterior_flow/_15/w                                      (1, 3)             3
+model/posterior_flow/_15/b                                      (1,)               1
+model/posterior_flow/_15/u                                      (1, 3)             3
+model/posterior_flow/_16/w                                      (1, 3)             3
+model/posterior_flow/_16/b                                      (1,)               1
+model/posterior_flow/_16/u                                      (1, 3)             3
+model/posterior_flow/_17/w                                      (1, 3)             3
+model/posterior_flow/_17/b                                      (1,)               1
+model/posterior_flow/_17/u                                      (1, 3)             3
+model/posterior_flow/_18/w                                      (1, 3)             3
+model/posterior_flow/_18/b                                      (1,)               1
+model/posterior_flow/_18/u                                      (1, 3)             3
+model/posterior_flow/_19/w                                      (1, 3)             3
+model/posterior_flow/_19/b                                      (1,)               1
+model/posterior_flow/_19/u                                      (1, 3)             3
+model/p_x_given_z/hidden/rnn_p_x/rnn/gru_cell/gates/kernel      (503, 1000)  503,000
+model/p_x_given_z/hidden/rnn_p_x/rnn/gru_cell/gates/bias        (1000,)        1,000
+model/p_x_given_z/hidden/rnn_p_x/rnn/gru_cell/candidate/kernel  (503, 500)   251,500
+model/p_x_given_z/hidden/rnn_p_x/rnn/gru_cell/candidate/bias    (500,)           500
+model/p_x_given_z/hidden/rnn_p_x/dense/kernel                   (500, 500)   250,000
+model/p_x_given_z/hidden/rnn_p_x/dense/bias                     (500,)           500
+model/p_x_given_z/hidden/rnn_p_x/dense_1/kernel                 (500, 500)   250,000
+model/p_x_given_z/hidden/rnn_p_x/dense_1/bias                   (500,)           500
+model/p_x_given_z/x_mean/kernel                                 (500, 19)      9,500
+model/p_x_given_z/x_mean/bias                                   (19,)             19
+model/p_x_given_z/x_std/kernel                                  (500, 19)      9,500
+model/p_x_given_z/x_std/bias                                    (19,)             19
+
+train_values: (23315, 20)
+[Epoch 1/100, Step 100] step time: 1.027s (±3.871s); train time: 1m 4.766s; valid time: 38.14s; loss: -1.9389 (±9.94778); valid loss: -0.136815 (*)
+[Epoch 1/100, Step 200] step time: 0.9748s (±4.004s); train time: 57.43s; valid time: 40.16s; loss: -20.5022 (±3.9387); valid loss: 31.0322
+[Epoch 1/100, Step 300] step time: 0.9456s (±3.982s); train time: 54.74s; valid time: 39.93s; loss: -21.9458 (±3.71171); valid loss: 94.2157
+[Epoch 1/100, Step 400] step time: 0.8981s (±3.356s); train time: 56.2s; valid time: 33.73s; loss: -16.554 (±21.7896); valid loss: 42.5464
+train_values: (23315, 20)
+[Epoch 2/100, Step 500, ETA 11h 59m 33.6s] step time: 0.8403s (±3.293s); train time: 17.78s; valid time: 33.05s; loss: -3.78265 (±51.9316); valid loss: 101.89
+[Epoch 2/100, Step 600, ETA 11h 50m 30.61s] step time: 0.8788s (±3.369s); train time: 54.11s; valid time: 33.88s; loss: -20.0598 (±5.93087); valid loss: 109.338
+[Epoch 2/100, Step 700, ETA 11h 49m 57.19s] step time: 0.9368s (±3.981s); train time: 53.72s; valid time: 40.06s; loss: -24.7084 (±2.54456); valid loss: 56.8983
+[Epoch 2/100, Step 800, ETA 11h 52m 29.58s] step time: 0.9719s (±4.143s); train time: 55.67s; valid time: 41.64s; loss: -20.6053 (±9.5236); valid loss: 39.9926
+[Epoch 2/100, Step 900, ETA 11h 45m 56.43s] step time: 0.8751s (±3.364s); train time: 53.77s; valid time: 33.86s; loss: -24.7758 (±4.89932); valid loss: 62.1156
+train_values: (23315, 20)
+[Epoch 3/100, Step 1000, ETA 11h 43m 59.05s] step time: 0.9219s (±3.551s); train time: 40.88s; valid time: 35.74s; loss: -25.2413 (±4.64415); valid loss: 162.367
+[Epoch 3/100, Step 1100, ETA 11h 39m 5.566s] step time: 0.8786s (±3.521s); train time: 52.52s; valid time: 35.45s; loss: -24.5906 (±3.32298); valid loss: 134.444
+[Epoch 3/100, Step 1200, ETA 11h 34m 42.31s] step time: 0.8775s (±3.489s); train time: 52.77s; valid time: 35.09s; loss: -24.4131 (±6.03183); valid loss: 64.7823
+[Epoch 3/100, Step 1300, ETA 11h 33m 20.47s] step time: 0.9219s (±3.58s); train time: 56.28s; valid time: 36.03s; loss: -20.4996 (±13.253); valid loss: 170.488
+train_values: (23315, 20)
+[Epoch 4/100, Step 1400, ETA 11h 31m 8.908s] step time: 0.9067s (±3.689s); train time: 2.658s; valid time: 37.09s; loss: -25.2062 (±4.97585); valid loss: 73.9453
+[Epoch 4/100, Step 1500, ETA 11h 30m 47.98s] step time: 0.9422s (±3.952s); train time: 54.6s; valid time: 39.71s; loss: -26.1715 (±4.76287); valid loss: 160.651
+[Epoch 4/100, Step 1600, ETA 11h 26m 59.79s] step time: 0.8714s (±3.299s); train time: 54.06s; valid time: 33.2s; loss: -30.0129 (±2.31717); valid loss: 219.26
+[Epoch 4/100, Step 1700, ETA 11h 23m 57.04s] step time: 0.8824s (±3.455s); train time: 53.61s; valid time: 34.74s; loss: -28.5596 (±6.29738); valid loss: 41.8119
+[Epoch 4/100, Step 1800, ETA 11h 20m 28.58s] step time: 0.8679s (±3.415s); train time: 52.54s; valid time: 34.35s; loss: -29.2067 (±5.72722); valid loss: 71.0708
+train_values: (23315, 20)
+[Epoch 5/100, Step 1900, ETA 11h 17m 14.67s] step time: 0.8683s (±3.558s); train time: 20.57s; valid time: 35.73s; loss: -22.8719 (±33.4258); valid loss: 879.913
+[Epoch 5/100, Step 2000, ETA 11h 15m 10.93s] step time: 0.8953s (±3.452s); train time: 54.94s; valid time: 34.7s; loss: -31.7923 (±3.89244); valid loss: 4884.58
+[Epoch 5/100, Step 2100, ETA 11h 12m 35.58s] step time: 0.8789s (±3.334s); train time: 54.52s; valid time: 33.48s; loss: -32.7178 (±6.59963); valid loss: 974.906
+[Epoch 5/100, Step 2200, ETA 11h 9m 2.36s] step time: 0.8472s (±3.406s); train time: 50.75s; valid time: 34.06s; loss: -33.1945 (±8.11983); valid loss: 477.692
+[Epoch 5/100, Step 2300, ETA 11h 4m 46.21s] step time: 0.819s (±3.205s); train time: 49.75s; valid time: 32.25s; loss: -37.9316 (±6.30984); valid loss: 662.681
+train_values: (23315, 20)
+[Epoch 6/100, Step 2400, ETA 11h 1m 0.4077s] step time: 0.8272s (±3.31s); train time: 37s; valid time: 33.27s; loss: -36.0749 (±4.39043); valid loss: 632.749
+[Epoch 6/100, Step 2500, ETA 10h 58m 34.25s] step time: 0.8662s (±3.327s); train time: 53.29s; valid time: 33.45s; loss: -39.7326 (±2.73787); valid loss: 764.653
+[Epoch 6/100, Step 2600, ETA 10h 57m 48.26s] step time: 0.9228s (±3.712s); train time: 55.02s; valid time: 37.38s; loss: -41.1361 (±2.84626); valid loss: 1533.28
+[Epoch 6/100, Step 2700, ETA 10h 56m 14.11s] step time: 0.8953s (±3.404s); train time: 55.4s; valid time: 34.24s; loss: -41.585 (±3.16381); valid loss: 1360.22
+train_values: (23315, 20)
+[Epoch 7/100, Step 2800, ETA 10h 54m 26.15s] step time: 0.8859s (±3.446s); train time: 5.93s; valid time: 34.61s; loss: -41.4489 (±3.49432); valid loss: 907.549
+[Epoch 7/100, Step 2900, ETA 10h 51m 55.52s] step time: 0.8571s (±3.556s); train time: 50.38s; valid time: 35.43s; loss: -44.4017 (±2.81342); valid loss: 669.285
+[Epoch 7/100, Step 3000, ETA 10h 48m 38.92s] step time: 0.8224s (±3.158s); train time: 50.6s; valid time: 31.74s; loss: -43.4179 (±3.97182); valid loss: 1481.79
+[Epoch 7/100, Step 3100, ETA 10h 45m 47.61s] step time: 0.8352s (±3.316s); train time: 50.28s; valid time: 33.34s; loss: -45.3073 (±2.34392); valid loss: 1592.86
+[Epoch 7/100, Step 3200, ETA 10h 51m 56.68s] step time: 1.23s (±6.579s); train time: 57.34s; valid time: 1m 5.812s; loss: -46.3777 (±2.6549); valid loss: 1215.9
+train_values: (23315, 20)
+[Epoch 8/100, Step 3300, ETA 10h 56m 4.863s] step time: 1.16s (±3.432s); train time: 33.21s; valid time: 34.68s; loss: -45.917 (±3.06981); valid loss: 2418
+[Epoch 8/100, Step 3400, ETA 10h 52m 51.3s] step time: 0.8294s (±3.329s); train time: 49.55s; valid time: 33.49s; loss: -47.2955 (±2.39919); valid loss: 1169.77
+[Epoch 8/100, Step 3500, ETA 10h 49m 59.4s] step time: 0.8419s (±3.337s); train time: 50.78s; valid time: 33.51s; loss: -48.9677 (±2.30111); valid loss: 1966.56
+[Epoch 8/100, Step 3600, ETA 10h 48m 4.435s] step time: 0.8855s (±3.66s); train time: 51.87s; valid time: 36.79s; loss: -47.9467 (±3.17619); valid loss: 2087.02
+[Epoch 8/100, Step 3700, ETA 10h 45m 28.6s] step time: 0.849s (±3.431s); train time: 50.64s; valid time: 34.36s; loss: -50.0232 (±2.43122); valid loss: 1945.47
+train_values: (23315, 20)
+[Epoch 9/100, Step 3800, ETA 10h 42m 50.45s] step time: 0.8431s (±3.179s); train time: 42.33s; valid time: 31.94s; loss: -50.655 (±3.02981); valid loss: 1553.73
+[Epoch 9/100, Step 3900, ETA 10h 39m 41.64s] step time: 0.8121s (±3.199s); train time: 49.26s; valid time: 32.05s; loss: -52.3606 (±2.93989); valid loss: 1983.74
+[Epoch 9/100, Step 4000, ETA 10h 38m 27.73s] step time: 0.9151s (±3.255s); train time: 58.84s; valid time: 32.78s; loss: -51.6198 (±2.32087); valid loss: 1702.19
+[Epoch 9/100, Step 4100, ETA 10h 36m 46.1s] step time: 0.8891s (±3.362s); train time: 55.23s; valid time: 33.79s; loss: -51.4145 (±3.2185); valid loss: 2202.19
+train_values: (23315, 20)
+[Epoch 10/100, Step 4200, ETA 10h 34m 48.5s] step time: 0.872s (±3.198s); train time: 9.004s; valid time: 32.22s; loss: -52.7064 (±3.46188); valid loss: 1963.13
+[Epoch 10/100, Step 4300, ETA 10h 32m 7.192s] step time: 0.8268s (±3.28s); train time: 49.75s; valid time: 33.03s; loss: -52.4974 (±2.99956); valid loss: 2456.01
+[Epoch 10/100, Step 4400, ETA 10h 30m 23.01s] step time: 0.8828s (±3.72s); train time: 51.05s; valid time: 37.33s; loss: -53.4614 (±2.46767); valid loss: 6668.08
+[Epoch 10/100, Step 4500, ETA 10h 28m 22.88s] step time: 0.8648s (±3.296s); train time: 53.44s; valid time: 33.16s; loss: -54.5644 (±2.83424); valid loss: 5413.87
+[Epoch 10/100, Step 4600, ETA 10h 26m 1.466s] step time: 0.8399s (±3.261s); train time: 51.28s; valid time: 32.81s; loss: -54.6007 (±3.38542); valid loss: 5825.64
+train_values: (23315, 20)
+[Epoch 11/100, Step 4700, ETA 10h 23m 23.92s] step time: 0.8186s (±3.267s); train time: 24.56s; valid time: 32.88s; loss: -54.346 (±2.98291); valid loss: 2995.31
+[Epoch 11/100, Step 4800, ETA 10h 20m 11.19s] step time: 0.7751s (±3.086s); train time: 46.57s; valid time: 31.03s; loss: -55.7274 (±2.54422); valid loss: 6205.97
+[Epoch 11/100, Step 4900, ETA 10h 16m 49.28s] step time: 0.7587s (±2.936s); train time: 46.45s; valid time: 29.52s; loss: -56.499 (±2.96658); valid loss: 6482.09
+[Epoch 11/100, Step 5000, ETA 10h 13m 15.54s] step time: 0.7384s (±2.869s); train time: 45.07s; valid time: 28.86s; loss: -56.4126 (±2.64903); valid loss: 7423.33
+[Epoch 11/100, Step 5100, ETA 10h 9m 44.67s] step time: 0.7352s (±2.915s); train time: 44.38s; valid time: 29.23s; loss: -56.1536 (±6.09503); valid loss: 3372.11
+train_values: (23315, 20)
+[Epoch 12/100, Step 5200, ETA 10h 6m 24.86s] step time: 0.7421s (±2.938s); train time: 38.33s; valid time: 29.53s; loss: -56.1664 (±2.82979); valid loss: 3812.11
+[Epoch 12/100, Step 5300, ETA 10h 2m 50.9s] step time: 0.7182s (±2.906s); train time: 42.73s; valid time: 29.18s; loss: -56.6566 (±2.73695); valid loss: 3370.07
+[Epoch 12/100, Step 5400, ETA 9h 59m 40.19s] step time: 0.7419s (±3.039s); train time: 43.74s; valid time: 30.53s; loss: -57.2444 (±3.1927); valid loss: 6659.7
+[Epoch 12/100, Step 5500, ETA 9h 56m 37.53s] step time: 0.7469s (±2.928s); train time: 45.34s; valid time: 29.44s; loss: -58.0795 (±2.91865); valid loss: 3071.34
+train_values: (23315, 20)
+[Epoch 13/100, Step 5600, ETA 9h 53m 14.45s] step time: 0.7134s (±2.722s); train time: 8.758s; valid time: 27.39s; loss: -59.1923 (±2.47776); valid loss: 5520.15
+[Epoch 13/100, Step 5700, ETA 9h 50m 19.57s] step time: 0.7466s (±2.902s); train time: 45.64s; valid time: 29.11s; loss: -59.0868 (±2.73503); valid loss: 7443.01
+[Epoch 13/100, Step 5800, ETA 9h 47m 17.17s] step time: 0.731s (±2.875s); train time: 44.31s; valid time: 28.88s; loss: -58.9778 (±2.48597); valid loss: 6285.6
+[Epoch 13/100, Step 5900, ETA 9h 44m 27.98s] step time: 0.7448s (±2.926s); train time: 45.15s; valid time: 29.42s; loss: -59.3618 (±3.29749); valid loss: 8997.78
+[Epoch 13/100, Step 6000, ETA 9h 41m 35.47s] step time: 0.7352s (±2.893s); train time: 44.52s; valid time: 29.1s; loss: -61.1897 (±2.72927); valid loss: 9452.15
+train_values: (23315, 20)
+[Epoch 14/100, Step 6100, ETA 9h 39m 8.55s] step time: 0.7686s (±2.954s); train time: 26.07s; valid time: 29.71s; loss: -60.2293 (±3.02246); valid loss: 7654.95
+[Epoch 14/100, Step 6200, ETA 9h 36m 33.69s] step time: 0.7532s (±2.949s); train time: 45.77s; valid time: 29.65s; loss: -60.7621 (±2.99728); valid loss: 6754.44
+[Epoch 14/100, Step 6300, ETA 9h 34m 7.264s] step time: 0.7626s (±3.165s); train time: 44.59s; valid time: 31.76s; loss: -61.4914 (±2.17546); valid loss: 6719.49
+[Epoch 14/100, Step 6400, ETA 9h 31m 39.96s] step time: 0.7576s (±2.957s); train time: 46.21s; valid time: 29.64s; loss: -60.2489 (±4.88152); valid loss: 6415.34
+[Epoch 14/100, Step 6500, ETA 9h 29m 9.78s] step time: 0.7494s (±2.897s); train time: 45.86s; valid time: 29.17s; loss: -60.5937 (±2.90904); valid loss: 5331.29
+train_values: (23315, 20)
+[Epoch 15/100, Step 6600, ETA 9h 26m 50.23s] step time: 0.7628s (±3s); train time: 41.73s; valid time: 30.14s; loss: -60.6632 (±3.23586); valid loss: 3925.86
+[Epoch 15/100, Step 6700, ETA 9h 24m 26.66s] step time: 0.7532s (±2.984s); train time: 45.42s; valid time: 30s; loss: -60.7769 (±2.57593); valid loss: 13187
+[Epoch 15/100, Step 6800, ETA 9h 21m 59.78s] step time: 0.7442s (±2.929s); train time: 45.08s; valid time: 29.43s; loss: -60.6633 (±3.64434); valid loss: 6643.52
+[Epoch 15/100, Step 6900, ETA 9h 19m 35.88s] step time: 0.7457s (±2.946s); train time: 45.07s; valid time: 29.6s; loss: -62.5821 (±2.70641); valid loss: 6481.54
+train_values: (23315, 20)
+[Epoch 16/100, Step 7000, ETA 9h 17m 12.93s] step time: 0.7436s (±2.889s); train time: 11.34s; valid time: 29.04s; loss: -62.8642 (±2.38622); valid loss: 4430.11
+[Epoch 16/100, Step 7100, ETA 9h 14m 48.94s] step time: 0.7386s (±2.958s); train time: 44.22s; valid time: 29.72s; loss: -60.8564 (±3.63209); valid loss: 6006.44
+[Epoch 16/100, Step 7200, ETA 9h 12m 25.92s] step time: 0.7368s (±2.964s); train time: 43.98s; valid time: 29.78s; loss: -62.0148 (±2.81819); valid loss: 6419.72
+[Epoch 16/100, Step 7300, ETA 9h 10m 24.26s] step time: 0.773s (±3.085s); train time: 46.36s; valid time: 31.03s; loss: -62.6995 (±2.80763); valid loss: 7806.06
+[Epoch 16/100, Step 7400, ETA 9h 8m 3.635s] step time: 0.7348s (±2.775s); train time: 45.7s; valid time: 27.88s; loss: -64.1058 (±3.21537); valid loss: 9461.64
+train_values: (23315, 20)
+[Epoch 17/100, Step 7500, ETA 9h 5m 43.77s] step time: 0.7326s (±2.975s); train time: 26.6s; valid time: 29.9s; loss: -62.7821 (±2.82568); valid loss: 6994.62
+[Epoch 17/100, Step 7600, ETA 9h 3m 39.49s] step time: 0.7597s (±2.933s); train time: 46.62s; valid time: 29.46s; loss: -63.6725 (±3.24979); valid loss: 8656.45
+[Epoch 17/100, Step 7700, ETA 9h 1m 37.45s] step time: 0.7618s (±2.961s); train time: 46.5s; valid time: 29.77s; loss: -63.8992 (±3.12909); valid loss: 7147.62
+[Epoch 17/100, Step 7800, ETA 8h 59m 40.23s] step time: 0.7692s (±2.994s); train time: 46.93s; valid time: 30.09s; loss: -64.0681 (±2.57142); valid loss: 10818.3
+[Epoch 17/100, Step 7900, ETA 8h 57m 33.38s] step time: 0.7474s (±2.967s); train time: 45s; valid time: 29.83s; loss: -63.6581 (±2.9971); valid loss: 8047.93
+train_values: (23315, 20)
+[Epoch 18/100, Step 8000, ETA 8h 55m 35.37s] step time: 0.7626s (±2.948s); train time: 44.48s; valid time: 29.65s; loss: -64.2337 (±2.80853); valid loss: 9639.99
+[Epoch 18/100, Step 8100, ETA 8h 53m 33.74s] step time: 0.7532s (±2.946s); train time: 45.78s; valid time: 29.64s; loss: -65.4087 (±2.26671); valid loss: 5485.07
+[Epoch 18/100, Step 8200, ETA 8h 51m 31.48s] step time: 0.7496s (±2.962s); train time: 45.28s; valid time: 29.76s; loss: -64.9145 (±2.9125); valid loss: 13694.2
+[Epoch 18/100, Step 8300, ETA 8h 49m 27.46s] step time: 0.7432s (±2.943s); train time: 44.86s; valid time: 29.55s; loss: -66.576 (±3.15714); valid loss: 16630.1
+train_values: (23315, 20)
+[Epoch 19/100, Step 8400, ETA 8h 47m 28.52s] step time: 0.7514s (±2.948s); train time: 13.88s; valid time: 29.66s; loss: -64.3034 (±2.99664); valid loss: 12073.3
+[Epoch 19/100, Step 8500, ETA 8h 45m 33.53s] step time: 0.7583s (±2.955s); train time: 46.21s; valid time: 29.72s; loss: -65.9698 (±2.19447); valid loss: 13149.1
+[Epoch 19/100, Step 8600, ETA 8h 43m 37.37s] step time: 0.7536s (±2.946s); train time: 45.84s; valid time: 29.62s; loss: -66.3436 (±2.4209); valid loss: 10511.1
+[Epoch 19/100, Step 8700, ETA 8h 41m 40.58s] step time: 0.75s (±2.974s); train time: 45.19s; valid time: 29.9s; loss: -66.1694 (±2.6939); valid loss: 10950.7
+[Epoch 19/100, Step 8800, ETA 8h 39m 50.03s] step time: 0.7623s (±2.968s); train time: 46.47s; valid time: 29.86s; loss: -66.2063 (±3.1566); valid loss: 10733.5
+train_values: (23315, 20)
+[Epoch 20/100, Step 8900, ETA 8h 38m 0.6475s] step time: 0.7629s (±3.004s); train time: 30.53s; valid time: 30.18s; loss: -65.722 (±2.24202); valid loss: 7928.41
+[Epoch 20/100, Step 9000, ETA 8h 36m 15.96s] step time: 0.7727s (±3.059s); train time: 46.63s; valid time: 30.74s; loss: -66.5775 (±2.69609); valid loss: 13030.3
+[Epoch 20/100, Step 9100, ETA 8h 34m 28.8s] step time: 0.7654s (±3.098s); train time: 45.57s; valid time: 31.06s; loss: -67.7182 (±2.34004); valid loss: 15385.6
+[Epoch 20/100, Step 9200, ETA 8h 32m 41.81s] step time: 0.7641s (±3.01s); train time: 46.23s; valid time: 30.27s; loss: -67.7409 (±2.85582); valid loss: 13399
+[Epoch 20/100, Step 9300, ETA 8h 31m 9.272s] step time: 0.7985s (±3.108s); train time: 48.65s; valid time: 31.3s; loss: -66.3102 (±2.96183); valid loss: 10453.4
+[Epoch 20/100, Step 9300, ETA 8h 31m 9.277s] Learning rate decreased to 5e-05
+train_values: (23315, 20)
+[Epoch 21/100, Step 9400, ETA 8h 29m 21.46s] step time: 0.7589s (±2.997s); train time: 45.87s; valid time: 30.15s; loss: -73.7839 (±2.90639); valid loss: 40235.7
+[Epoch 21/100, Step 9500, ETA 8h 27m 31.98s] step time: 0.7532s (±2.94s); train time: 45.87s; valid time: 29.54s; loss: -74.8363 (±2.87286); valid loss: 50079.6
+[Epoch 21/100, Step 9600, ETA 8h 25m 52.82s] step time: 0.7782s (±3.026s); train time: 47.59s; valid time: 30.33s; loss: -75.7287 (±2.43269); valid loss: 69099.3
+[Epoch 21/100, Step 9700, ETA 8h 24m 13.21s] step time: 0.7758s (±3.065s); train time: 46.86s; valid time: 30.83s; loss: -75.9917 (±2.68693); valid loss: 39455
+train_values: (23315, 20)
+[Epoch 22/100, Step 9800, ETA 8h 22m 47.09s] step time: 0.8103s (±3.33s); train time: 16.65s; valid time: 33.52s; loss: -75.5442 (±2.36586); valid loss: 39861
+[Epoch 22/100, Step 9900, ETA 8h 21m 52.63s] step time: 0.8959s (±3.508s); train time: 54.45s; valid time: 35.25s; loss: -75.5274 (±2.26056); valid loss: 35415.7
+[Epoch 22/100, Step 10000, ETA 8h 20m 27.41s] step time: 0.8137s (±3.079s); train time: 50.47s; valid time: 31s; loss: -75.0909 (±2.93935); valid loss: 38580
+[Epoch 22/100, Step 10100, ETA 8h 19m 31.92s] step time: 0.8959s (±3.806s); train time: 51.4s; valid time: 38.3s; loss: -75.979 (±2.63965); valid loss: 55086.3
+[Epoch 22/100, Step 10200, ETA 8h 18m 4.149s] step time: 0.8072s (±3.133s); train time: 49.34s; valid time: 31.47s; loss: -75.5387 (±3.01121); valid loss: 40989.9
+train_values: (23315, 20)
+[Epoch 23/100, Step 10300, ETA 8h 17m 39.54s] step time: 0.9861s (±4.425s); train time: 38.55s; valid time: 44.55s; loss: -75.9359 (±2.84405); valid loss: 39977.1
+[Epoch 23/100, Step 10400, ETA 8h 17m 10.24s] step time: 0.9767s (±3.401s); train time: 1m 3.629s; valid time: 34.18s; loss: -76.0278 (±2.55148); valid loss: 44046.7
+[Epoch 23/100, Step 10500, ETA 8h 15m 26.07s] step time: 0.7626s (±3.035s); train time: 45.83s; valid time: 30.52s; loss: -75.7517 (±2.65682); valid loss: 33557.3
+[Epoch 23/100, Step 10600, ETA 8h 15m 17.26s] step time: 1.042s (±3.753s); train time: 1m 6.649s; valid time: 37.7s; loss: -75.5366 (±3.36933); valid loss: 38467.5
+train_values: (23315, 20)
+[Epoch 24/100, Step 10700, ETA 8h 14m 4.058s] step time: 0.8549s (±3.28s); train time: 2.578s; valid time: 33s; loss: -76.7302 (±2.39666); valid loss: 40117.5
+[Epoch 24/100, Step 10800, ETA 8h 12m 54.6s] step time: 0.8674s (±3.389s); train time: 52.79s; valid time: 34.05s; loss: -76.0606 (±2.79177); valid loss: 47679.9
+[Epoch 24/100, Step 10900, ETA 8h 11m 39.26s] step time: 0.8503s (±3.337s); train time: 51.55s; valid time: 33.59s; loss: -76.5393 (±2.25066); valid loss: 39633
+[Epoch 24/100, Step 11000, ETA 8h 10m 42.39s] step time: 0.908s (±3.275s); train time: 57.99s; valid time: 32.93s; loss: -76.5894 (±3.31086); valid loss: 46112.1
+[Epoch 24/100, Step 11100, ETA 8h 9m 23.11s] step time: 0.8399s (±3.3s); train time: 50.86s; valid time: 33.22s; loss: -76.7494 (±2.57627); valid loss: 57270.5
+train_values: (23315, 20)
+[Epoch 25/100, Step 11200, ETA 8h 8m 13.43s] step time: 0.8701s (±3.429s); train time: 20.66s; valid time: 34.54s; loss: -75.5412 (±2.66882); valid loss: 35344.5
+[Epoch 25/100, Step 11300, ETA 8h 6m 52.64s] step time: 0.8358s (±3.269s); train time: 50.76s; valid time: 32.93s; loss: -77.6648 (±2.26537); valid loss: 46115.3
+[Epoch 25/100, Step 11400, ETA 8h 5m 39.43s] step time: 0.8605s (±3.195s); train time: 54.02s; valid time: 32.15s; loss: -76.5572 (±3.61033); valid loss: 42071.5
+[Epoch 25/100, Step 11500, ETA 8h 4m 21.11s] step time: 0.8446s (±3.332s); train time: 51.07s; valid time: 33.49s; loss: -75.3818 (±3.12173); valid loss: 44677.5
+[Epoch 25/100, Step 11600, ETA 8h 2m 43.36s] step time: 0.7804s (±3.06s); train time: 47.35s; valid time: 30.79s; loss: -76.5683 (±2.70024); valid loss: 46935.8
+train_values: (23315, 20)
+[Epoch 26/100, Step 11700, ETA 8h 1m 21.44s] step time: 0.8321s (±3.464s); train time: 37.12s; valid time: 34.7s; loss: -78.0054 (±2.42289); valid loss: 47315.1
+[Epoch 26/100, Step 11800, ETA 8h 3.376s] step time: 0.8457s (±3.44s); train time: 50.23s; valid time: 34.44s; loss: -77.2253 (±2.77771); valid loss: 34723
+[Epoch 26/100, Step 11900, ETA 7h 58m 29.43s] step time: 0.7915s (±3.003s); train time: 49.04s; valid time: 30.2s; loss: -77.0316 (±2.66372); valid loss: 55826.1
+[Epoch 26/100, Step 12000, ETA 7h 56m 55.88s] step time: 0.792s (±3.116s); train time: 47.99s; valid time: 31.31s; loss: -76.6123 (±2.81751); valid loss: 53009.8
+train_values: (23315, 20)
+[Epoch 27/100, Step 12100, ETA 7h 55m 26.09s] step time: 0.804s (±3.216s); train time: 4.981s; valid time: 32.29s; loss: -77.1282 (±2.82792); valid loss: 53826.9
+[Epoch 27/100, Step 12200, ETA 7h 53m 57.36s] step time: 0.8077s (±3.247s); train time: 48.26s; valid time: 32.6s; loss: -76.8945 (±3.06145); valid loss: 40256.3
+[Epoch 27/100, Step 12300, ETA 7h 52m 35.51s] step time: 0.8318s (±3.171s); train time: 51.37s; valid time: 31.91s; loss: -77.4496 (±2.76363); valid loss: 50206.3
+[Epoch 27/100, Step 12400, ETA 7h 51m 18.07s] step time: 0.8479s (±3.232s); train time: 52.36s; valid time: 32.53s; loss: -76.9131 (±3.06591); valid loss: 35306.7
+[Epoch 27/100, Step 12500, ETA 7h 50m 2.044s] step time: 0.8536s (±3.507s); train time: 50.19s; valid time: 35.27s; loss: -77.2825 (±3.21492); valid loss: 46684.3
+train_values: (23315, 20)
+[Epoch 28/100, Step 12600, ETA 7h 48m 38.12s] step time: 0.8244s (±3.292s); train time: 22.21s; valid time: 33.09s; loss: -77.6612 (±2.81771); valid loss: 57081.8
+[Epoch 28/100, Step 12700, ETA 7h 47m 14.09s] step time: 0.8244s (±3.177s); train time: 50.63s; valid time: 31.91s; loss: -78.4375 (±2.22986); valid loss: 69549.8
+[Epoch 28/100, Step 12800, ETA 7h 45m 53.5s] step time: 0.8373s (±3.163s); train time: 52.02s; valid time: 31.82s; loss: -76.5029 (±2.98312); valid loss: 61614.4
+[Epoch 28/100, Step 12900, ETA 7h 44m 34.64s] step time: 0.8441s (±3.355s); train time: 50.79s; valid time: 33.73s; loss: -76.956 (±3.1648); valid loss: 37548.5
+[Epoch 28/100, Step 13000, ETA 7h 43m 12.02s] step time: 0.8299s (±3.327s); train time: 49.7s; valid time: 33.39s; loss: -77.5343 (±2.23535); valid loss: 40237.3
+train_values: (23315, 20)
+[Epoch 29/100, Step 13100, ETA 7h 41m 47.69s] step time: 0.8228s (±3.339s); train time: 39.59s; valid time: 33.57s; loss: -78.2484 (±2.42673); valid loss: 47833.9
+[Epoch 29/100, Step 13200, ETA 7h 40m 38.38s] step time: 0.8825s (±3.255s); train time: 55.61s; valid time: 32.76s; loss: -77.4946 (±2.6753); valid loss: 53926.7
+[Epoch 29/100, Step 13300, ETA 7h 39m 14.31s] step time: 0.8246s (±3.085s); train time: 51.51s; valid time: 31.06s; loss: -78.4291 (±2.09842); valid loss: 45216
+[Epoch 29/100, Step 13400, ETA 7h 37m 52.56s] step time: 0.834s (±3.312s); train time: 50.15s; valid time: 33.35s; loss: -77.8436 (±3.02809); valid loss: 54411
+train_values: (23315, 20)
+[Epoch 30/100, Step 13500, ETA 7h 36m 31.06s] step time: 0.8346s (±3.348s); train time: 6.94s; valid time: 33.65s; loss: -77.1573 (±2.17075); valid loss: 49021.9
+[Epoch 30/100, Step 13600, ETA 7h 35m 15.88s] step time: 0.8614s (±3.502s); train time: 51.1s; valid time: 35.13s; loss: -78.1467 (±2.89839); valid loss: 52417
+[Epoch 30/100, Step 13700, ETA 7h 33m 55.35s] step time: 0.8397s (±3.385s); train time: 50.03s; valid time: 34.03s; loss: -77.4747 (±2.16502); valid loss: 38577.6
+[Epoch 30/100, Step 13800, ETA 7h 32m 27.45s] step time: 0.8087s (±3.048s); train time: 50.33s; valid time: 30.65s; loss: -77.5203 (±2.75616); valid loss: 43902.7
+[Epoch 30/100, Step 13900, ETA 7h 30m 52.29s] step time: 0.7775s (±3.03s); train time: 47.43s; valid time: 30.42s; loss: -77.5363 (±2.58848); valid loss: 49940.9
+train_values: (23315, 20)
+[Epoch 31/100, Step 14000, ETA 7h 29m 29.45s] step time: 0.829s (±3.254s); train time: 24.82s; valid time: 32.53s; loss: -78.5191 (±2.29075); valid loss: 52936.7
+[Epoch 31/100, Step 14100, ETA 7h 27m 58.24s] step time: 0.7931s (±3.304s); train time: 46.17s; valid time: 33.24s; loss: -77.3059 (±2.56188); valid loss: 44883.1
+[Epoch 31/100, Step 14200, ETA 7h 26m 17.97s] step time: 0.7524s (±2.97s); train time: 45.5s; valid time: 29.85s; loss: -79.2942 (±2.05803); valid loss: 56327.1
+[Epoch 31/100, Step 14300, ETA 7h 24m 37.22s] step time: 0.7489s (±2.92s); train time: 45.65s; valid time: 29.33s; loss: -78.3427 (±2.85204); valid loss: 75075.2
+[Epoch 31/100, Step 14400, ETA 7h 22m 58.09s] step time: 0.7545s (±2.986s); train time: 45.53s; valid time: 30.02s; loss: -77.5105 (±3.31025); valid loss: 66294.7
+train_values: (23315, 20)
+[Epoch 32/100, Step 14500, ETA 7h 21m 18.71s] step time: 0.7515s (±2.973s); train time: 38.58s; valid time: 29.89s; loss: -78.4338 (±3.0908); valid loss: 54201.4
+[Epoch 32/100, Step 14600, ETA 7h 19m 38.03s] step time: 0.7445s (±2.93s); train time: 45.06s; valid time: 29.48s; loss: -79.8193 (±2.46497); valid loss: 65616.1
+[Epoch 32/100, Step 14700, ETA 7h 17m 58.94s] step time: 0.7502s (±2.912s); train time: 45.86s; valid time: 29.25s; loss: -78.0681 (±3.1201); valid loss: 42292.7
+[Epoch 32/100, Step 14800, ETA 7h 16m 21.6s] step time: 0.7568s (±2.984s); train time: 45.79s; valid time: 29.99s; loss: -78.4665 (±2.64075); valid loss: 57762.7
+train_values: (23315, 20)
+[Epoch 33/100, Step 14900, ETA 7h 14m 41.78s] step time: 0.7434s (±2.935s); train time: 8.935s; valid time: 29.51s; loss: -77.8996 (±2.91435); valid loss: 59022.1
+[Epoch 33/100, Step 15000, ETA 7h 13m 3.042s] step time: 0.7473s (±2.901s); train time: 45.65s; valid time: 29.17s; loss: -78.7359 (±2.41137); valid loss: 60533.1
+[Epoch 33/100, Step 15100, ETA 7h 11m 26.35s] step time: 0.7556s (±2.994s); train time: 45.6s; valid time: 30.05s; loss: -78.7898 (±2.39066); valid loss: 48039.1
+[Epoch 33/100, Step 15200, ETA 7h 9m 50.45s] step time: 0.7581s (±2.936s); train time: 46.42s; valid time: 29.49s; loss: -78.3073 (±2.82705); valid loss: 54546
+[Epoch 33/100, Step 15300, ETA 7h 8m 14.05s] step time: 0.7544s (±3.056s); train time: 44.85s; valid time: 30.68s; loss: -78.3211 (±2.21911); valid loss: 57552.8
+train_values: (23315, 20)
+[Epoch 34/100, Step 15400, ETA 7h 6m 36.08s] step time: 0.7449s (±2.918s); train time: 25.07s; valid time: 29.32s; loss: -77.7684 (±3.06693); valid loss: 42737.8
+[Epoch 34/100, Step 15500, ETA 7h 4m 58.17s] step time: 0.7441s (±2.911s); train time: 45.23s; valid time: 29.27s; loss: -78.7428 (±2.60946); valid loss: 51829.7
+[Epoch 34/100, Step 15600, ETA 7h 3m 22s] step time: 0.7513s (±2.956s); train time: 45.51s; valid time: 29.71s; loss: -79.403 (±1.97699); valid loss: 61135.9
+[Epoch 34/100, Step 15700, ETA 7h 1m 45.3s] step time: 0.7473s (±2.949s); train time: 45.17s; valid time: 29.64s; loss: -78.6741 (±2.73856); valid loss: 56885.1
+[Epoch 34/100, Step 15800, ETA 7h 8.324s] step time: 0.7445s (±2.92s); train time: 45.19s; valid time: 29.35s; loss: -78.2177 (±2.88802); valid loss: 44806.8
+train_values: (23315, 20)
+[Epoch 35/100, Step 15900, ETA 6h 58m 32.86s] step time: 0.7504s (±2.921s); train time: 40.83s; valid time: 29.37s; loss: -79.7894 (±2.47901); valid loss: 52946.9
+[Epoch 35/100, Step 16000, ETA 6h 56m 57.83s] step time: 0.7518s (±2.963s); train time: 45.55s; valid time: 29.72s; loss: -79.6524 (±2.55883); valid loss: 66361.2
+[Epoch 35/100, Step 16100, ETA 6h 55m 21.37s] step time: 0.7429s (±2.925s); train time: 45.01s; valid time: 29.38s; loss: -79.4263 (±2.33025); valid loss: 47811.8
+[Epoch 35/100, Step 16200, ETA 6h 53m 45.74s] step time: 0.7459s (±2.921s); train time: 45.33s; valid time: 29.35s; loss: -78.4291 (±2.79083); valid loss: 51242.5
+train_values: (23315, 20)
+[Epoch 36/100, Step 16300, ETA 6h 52m 11.57s] step time: 0.752s (±2.928s); train time: 11.26s; valid time: 29.43s; loss: -78.4741 (±2.51011); valid loss: 51446.9
+[Epoch 36/100, Step 16400, ETA 6h 50m 37.19s] step time: 0.75s (±2.946s); train time: 45.46s; valid time: 29.62s; loss: -80.0461 (±2.20766); valid loss: 59355.4
+[Epoch 36/100, Step 16500, ETA 6h 49m 3.977s] step time: 0.7551s (±3.008s); train time: 45.35s; valid time: 30.25s; loss: -79.942 (±3.19749); valid loss: 72778.5
+[Epoch 36/100, Step 16600, ETA 6h 47m 29.16s] step time: 0.745s (±2.935s); train time: 45.11s; valid time: 29.49s; loss: -78.5466 (±3.1806); valid loss: 70546.3
+[Epoch 36/100, Step 16700, ETA 6h 45m 55.4s] step time: 0.7496s (±2.914s); train time: 45.76s; valid time: 29.29s; loss: -78.1783 (±2.48188); valid loss: 48572.6
+train_values: (23315, 20)
+[Epoch 37/100, Step 16800, ETA 6h 44m 24.41s] step time: 0.7636s (±2.964s); train time: 28.14s; valid time: 29.76s; loss: -78.475 (±2.36939); valid loss: 58738.9
+[Epoch 37/100, Step 16900, ETA 6h 42m 51.37s] step time: 0.7513s (±3.016s); train time: 44.9s; valid time: 30.32s; loss: -80.3123 (±2.52422); valid loss: 70728.3
+[Epoch 37/100, Step 17000, ETA 6h 41m 33.28s] step time: 0.836s (±3.19s); train time: 51.67s; valid time: 32.04s; loss: -79.1845 (±2.55408); valid loss: 51307.7
+[Epoch 37/100, Step 17100, ETA 6h 39m 57.95s] step time: 0.7364s (±2.898s); train time: 44.61s; valid time: 29.12s; loss: -79.0281 (±3.54554); valid loss: 59766.4
+[Epoch 37/100, Step 17200, ETA 6h 38m 24.06s] step time: 0.7434s (±2.92s); train time: 45.08s; valid time: 29.34s; loss: -80.1607 (±2.25129); valid loss: 72002.5
+train_values: (23315, 20)
+[Epoch 38/100, Step 17300, ETA 6h 36m 51.76s] step time: 0.7511s (±2.943s); train time: 43.41s; valid time: 29.6s; loss: -78.9946 (±2.95932); valid loss: 69442.8
+[Epoch 38/100, Step 17400, ETA 6h 35m 19.42s] step time: 0.75s (±2.993s); train time: 45s; valid time: 30.09s; loss: -78.7923 (±2.38649); valid loss: 48359.4
+[Epoch 38/100, Step 17500, ETA 6h 33m 47.05s] step time: 0.7486s (±2.976s); train time: 45.06s; valid time: 29.89s; loss: -79.7498 (±2.28981); valid loss: 60623
+[Epoch 38/100, Step 17600, ETA 6h 32m 14.31s] step time: 0.7452s (±2.926s); train time: 45.19s; valid time: 29.42s; loss: -79.9091 (±3.0784); valid loss: 69060.6
+train_values: (23315, 20)
+[Epoch 39/100, Step 17700, ETA 6h 30m 41.74s] step time: 0.7447s (±2.99s); train time: 13.35s; valid time: 30.06s; loss: -79.0673 (±2.7741); valid loss: 80840.3
+[Epoch 39/100, Step 17800, ETA 6h 29m 9.786s] step time: 0.7475s (±2.961s); train time: 45.05s; valid time: 29.8s; loss: -79.3822 (±2.91522); valid loss: 51605.1
+[Epoch 39/100, Step 17900, ETA 6h 27m 37.24s] step time: 0.7427s (±2.902s); train time: 45.19s; valid time: 29.17s; loss: -79.5625 (±2.54635); valid loss: 68519.2
+[Epoch 39/100, Step 18000, ETA 6h 26m 6.079s] step time: 0.7501s (±2.954s); train time: 45.4s; valid time: 29.7s; loss: -80.0481 (±2.46826); valid loss: 86067.3
+[Epoch 39/100, Step 18100, ETA 6h 24m 34.87s] step time: 0.7487s (±3.003s); train time: 44.77s; valid time: 30.18s; loss: -79.0934 (±2.76518); valid loss: 74297.6
+train_values: (23315, 20)
+[Epoch 40/100, Step 18200, ETA 6h 23m 3.309s] step time: 0.745s (±2.948s); train time: 29.35s; valid time: 29.62s; loss: -79.558 (±2.32109); valid loss: 78639.1
+[Epoch 40/100, Step 18300, ETA 6h 21m 31.39s] step time: 0.7418s (±2.913s); train time: 45.01s; valid time: 29.26s; loss: -78.759 (±2.8782); valid loss: 46061.9
+[Epoch 40/100, Step 18400, ETA 6h 20m 4.039s] step time: 0.7704s (±3.178s); train time: 45.18s; valid time: 31.95s; loss: -80.4422 (±2.29162); valid loss: 46967.2
+[Epoch 40/100, Step 18500, ETA 6h 18m 32.39s] step time: 0.7412s (±2.928s); train time: 44.83s; valid time: 29.39s; loss: -79.3265 (±2.68244); valid loss: 50898.9
+[Epoch 40/100, Step 18600, ETA 6h 17m 1.393s] step time: 0.7444s (±2.938s); train time: 44.99s; valid time: 29.54s; loss: -80.4006 (±2.68946); valid loss: 78335.5
+[Epoch 40/100, Step 18600, ETA 6h 17m 1.394s] Learning rate decreased to 2.5e-05
+train_values: (23315, 20)
+[Epoch 41/100, Step 18700, ETA 6h 15m 30.11s] step time: 0.7409s (±2.897s); train time: 45.09s; valid time: 29.12s; loss: -85.7519 (±2.37717); valid loss: 136135
+[Epoch 41/100, Step 18800, ETA 6h 13m 59.77s] step time: 0.7465s (±2.924s); train time: 45.32s; valid time: 29.42s; loss: -86.7702 (±1.99641); valid loss: 173546
+[Epoch 41/100, Step 18900, ETA 6h 12m 29.71s] step time: 0.7471s (±2.923s); train time: 45.41s; valid time: 29.4s; loss: -87.072 (±2.19877); valid loss: 196048
+[Epoch 41/100, Step 19000, ETA 6h 11m 0.5847s] step time: 0.7525s (±2.965s); train time: 45.54s; valid time: 29.81s; loss: -87.1183 (±2.35085); valid loss: 190202
+train_values: (23315, 20)
+[Epoch 42/100, Step 19100, ETA 6h 9m 30.37s] step time: 0.7435s (±2.911s); train time: 15.73s; valid time: 29.26s; loss: -87.437 (±2.2285); valid loss: 200910
+[Epoch 42/100, Step 19200, ETA 6h 8m 0.8408s] step time: 0.7476s (±2.972s); train time: 44.99s; valid time: 29.86s; loss: -87.4007 (±2.46047); valid loss: 170578
+[Epoch 42/100, Step 19300, ETA 6h 6m 30.13s] step time: 0.7383s (±2.936s); train time: 44.41s; valid time: 29.5s; loss: -87.1232 (±2.59271); valid loss: 191597
+[Epoch 42/100, Step 19400, ETA 6h 5m 1.639s] step time: 0.7528s (±2.956s); train time: 45.64s; valid time: 29.73s; loss: -86.6915 (±2.69342); valid loss: 202395
+[Epoch 42/100, Step 19500, ETA 6h 3m 31.52s] step time: 0.7401s (±2.889s); train time: 45.08s; valid time: 29.02s; loss: -87.6851 (±2.20902); valid loss: 233191
+train_values: (23315, 20)
+[Epoch 43/100, Step 19600, ETA 6h 2m 1.714s] step time: 0.7408s (±2.909s); train time: 31.12s; valid time: 29.25s; loss: -87.4854 (±2.551); valid loss: 236828
+[Epoch 43/100, Step 19700, ETA 6h 32.21s] step time: 0.7423s (±2.934s); train time: 44.79s; valid time: 29.52s; loss: -87.1973 (±2.89659); valid loss: 195809
+[Epoch 43/100, Step 19800, ETA 5h 59m 2.995s] step time: 0.7432s (±2.912s); train time: 45.12s; valid time: 29.3s; loss: -87.4822 (±2.45209); valid loss: 177560
+[Epoch 43/100, Step 19900, ETA 5h 57m 34.73s] step time: 0.7493s (±2.939s); train time: 45.45s; valid time: 29.56s; loss: -87.4382 (±2.47082); valid loss: 173808
+train_values: (23315, 20)
+[Epoch 44/100, Step 20000, ETA 5h 56m 6.243s] step time: 0.7462s (±2.899s); train time: 2.257s; valid time: 29.12s; loss: -87.547 (±2.19919); valid loss: 185449
+[Epoch 44/100, Step 20100, ETA 5h 54m 36.25s] step time: 0.7341s (±2.912s); train time: 44.22s; valid time: 29.27s; loss: -87.7186 (±2.68542); valid loss: 203208
+[Epoch 44/100, Step 20200, ETA 5h 53m 7.288s] step time: 0.7407s (±2.9s); train time: 45.04s; valid time: 29.13s; loss: -87.7211 (±2.71881); valid loss: 209941
+[Epoch 44/100, Step 20300, ETA 5h 51m 39.34s] step time: 0.7475s (±2.928s); train time: 45.4s; valid time: 29.44s; loss: -88.1976 (±2.09598); valid loss: 219458
+[Epoch 44/100, Step 20400, ETA 5h 50m 11.84s] step time: 0.7499s (±2.94s); train time: 45.51s; valid time: 29.57s; loss: -87.3793 (±2.79092); valid loss: 219577
+train_values: (23315, 20)
+[Epoch 45/100, Step 20500, ETA 5h 49m 2.136s] step time: 0.8886s (±3.165s); train time: 21.54s; valid time: 31.9s; loss: -88.0448 (±2.22048); valid loss: 203036
+[Epoch 45/100, Step 20600, ETA 5h 47m 39.8s] step time: 0.7902s (±3.184s); train time: 47.08s; valid time: 32.04s; loss: -87.2227 (±2.80152); valid loss: 181193
+[Epoch 45/100, Step 20700, ETA 5h 46m 17.95s] step time: 0.794s (±3.095s); train time: 48.37s; valid time: 31.12s; loss: -87.0737 (±2.45705); valid loss: 194541
+[Epoch 45/100, Step 20800, ETA 5h 44m 55.94s] step time: 0.7925s (±3.141s); train time: 47.78s; valid time: 31.57s; loss: -87.945 (±2.5752); valid loss: 213163
+[Epoch 45/100, Step 20900, ETA 5h 43m 36.48s] step time: 0.813s (±3.171s); train time: 49.65s; valid time: 31.75s; loss: -87.273 (±2.39046); valid loss: 201218
+train_values: (23315, 20)
+[Epoch 46/100, Step 21000, ETA 5h 42m 15.12s] step time: 0.797s (±3.086s); train time: 37.01s; valid time: 31.05s; loss: -87.7005 (±2.63468); valid loss: 231009
+[Epoch 46/100, Step 21100, ETA 5h 40m 52.79s] step time: 0.7894s (±3.21s); train time: 46.77s; valid time: 32.26s; loss: -88.2415 (±2.06098); valid loss: 252268
+[Epoch 46/100, Step 21200, ETA 5h 39m 30.52s] step time: 0.7897s (±3.107s); train time: 47.85s; valid time: 31.22s; loss: -88.5628 (±2.73011); valid loss: 252745
+[Epoch 46/100, Step 21300, ETA 5h 38m 4.748s] step time: 0.7598s (±2.997s); train time: 45.93s; valid time: 30.15s; loss: -87.3931 (±2.79239); valid loss: 222170
+train_values: (23315, 20)
+[Epoch 47/100, Step 21400, ETA 5h 36m 43.35s] step time: 0.7959s (±3.223s); train time: 4.653s; valid time: 32.42s; loss: -87.0419 (±2.95509); valid loss: 197094
+[Epoch 47/100, Step 21500, ETA 5h 35m 21.92s] step time: 0.7958s (±3.207s); train time: 47.42s; valid time: 32.26s; loss: -87.6237 (±2.16407); valid loss: 213343
+[Epoch 47/100, Step 21600, ETA 5h 34m 2.731s] step time: 0.8151s (±3.3s); train time: 48.41s; valid time: 33.21s; loss: -87.7693 (±2.93214); valid loss: 208450
+[Epoch 47/100, Step 21700, ETA 5h 32m 43.08s] step time: 0.8112s (±3.05s); train time: 50.59s; valid time: 30.64s; loss: -87.4947 (±2.9265); valid loss: 228779
+[Epoch 47/100, Step 21800, ETA 5h 31m 21.81s] step time: 0.7972s (±2.981s); train time: 49.83s; valid time: 29.99s; loss: -87.7778 (±2.70697); valid loss: 207996
+train_values: (23315, 20)
+[Epoch 48/100, Step 21900, ETA 5h 29m 59.28s] step time: 0.7855s (±3.112s); train time: 20.9s; valid time: 31.27s; loss: -86.7835 (±3.24406); valid loss: 182367
+[Epoch 48/100, Step 22000, ETA 5h 28m 42.1s] step time: 0.8335s (±3.389s); train time: 49.44s; valid time: 34.02s; loss: -87.2044 (±2.70342); valid loss: 205298
+[Epoch 48/100, Step 22100, ETA 5h 27m 25.48s] step time: 0.8391s (±3.387s); train time: 49.97s; valid time: 34.04s; loss: -88.0585 (±2.67145); valid loss: 233512
+[Epoch 48/100, Step 22200, ETA 5h 26m 6.573s] step time: 0.8187s (±3.183s); train time: 50s; valid time: 31.98s; loss: -88.395 (±2.78175); valid loss: 257795
+[Epoch 48/100, Step 22300, ETA 5h 24m 42.02s] step time: 0.7672s (±2.989s); train time: 46.78s; valid time: 30.03s; loss: -87.9547 (±2.50914); valid loss: 249633
+train_values: (23315, 20)
+[Epoch 49/100, Step 22400, ETA 5h 23m 21.58s] step time: 0.8043s (±3.18s); train time: 39.37s; valid time: 31.98s; loss: -87.7622 (±2.56207); valid loss: 230952
+[Epoch 49/100, Step 22500, ETA 5h 21m 58.28s] step time: 0.7779s (±3.076s); train time: 46.93s; valid time: 30.95s; loss: -87.2696 (±2.4831); valid loss: 224954
+[Epoch 49/100, Step 22600, ETA 5h 20m 36.94s] step time: 0.7958s (±3.136s); train time: 48.16s; valid time: 31.53s; loss: -88.654 (±2.66832); valid loss: 225566
+[Epoch 49/100, Step 22700, ETA 5h 19m 16.92s] step time: 0.8084s (±3.088s); train time: 49.83s; valid time: 31.11s; loss: -88.0935 (±2.37323); valid loss: 244385
+train_values: (23315, 20)
+[Epoch 50/100, Step 22800, ETA 5h 17m 56.32s] step time: 0.8023s (±3.023s); train time: 7.156s; valid time: 30.4s; loss: -89.034 (±2.02319); valid loss: 259973
+[Epoch 50/100, Step 22900, ETA 5h 16m 31.52s] step time: 0.7622s (±3.007s); train time: 46.06s; valid time: 30.25s; loss: -87.0199 (±2.85359); valid loss: 271503
+[Epoch 50/100, Step 23000, ETA 5h 15m 24.39s] step time: 0.9341s (±3.421s); train time: 59.28s; valid time: 34.25s; loss: -88.6163 (±2.42594); valid loss: 295125
+[Epoch 50/100, Step 23100, ETA 5h 13m 55.49s] step time: 0.7216s (±2.594s); train time: 46.17s; valid time: 26.09s; loss: -86.2475 (±2.82822); valid loss: 216163
+[Epoch 50/100, Step 23200, ETA 5h 12m 15.67s] step time: 0.6118s (±2.441s); train time: 36.69s; valid time: 24.56s; loss: -88.403 (±2.27373); valid loss: 233291
+train_values: (23315, 20)
+[Epoch 51/100, Step 23300, ETA 5h 10m 34.69s] step time: 0.5964s (±2.291s); train time: 18.43s; valid time: 23.04s; loss: -87.7063 (±2.78452); valid loss: 256374
+[Epoch 51/100, Step 23400, ETA 5h 8m 53.69s] step time: 0.593s (±2.372s); train time: 35.55s; valid time: 23.83s; loss: -88.139 (±2.72338); valid loss: 280832
+[Epoch 51/100, Step 23500, ETA 5h 7m 16.66s] step time: 0.6299s (±2.503s); train time: 37.91s; valid time: 25.16s; loss: -88.1235 (±2.53802); valid loss: 285750
+[Epoch 51/100, Step 23600, ETA 5h 5m 37.59s] step time: 0.606s (±2.403s); train time: 36.55s; valid time: 24.12s; loss: -88.4885 (±2.35486); valid loss: 300013
+[Epoch 51/100, Step 23700, ETA 5h 3m 59.37s] step time: 0.6115s (±2.402s); train time: 37.05s; valid time: 24.17s; loss: -87.4477 (±2.60643); valid loss: 244734
+train_values: (23315, 20)
+[Epoch 52/100, Step 23800, ETA 5h 2m 23.55s] step time: 0.6329s (±2.394s); train time: 33.65s; valid time: 24.02s; loss: -87.823 (±2.29472); valid loss: 194640
+[Epoch 52/100, Step 23900, ETA 5h 47.49s] step time: 0.6279s (±2.477s); train time: 38.02s; valid time: 24.85s; loss: -87.9755 (±2.87508); valid loss: 183824
+[Epoch 52/100, Step 24000, ETA 4h 59m 14.6s] step time: 0.6587s (±2.564s); train time: 40.18s; valid time: 25.77s; loss: -88.7191 (±2.47722); valid loss: 194559
+[Epoch 52/100, Step 24100, ETA 4h 57m 38.69s] step time: 0.6239s (±2.382s); train time: 38.51s; valid time: 23.95s; loss: -87.6198 (±3.22772); valid loss: 201000
+train_values: (23315, 20)
+[Epoch 53/100, Step 24200, ETA 4h 56m 1.389s] step time: 0.6054s (±2.295s); train time: 7.364s; valid time: 23.09s; loss: -88.6321 (±2.64959); valid loss: 211074
+[Epoch 53/100, Step 24300, ETA 4h 54m 25.16s] step time: 0.6142s (±2.321s); train time: 38.14s; valid time: 23.36s; loss: -88.5308 (±2.6041); valid loss: 220957
+[Epoch 53/100, Step 24400, ETA 4h 52m 48.93s] step time: 0.611s (±2.243s); train time: 38.6s; valid time: 22.58s; loss: -88.8049 (±2.24852); valid loss: 238596
+[Epoch 53/100, Step 24500, ETA 4h 51m 14.66s] step time: 0.6296s (±2.501s); train time: 37.89s; valid time: 25.15s; loss: -87.3792 (±2.8524); valid loss: 220485
+[Epoch 53/100, Step 24600, ETA 4h 49m 41.15s] step time: 0.6353s (±2.453s); train time: 38.93s; valid time: 24.68s; loss: -88.5971 (±2.43822); valid loss: 194033
+train_values: (23315, 20)
+[Epoch 54/100, Step 24700, ETA 4h 48m 8.395s] step time: 0.6409s (±2.51s); train time: 21.46s; valid time: 25.25s; loss: -88.9825 (±2.35345); valid loss: 200162
+[Epoch 54/100, Step 24800, ETA 4h 46m 35.41s] step time: 0.6359s (±2.498s); train time: 38.55s; valid time: 25.12s; loss: -88.2635 (±2.4423); valid loss: 189078
+[Epoch 54/100, Step 24900, ETA 4h 45m 1.613s] step time: 0.6238s (±2.403s); train time: 38.28s; valid time: 24.18s; loss: -88.5719 (±3.17482); valid loss: 199466
+[Epoch 54/100, Step 25000, ETA 4h 43m 27.56s] step time: 0.6179s (±2.37s); train time: 38.03s; valid time: 23.84s; loss: -88.0558 (±2.42809); valid loss: 215340
+[Epoch 54/100, Step 25100, ETA 4h 41m 54.46s] step time: 0.6261s (±2.475s); train time: 37.82s; valid time: 24.87s; loss: -89.3654 (±2.25297); valid loss: 237975
+train_values: (23315, 20)
+[Epoch 55/100, Step 25200, ETA 4h 40m 23.07s] step time: 0.6432s (±2.581s); train time: 34.62s; valid time: 25.85s; loss: -87.9494 (±3.31258); valid loss: 220609
+[Epoch 55/100, Step 25300, ETA 4h 38m 52.52s] step time: 0.651s (±2.569s); train time: 39.36s; valid time: 25.82s; loss: -87.3305 (±2.72069); valid loss: 228500
+[Epoch 55/100, Step 25400, ETA 4h 37m 21.91s] step time: 0.6478s (±2.481s); train time: 39.9s; valid time: 24.97s; loss: -88.7094 (±2.4773); valid loss: 256715
+[Epoch 55/100, Step 25500, ETA 4h 35m 50.54s] step time: 0.6362s (±2.508s); train time: 38.62s; valid time: 25.08s; loss: -88.1364 (±2.99761); valid loss: 257181
+train_values: (23315, 20)
+[Epoch 56/100, Step 25600, ETA 4h 34m 18.27s] step time: 0.6222s (±2.462s); train time: 9.116s; valid time: 24.76s; loss: -88.1339 (±3.03313); valid loss: 272162
+[Epoch 56/100, Step 25700, ETA 4h 32m 46.05s] step time: 0.6203s (±2.28s); train time: 39.17s; valid time: 22.94s; loss: -88.8667 (±2.19813); valid loss: 285570
+[Epoch 56/100, Step 25800, ETA 4h 31m 14.05s] step time: 0.62s (±2.626s); train time: 35.69s; valid time: 26.38s; loss: -88.3101 (±2.70213); valid loss: 266859
+[Epoch 56/100, Step 25900, ETA 4h 29m 44.53s] step time: 0.6484s (±2.496s); train time: 39.89s; valid time: 25.03s; loss: -88.121 (±2.48589); valid loss: 220894
+[Epoch 56/100, Step 26000, ETA 4h 28m 14s] step time: 0.633s (±2.443s); train time: 38.85s; valid time: 24.53s; loss: -88.6292 (±2.22782); valid loss: 174921
+train_values: (23315, 20)
+[Epoch 57/100, Step 26100, ETA 4h 26m 42.48s] step time: 0.6176s (±2.458s); train time: 22.75s; valid time: 24.7s; loss: -88.3398 (±2.57874); valid loss: 195738
+[Epoch 57/100, Step 26200, ETA 4h 25m 12.89s] step time: 0.6398s (±2.479s); train time: 39.19s; valid time: 24.87s; loss: -88.0974 (±2.9881); valid loss: 214323
+[Epoch 57/100, Step 26300, ETA 4h 23m 45.25s] step time: 0.6626s (±2.649s); train time: 39.81s; valid time: 26.53s; loss: -88.7914 (±2.8017); valid loss: 247646
+[Epoch 57/100, Step 26400, ETA 4h 22m 14.94s] step time: 0.6254s (±2.337s); train time: 39.1s; valid time: 23.52s; loss: -88.1377 (±2.51834); valid loss: 256335
+[Epoch 57/100, Step 26500, ETA 4h 20m 44.49s] step time: 0.6208s (±2.271s); train time: 39.31s; valid time: 22.86s; loss: -88.2412 (±2.8901); valid loss: 243450
+train_values: (23315, 20)
+[Epoch 58/100, Step 26600, ETA 4h 19m 15.66s] step time: 0.6393s (±2.441s); train time: 37.7s; valid time: 24.5s; loss: -89.0034 (±2.16011); valid loss: 265300
+[Epoch 58/100, Step 26700, ETA 4h 17m 46.76s] step time: 0.6362s (±2.414s); train time: 39.42s; valid time: 24.27s; loss: -88.966 (±2.36222); valid loss: 282367
+[Epoch 58/100, Step 26800, ETA 4h 16m 19.76s] step time: 0.6594s (±2.579s); train time: 40.15s; valid time: 25.87s; loss: -87.7269 (±2.89284); valid loss: 227206
+[Epoch 58/100, Step 26900, ETA 4h 14m 52.7s] step time: 0.6566s (±2.644s); train time: 39.17s; valid time: 26.57s; loss: -88.7335 (±2.60774); valid loss: 225055
+train_values: (23315, 20)
+[Epoch 59/100, Step 27000, ETA 4h 13m 34.18s] step time: 0.7721s (±3.257s); train time: 13.36s; valid time: 32.65s; loss: -88.7913 (±2.45837); valid loss: 193802
+[Epoch 59/100, Step 27100, ETA 4h 12m 7.062s] step time: 0.6522s (±2.267s); train time: 42.46s; valid time: 22.85s; loss: -88.9521 (±2.65224); valid loss: 190609
+[Epoch 59/100, Step 27200, ETA 4h 10m 35.38s] step time: 0.5858s (±2.258s); train time: 35.97s; valid time: 22.68s; loss: -88.5574 (±2.39718); valid loss: 203249
+[Epoch 59/100, Step 27300, ETA 4h 9m 12.89s] step time: 0.7131s (±3.466s); train time: 37.07s; valid time: 34.31s; loss: -88.6092 (±2.55263); valid loss: 214001
+[Epoch 59/100, Step 27400, ETA 4h 7m 48.3s] step time: 0.6817s (±2.441s); train time: 43.67s; valid time: 24.58s; loss: -89.2516 (±2.35635); valid loss: 246213
+train_values: (23315, 20)
+[Epoch 60/100, Step 27500, ETA 4h 6m 18.1s] step time: 0.5984s (±2.35s); train time: 23.53s; valid time: 23.61s; loss: -88.6055 (±2.86954); valid loss: 215407
+[Epoch 60/100, Step 27600, ETA 4h 4m 47.47s] step time: 0.5895s (±2.235s); train time: 36.56s; valid time: 22.46s; loss: -89.3224 (±2.753); valid loss: 214185
+[Epoch 60/100, Step 27700, ETA 4h 3m 17.53s] step time: 0.5962s (±2.264s); train time: 36.92s; valid time: 22.77s; loss: -89.0656 (±2.19086); valid loss: 231564
+[Epoch 60/100, Step 27800, ETA 4h 1m 47.22s] step time: 0.5874s (±2.252s); train time: 36.18s; valid time: 22.64s; loss: -88.5181 (±2.76066); valid loss: 238391
+[Epoch 60/100, Step 27900, ETA 4h 19.85s] step time: 0.6281s (±2.426s); train time: 38.51s; valid time: 24.37s; loss: -88.751 (±2.45721); valid loss: 259947
+[Epoch 60/100, Step 27900, ETA 4h 19.85s] Learning rate decreased to 1.25e-05
+train_values: (23315, 20)
+[Epoch 61/100, Step 28000, ETA 3h 58m 50.34s] step time: 0.5928s (±2.27s); train time: 36.56s; valid time: 22.82s; loss: -93.1992 (±1.9517); valid loss: 296580
+[Epoch 61/100, Step 28100, ETA 3h 57m 20.16s] step time: 0.5796s (±2.226s); train time: 35.65s; valid time: 22.39s; loss: -93.7208 (±1.99412); valid loss: 352773
+[Epoch 61/100, Step 28200, ETA 3h 55m 50.56s] step time: 0.5851s (±2.239s); train time: 36.06s; valid time: 22.52s; loss: -94.2674 (±2.01623); valid loss: 391962
+[Epoch 61/100, Step 28300, ETA 3h 54m 21.42s] step time: 0.5888s (±2.225s); train time: 36.6s; valid time: 22.36s; loss: -94.7676 (±2.12883); valid loss: 421528
+train_values: (23315, 20)
+[Epoch 62/100, Step 28400, ETA 3h 52m 52.64s] step time: 0.5908s (±2.348s); train time: 12.39s; valid time: 23.61s; loss: -95.3113 (±1.78648); valid loss: 458680
+[Epoch 62/100, Step 28500, ETA 3h 51m 24.93s] step time: 0.6048s (±2.285s); train time: 37.57s; valid time: 22.98s; loss: -95.3752 (±2.14105); valid loss: 491299
+[Epoch 62/100, Step 28600, ETA 3h 49m 56.28s] step time: 0.5867s (±2.27s); train time: 35.93s; valid time: 22.81s; loss: -95.4707 (±2.08627); valid loss: 545117
+[Epoch 62/100, Step 28700, ETA 3h 48m 27.71s] step time: 0.5846s (±2.238s); train time: 36.04s; valid time: 22.5s; loss: -95.1305 (±2.14849); valid loss: 584019
+[Epoch 62/100, Step 28800, ETA 3h 46m 58.92s] step time: 0.5777s (±2.222s); train time: 35.49s; valid time: 22.35s; loss: -95.882 (±2.37987); valid loss: 606924
+train_values: (23315, 20)
+[Epoch 63/100, Step 28900, ETA 3h 45m 30.84s] step time: 0.5855s (±2.258s); train time: 25.27s; valid time: 22.71s; loss: -95.9352 (±2.40822); valid loss: 603358
+[Epoch 63/100, Step 29000, ETA 3h 44m 3.909s] step time: 0.6014s (±2.254s); train time: 37.53s; valid time: 22.68s; loss: -95.9063 (±2.47169); valid loss: 628457
+[Epoch 63/100, Step 29100, ETA 3h 42m 35.69s] step time: 0.5768s (±2.219s); train time: 35.45s; valid time: 22.31s; loss: -95.6308 (±2.2228); valid loss: 676445
+[Epoch 63/100, Step 29200, ETA 3h 41m 7.828s] step time: 0.5795s (±2.217s); train time: 35.73s; valid time: 22.29s; loss: -95.875 (±2.46393); valid loss: 698775
+train_values: (23315, 20)
+[Epoch 64/100, Step 29300, ETA 3h 39m 39.77s] step time: 0.5724s (±2.216s); train time: 1.789s; valid time: 22.26s; loss: -95.9357 (±2.04822); valid loss: 735469
+[Epoch 64/100, Step 29400, ETA 3h 38m 12.15s] step time: 0.5764s (±2.242s); train time: 35.18s; valid time: 22.53s; loss: -95.8174 (±2.12039); valid loss: 739998
+[Epoch 64/100, Step 29500, ETA 3h 36m 45.07s] step time: 0.5825s (±2.321s); train time: 35s; valid time: 23.32s; loss: -95.2762 (±2.45601); valid loss: 733341
+[Epoch 64/100, Step 29600, ETA 3h 35m 18s] step time: 0.579s (±2.227s); train time: 35.58s; valid time: 22.4s; loss: -95.872 (±2.5661); valid loss: 760674
+[Epoch 64/100, Step 29700, ETA 3h 33m 50.94s] step time: 0.5759s (±2.28s); train time: 34.75s; valid time: 22.91s; loss: -95.8751 (±2.58423); valid loss: 781881
+train_values: (23315, 20)
+[Epoch 65/100, Step 29800, ETA 3h 32m 23.92s] step time: 0.5729s (±2.233s); train time: 14.17s; valid time: 22.44s; loss: -95.4263 (±2.80286); valid loss: 718365
+[Epoch 65/100, Step 29900, ETA 3h 30m 57.09s] step time: 0.5728s (±2.216s); train time: 35.08s; valid time: 22.28s; loss: -96.2428 (±2.32384); valid loss: 683059
+[Epoch 65/100, Step 30000, ETA 3h 29m 30.57s] step time: 0.575s (±2.25s); train time: 34.95s; valid time: 22.62s; loss: -96.5623 (±2.20657); valid loss: 648776
+[Epoch 65/100, Step 30100, ETA 3h 28m 4.722s] step time: 0.5838s (±2.239s); train time: 35.93s; valid time: 22.52s; loss: -95.6291 (±2.6177); valid loss: 668916
+[Epoch 65/100, Step 30200, ETA 3h 26m 39.37s] step time: 0.5896s (±2.342s); train time: 35.48s; valid time: 23.55s; loss: -95.7483 (±2.80609); valid loss: 663834
+train_values: (23315, 20)
+[Epoch 66/100, Step 30300, ETA 3h 25m 13.59s] step time: 0.578s (±2.231s); train time: 26.61s; valid time: 22.44s; loss: -95.9898 (±2.24432); valid loss: 707977
+[Epoch 66/100, Step 30400, ETA 3h 23m 47.93s] step time: 0.5771s (±2.23s); train time: 35.39s; valid time: 22.4s; loss: -96.1023 (±2.27579); valid loss: 743383
+[Epoch 66/100, Step 30500, ETA 3h 22m 22.21s] step time: 0.5725s (±2.218s); train time: 35.03s; valid time: 22.29s; loss: -95.0646 (±2.25759); valid loss: 747750
+[Epoch 66/100, Step 30600, ETA 3h 20m 56.81s] step time: 0.5752s (±2.245s); train time: 35.04s; valid time: 22.55s; loss: -95.693 (±2.50302); valid loss: 797919
+train_values: (23315, 20)
+[Epoch 67/100, Step 30700, ETA 3h 19m 31.56s] step time: 0.5742s (±2.194s); train time: 3.571s; valid time: 22.03s; loss: -95.8367 (±2.20112); valid loss: 799898
+[Epoch 67/100, Step 30800, ETA 3h 18m 7.327s] step time: 0.5909s (±2.248s); train time: 36.58s; valid time: 22.59s; loss: -96.2111 (±2.61464); valid loss: 821781
+[Epoch 67/100, Step 30900, ETA 3h 16m 42.51s] step time: 0.5761s (±2.204s); train time: 35.52s; valid time: 22.17s; loss: -95.6529 (±2.30725); valid loss: 759410
+[Epoch 67/100, Step 31000, ETA 3h 15m 17.34s] step time: 0.5657s (±2.221s); train time: 34.32s; valid time: 22.32s; loss: -96.3705 (±2.37724); valid loss: 741836
+[Epoch 67/100, Step 31100, ETA 3h 13m 53.52s] step time: 0.5889s (±2.264s); train time: 36.21s; valid time: 22.76s; loss: -94.5591 (±5.25168); valid loss: 704959
+train_values: (23315, 20)
+[Epoch 68/100, Step 31200, ETA 3h 12m 29.14s] step time: 0.5742s (±2.194s); train time: 15.89s; valid time: 22.05s; loss: -95.0498 (±2.98115); valid loss: 749878
+[Epoch 68/100, Step 31300, ETA 3h 11m 5.282s] step time: 0.5817s (±2.234s); train time: 35.8s; valid time: 22.44s; loss: -95.1601 (±2.58677); valid loss: 746262
+[Epoch 68/100, Step 31400, ETA 3h 9m 41.56s] step time: 0.5811s (±2.235s); train time: 35.71s; valid time: 22.47s; loss: -95.8261 (±2.36615); valid loss: 690763
+[Epoch 68/100, Step 31500, ETA 3h 8m 17.85s] step time: 0.578s (±2.219s); train time: 35.58s; valid time: 22.29s; loss: -96.3764 (±2.79993); valid loss: 675906
+[Epoch 68/100, Step 31600, ETA 3h 6m 54.46s] step time: 0.5812s (±2.247s); train time: 35.62s; valid time: 22.58s; loss: -95.784 (±2.43264); valid loss: 716426
+train_values: (23315, 20)
+[Epoch 69/100, Step 31700, ETA 3h 5m 30.4s] step time: 0.5632s (±2.201s); train time: 27.45s; valid time: 22.11s; loss: -96.6221 (±1.99044); valid loss: 748774
+[Epoch 69/100, Step 31800, ETA 3h 4m 7.013s] step time: 0.5743s (±2.188s); train time: 35.5s; valid time: 22.01s; loss: -96.4969 (±2.03802); valid loss: 734049
+[Epoch 69/100, Step 31900, ETA 3h 2m 43.89s] step time: 0.5765s (±2.209s); train time: 35.52s; valid time: 22.21s; loss: -95.728 (±2.63244); valid loss: 747791
+[Epoch 69/100, Step 32000, ETA 3h 1m 21.92s] step time: 0.5985s (±2.563s); train time: 34.18s; valid time: 25.74s; loss: -95.4682 (±2.80864); valid loss: 749993
+train_values: (23315, 20)
+[Epoch 70/100, Step 32100, ETA 3h 9.301s] step time: 0.8033s (±3.282s); train time: 7.281s; valid time: 32.94s; loss: -95.75 (±2.44004); valid loss: 739479
+[Epoch 70/100, Step 32200, ETA 2h 58m 56.41s] step time: 0.7987s (±3.089s); train time: 48.87s; valid time: 31.09s; loss: -96.7416 (±2.07852); valid loss: 762693
+[Epoch 70/100, Step 32300, ETA 2h 57m 35.45s] step time: 0.6162s (±2.243s); train time: 39.12s; valid time: 22.58s; loss: -95.7807 (±2.72176); valid loss: 755988
+[Epoch 70/100, Step 32400, ETA 2h 56m 13.74s] step time: 0.5963s (±2.395s); train time: 35.64s; valid time: 24.07s; loss: -96.818 (±2.45016); valid loss: 803277
+[Epoch 70/100, Step 32500, ETA 2h 54m 51.36s] step time: 0.5776s (±2.242s); train time: 35.3s; valid time: 22.53s; loss: -95.5744 (±2.75029); valid loss: 815735
+train_values: (23315, 20)
+[Epoch 71/100, Step 32600, ETA 2h 53m 29.45s] step time: 0.5847s (±2.241s); train time: 17.99s; valid time: 22.53s; loss: -96.2672 (±2.58051); valid loss: 785973
+[Epoch 71/100, Step 32700, ETA 2h 52m 7.081s] step time: 0.5709s (±2.234s); train time: 34.72s; valid time: 22.45s; loss: -95.711 (±2.51434); valid loss: 773174
+[Epoch 71/100, Step 32800, ETA 2h 50m 44.72s] step time: 0.5673s (±2.245s); train time: 34.26s; valid time: 22.54s; loss: -95.8243 (±2.46303); valid loss: 791804
+[Epoch 71/100, Step 32900, ETA 2h 49m 23.02s] step time: 0.5798s (±2.225s); train time: 35.69s; valid time: 22.36s; loss: -96.4706 (±2.20595); valid loss: 793673
+[Epoch 71/100, Step 33000, ETA 2h 48m 1.535s] step time: 0.5813s (±2.23s); train time: 35.78s; valid time: 22.42s; loss: -96.0554 (±2.9209); valid loss: 786199
+train_values: (23315, 20)
+[Epoch 72/100, Step 33100, ETA 2h 46m 39.97s] step time: 0.5756s (±2.189s); train time: 30.3s; valid time: 21.99s; loss: -95.9383 (±2.78885); valid loss: 783061
+[Epoch 72/100, Step 33200, ETA 2h 45m 20.47s] step time: 0.624s (±2.764s); train time: 34.69s; valid time: 27.78s; loss: -96.9879 (±2.34174); valid loss: 799990
+[Epoch 72/100, Step 33300, ETA 2h 44m 3.394s] step time: 0.6822s (±2.544s); train time: 42.73s; valid time: 25.58s; loss: -96.5105 (±2.88398); valid loss: 803053
+[Epoch 72/100, Step 33400, ETA 2h 42m 42.46s] step time: 0.5826s (±2.268s); train time: 35.57s; valid time: 22.76s; loss: -96.1415 (±2.10763); valid loss: 788666
+train_values: (23315, 20)
+[Epoch 73/100, Step 33500, ETA 2h 41m 21.63s] step time: 0.5816s (±2.236s); train time: 7.217s; valid time: 22.46s; loss: -95.7851 (±3.15506); valid loss: 773680
+[Epoch 73/100, Step 33600, ETA 2h 40m 1.197s] step time: 0.5889s (±2.268s); train time: 36.18s; valid time: 22.79s; loss: -95.4615 (±2.35031); valid loss: 770149
+[Epoch 73/100, Step 33700, ETA 2h 38m 40.63s] step time: 0.582s (±2.271s); train time: 35.46s; valid time: 22.82s; loss: -96.5877 (±2.39156); valid loss: 813860
+[Epoch 73/100, Step 33800, ETA 2h 37m 20.38s] step time: 0.5868s (±2.389s); train time: 34.75s; valid time: 23.99s; loss: -96.7031 (±2.54829); valid loss: 846903
+[Epoch 73/100, Step 33900, ETA 2h 35m 59.85s] step time: 0.576s (±2.265s); train time: 34.93s; valid time: 22.75s; loss: -96.491 (±2.72386); valid loss: 845798
+train_values: (23315, 20)
+[Epoch 74/100, Step 34000, ETA 2h 34m 42.06s] step time: 0.6463s (±2.627s); train time: 20.54s; valid time: 26.44s; loss: -96.4453 (±2.44464); valid loss: 872195
+[Epoch 74/100, Step 34100, ETA 2h 33m 22.66s] step time: 0.6002s (±2.386s); train time: 36.11s; valid time: 23.98s; loss: -96.2837 (±2.36915); valid loss: 844924
+[Epoch 74/100, Step 34200, ETA 2h 32m 6.127s] step time: 0.677s (±2.605s); train time: 41.56s; valid time: 26.22s; loss: -96.341 (±2.59161); valid loss: 812343
+[Epoch 74/100, Step 34300, ETA 2h 30m 49.49s] step time: 0.6727s (±2.723s); train time: 40.02s; valid time: 27.33s; loss: -95.9471 (±2.87212); valid loss: 741955
+[Epoch 74/100, Step 34400, ETA 2h 29m 30.84s] step time: 0.6136s (±2.297s); train time: 38.32s; valid time: 23.12s; loss: -96.3395 (±2.48273); valid loss: 772425
+train_values: (23315, 20)
+[Epoch 75/100, Step 34500, ETA 2h 28m 11.37s] step time: 0.5871s (±2.246s); train time: 32.62s; valid time: 22.6s; loss: -96.5224 (±2.35194); valid loss: 801219
+[Epoch 75/100, Step 34600, ETA 2h 26m 52.25s] step time: 0.594s (±2.273s); train time: 36.61s; valid time: 22.87s; loss: -95.9166 (±2.43546); valid loss: 823135
+[Epoch 75/100, Step 34700, ETA 2h 25m 34.43s] step time: 0.629s (±2.324s); train time: 39.57s; valid time: 23.41s; loss: -96.7455 (±2.14649); valid loss: 819997
+[Epoch 75/100, Step 34800, ETA 2h 24m 16.85s] step time: 0.6334s (±2.519s); train time: 38.11s; valid time: 25.31s; loss: -96.1682 (±2.7032); valid loss: 814886
+train_values: (23315, 20)
+[Epoch 76/100, Step 34900, ETA 2h 22m 59.08s] step time: 0.6251s (±2.3s); train time: 9.381s; valid time: 23.16s; loss: -96.4919 (±1.92879); valid loss: 843353
+[Epoch 76/100, Step 35000, ETA 2h 21m 39.93s] step time: 0.5809s (±2.259s); train time: 35.48s; valid time: 22.68s; loss: -97.0172 (±2.69007); valid loss: 838238
+[Epoch 76/100, Step 35100, ETA 2h 20m 21.96s] step time: 0.6135s (±2.253s); train time: 38.75s; valid time: 22.69s; loss: -96.3451 (±2.50385); valid loss: 829783
+[Epoch 76/100, Step 35200, ETA 2h 19m 3.77s] step time: 0.6035s (±2.444s); train time: 35.89s; valid time: 24.54s; loss: -95.8445 (±2.33819); valid loss: 853844
+[Epoch 76/100, Step 35300, ETA 2h 17m 45.43s] step time: 0.5957s (±2.289s); train time: 36.62s; valid time: 23.02s; loss: -96.0294 (±2.54512); valid loss: 880920
+train_values: (23315, 20)
+[Epoch 77/100, Step 35400, ETA 2h 16m 28.55s] step time: 0.6388s (±2.533s); train time: 24.11s; valid time: 25.43s; loss: -96.1897 (±2.64489); valid loss: 907324
+[Epoch 77/100, Step 35500, ETA 2h 15m 10.5s] step time: 0.5987s (±2.31s); train time: 36.72s; valid time: 23.23s; loss: -97.0372 (±2.46242); valid loss: 908293
+[Epoch 77/100, Step 35600, ETA 2h 13m 52.4s] step time: 0.5939s (±2.285s); train time: 36.52s; valid time: 22.94s; loss: -96.4104 (±2.36249); valid loss: 910412
+[Epoch 77/100, Step 35700, ETA 2h 12m 34.61s] step time: 0.6007s (±2.34s); train time: 36.62s; valid time: 23.53s; loss: -95.5781 (±2.20737); valid loss: 863691
+[Epoch 77/100, Step 35800, ETA 2h 11m 23.63s] step time: 0.825s (±3.758s); train time: 45.3s; valid time: 37.3s; loss: -96.4382 (±2.35782); valid loss: 772151
+train_values: (23315, 20)
+[Epoch 78/100, Step 35900, ETA 2h 10m 6.985s] step time: 0.6351s (±2.343s); train time: 37.81s; valid time: 23.57s; loss: -96.3649 (±2.90256); valid loss: 762838
+[Epoch 78/100, Step 36000, ETA 2h 8m 50s] step time: 0.6212s (±2.41s); train time: 37.96s; valid time: 24.24s; loss: -96.5938 (±2.3767); valid loss: 751273
+[Epoch 78/100, Step 36100, ETA 2h 7m 35.87s] step time: 0.7176s (±2.837s); train time: 43.31s; valid time: 28.54s; loss: -96.7867 (±2.08881); valid loss: 775902
+[Epoch 78/100, Step 36200, ETA 2h 6m 18.14s] step time: 0.5907s (±2.275s); train time: 36.28s; valid time: 22.87s; loss: -96.9002 (±2.32827); valid loss: 781540
+train_values: (23315, 20)
+[Epoch 79/100, Step 36300, ETA 2h 5m 0.3699s] step time: 0.5854s (±2.25s); train time: 10.71s; valid time: 22.63s; loss: -97.358 (±2.02753); valid loss: 760017
+[Epoch 79/100, Step 36400, ETA 2h 3m 42.67s] step time: 0.5845s (±2.246s); train time: 35.94s; valid time: 22.59s; loss: -96.7262 (±2.65962); valid loss: 764365
+[Epoch 79/100, Step 36500, ETA 2h 2m 25.03s] step time: 0.5825s (±2.278s); train time: 35.43s; valid time: 22.89s; loss: -95.7668 (±2.76421); valid loss: 806242
+[Epoch 79/100, Step 36600, ETA 2h 1m 8.019s] step time: 0.6023s (±2.293s); train time: 37.28s; valid time: 23.02s; loss: -96.6332 (±2.37159); valid loss: 818482
+[Epoch 79/100, Step 36700, ETA 1h 59m 50.51s] step time: 0.58s (±2.249s); train time: 35.47s; valid time: 22.62s; loss: -96.3838 (±2.30679); valid loss: 867528
+train_values: (23315, 20)
+[Epoch 80/100, Step 36800, ETA 1h 58m 33.1s] step time: 0.5796s (±2.219s); train time: 23.41s; valid time: 22.3s; loss: -97.7745 (±1.74229); valid loss: 907025
+[Epoch 80/100, Step 36900, ETA 1h 57m 16.4s] step time: 0.6031s (±2.574s); train time: 34.53s; valid time: 25.85s; loss: -96.1327 (±2.80727); valid loss: 910230
+[Epoch 80/100, Step 37000, ETA 1h 55m 59.27s] step time: 0.5827s (±2.179s); train time: 36.42s; valid time: 21.93s; loss: -96.7968 (±2.33156); valid loss: 920259
+[Epoch 80/100, Step 37100, ETA 1h 54m 41.62s] step time: 0.5585s (±2.166s); train time: 34.15s; valid time: 21.77s; loss: -96.0795 (±2.59444); valid loss: 895222
+[Epoch 80/100, Step 37200, ETA 1h 53m 24.16s] step time: 0.5611s (±2.127s); train time: 34.8s; valid time: 21.38s; loss: -96.3852 (±2.94802); valid loss: 849933
+[Epoch 80/100, Step 37200, ETA 1h 53m 24.16s] Learning rate decreased to 6.25e-06
+train_values: (23315, 20)
+[Epoch 81/100, Step 37300, ETA 1h 52m 7.096s] step time: 0.5726s (±2.306s); train time: 34.18s; valid time: 23.17s; loss: -100.425 (±2.08085); valid loss: 898874
+[Epoch 81/100, Step 37400, ETA 1h 50m 49.73s] step time: 0.5559s (±2.181s); train time: 33.72s; valid time: 21.94s; loss: -100.701 (±2.2959); valid loss: 942546
+[Epoch 81/100, Step 37500, ETA 1h 49m 33.17s] step time: 0.5847s (±2.269s); train time: 35.74s; valid time: 22.8s; loss: -100.778 (±1.84941); valid loss: 989099
+[Epoch 81/100, Step 37600, ETA 1h 48m 16.3s] step time: 0.5678s (±2.183s); train time: 34.9s; valid time: 21.95s; loss: -100.816 (±2.02706); valid loss: 1.02277e+06
+train_values: (23315, 20)
+[Epoch 82/100, Step 37700, ETA 1h 46m 59.79s] step time: 0.5783s (±2.196s); train time: 12.53s; valid time: 22.07s; loss: -101.45 (±2.06638); valid loss: 1.05167e+06
+[Epoch 82/100, Step 37800, ETA 1h 45m 43.33s] step time: 0.5761s (±2.264s); train time: 34.92s; valid time: 22.76s; loss: -101.24 (±2.19384); valid loss: 1.09629e+06
+[Epoch 82/100, Step 37900, ETA 1h 44m 26.81s] step time: 0.5695s (±2.239s); train time: 34.54s; valid time: 22.49s; loss: -101.469 (±2.08363); valid loss: 1.13516e+06
+[Epoch 82/100, Step 38000, ETA 1h 43m 10.62s] step time: 0.5795s (±2.229s); train time: 35.61s; valid time: 22.42s; loss: -101.423 (±1.90469); valid loss: 1.165e+06
+[Epoch 82/100, Step 38100, ETA 1h 41m 54.76s] step time: 0.5902s (±2.327s); train time: 35.75s; valid time: 23.34s; loss: -102.017 (±2.04845); valid loss: 1.20426e+06
+train_values: (23315, 20)
+[Epoch 83/100, Step 38200, ETA 1h 40m 38.96s] step time: 0.5886s (±2.233s); train time: 26.05s; valid time: 22.43s; loss: -101.773 (±1.85042); valid loss: 1.23271e+06
+[Epoch 83/100, Step 38300, ETA 1h 39m 22.99s] step time: 0.577s (±2.233s); train time: 35.32s; valid time: 22.45s; loss: -101.885 (±2.19336); valid loss: 1.26129e+06
+[Epoch 83/100, Step 38400, ETA 1h 38m 7.247s] step time: 0.583s (±2.257s); train time: 35.69s; valid time: 22.68s; loss: -102.08 (±2.07787); valid loss: 1.29224e+06
+[Epoch 83/100, Step 38500, ETA 1h 36m 51.51s] step time: 0.5791s (±2.245s); train time: 35.4s; valid time: 22.58s; loss: -102.153 (±2.06153); valid loss: 1.33605e+06
+train_values: (23315, 20)
+[Epoch 84/100, Step 38600, ETA 1h 35m 36.03s] step time: 0.5868s (±2.254s); train time: 1.879s; valid time: 22.65s; loss: -102.136 (±2.23647); valid loss: 1.35956e+06
+[Epoch 84/100, Step 38700, ETA 1h 34m 20.64s] step time: 0.5875s (±2.331s); train time: 35.41s; valid time: 23.41s; loss: -102.288 (±1.77132); valid loss: 1.39214e+06
+[Epoch 84/100, Step 38800, ETA 1h 33m 5.226s] step time: 0.5816s (±2.255s); train time: 35.55s; valid time: 22.68s; loss: -102.198 (±2.03842); valid loss: 1.41273e+06
+[Epoch 84/100, Step 38900, ETA 1h 31m 50.12s] step time: 0.5928s (±2.344s); train time: 35.82s; valid time: 23.53s; loss: -101.756 (±2.29134); valid loss: 1.42999e+06
+[Epoch 84/100, Step 39000, ETA 1h 30m 35.14s] step time: 0.5956s (±2.268s); train time: 36.83s; valid time: 22.81s; loss: -102.452 (±2.01651); valid loss: 1.47436e+06
+train_values: (23315, 20)
+[Epoch 85/100, Step 39100, ETA 1h 29m 20.11s] step time: 0.5885s (±2.258s); train time: 14.3s; valid time: 22.7s; loss: -102.518 (±2.05109); valid loss: 1.49327e+06
+[Epoch 85/100, Step 39200, ETA 1h 28m 5.107s] step time: 0.5854s (±2.29s); train time: 35.59s; valid time: 23.02s; loss: -102.31 (±2.2122); valid loss: 1.52308e+06
+[Epoch 85/100, Step 39300, ETA 1h 26m 50.24s] step time: 0.5885s (±2.269s); train time: 36.13s; valid time: 22.79s; loss: -102.334 (±2.32831); valid loss: 1.532e+06
+[Epoch 85/100, Step 39400, ETA 1h 25m 35.38s] step time: 0.5846s (±2.267s); train time: 35.73s; valid time: 22.8s; loss: -102.172 (±1.8788); valid loss: 1.55628e+06
+[Epoch 85/100, Step 39500, ETA 1h 24m 20.59s] step time: 0.5838s (±2.246s); train time: 35.84s; valid time: 22.61s; loss: -102.733 (±2.19607); valid loss: 1.57209e+06
+train_values: (23315, 20)
+[Epoch 86/100, Step 39600, ETA 1h 23m 6.01s] step time: 0.5906s (±2.271s); train time: 27.4s; valid time: 22.85s; loss: -102.504 (±2.20939); valid loss: 1.60175e+06
+[Epoch 86/100, Step 39700, ETA 1h 21m 51.51s] step time: 0.5911s (±2.333s); train time: 35.73s; valid time: 23.46s; loss: -102.66 (±1.96656); valid loss: 1.6362e+06
+[Epoch 86/100, Step 39800, ETA 1h 20m 37.09s] step time: 0.5912s (±2.279s); train time: 36.27s; valid time: 22.93s; loss: -102.491 (±2.13886); valid loss: 1.6448e+06
+[Epoch 86/100, Step 39900, ETA 1h 19m 22.62s] step time: 0.5838s (±2.254s); train time: 35.79s; valid time: 22.66s; loss: -102.953 (±2.12938); valid loss: 1.66264e+06
+train_values: (23315, 20)
+[Epoch 87/100, Step 40000, ETA 1h 18m 8.202s] step time: 0.5817s (±2.262s); train time: 3.657s; valid time: 22.71s; loss: -102.292 (±2.50551); valid loss: 1.68133e+06
+[Epoch 87/100, Step 40100, ETA 1h 16m 53.9s] step time: 0.584s (±2.249s); train time: 35.87s; valid time: 22.6s; loss: -102.527 (±2.66046); valid loss: 1.68155e+06
+[Epoch 87/100, Step 40200, ETA 1h 15m 39.67s] step time: 0.5843s (±2.272s); train time: 35.66s; valid time: 22.85s; loss: -102.565 (±2.16675); valid loss: 1.68282e+06
+[Epoch 87/100, Step 40300, ETA 1h 14m 25.49s] step time: 0.5819s (±2.253s); train time: 35.65s; valid time: 22.61s; loss: -102.76 (±2.18745); valid loss: 1.68073e+06
+[Epoch 87/100, Step 40400, ETA 1h 13m 11.4s] step time: 0.5826s (±2.246s); train time: 35.8s; valid time: 22.53s; loss: -102.398 (±2.13189); valid loss: 1.69768e+06
+train_values: (23315, 20)
+[Epoch 88/100, Step 40500, ETA 1h 11m 57.52s] step time: 0.5913s (±2.268s); train time: 16.64s; valid time: 22.8s; loss: -102.73 (±2.55403); valid loss: 1.70967e+06
+[Epoch 88/100, Step 40600, ETA 1h 10m 43.65s] step time: 0.5874s (±2.254s); train time: 36.17s; valid time: 22.65s; loss: -102.34 (±2.50675); valid loss: 1.71614e+06
+[Epoch 88/100, Step 40700, ETA 1h 9m 29.76s] step time: 0.5806s (±2.228s); train time: 35.74s; valid time: 22.39s; loss: -102.873 (±2.00839); valid loss: 1.73993e+06
+[Epoch 88/100, Step 40800, ETA 1h 8m 16.01s] step time: 0.585s (±2.237s); train time: 36.09s; valid time: 22.49s; loss: -102.292 (±3.37971); valid loss: 1.75691e+06
+[Epoch 88/100, Step 40900, ETA 1h 7m 2.274s] step time: 0.5808s (±2.255s); train time: 35.51s; valid time: 22.64s; loss: -103.051 (±2.12767); valid loss: 1.79329e+06
+train_values: (23315, 20)
+[Epoch 89/100, Step 41000, ETA 1h 5m 48.7s] step time: 0.5869s (±2.23s); train time: 29.03s; valid time: 22.44s; loss: -102.799 (±2.01771); valid loss: 1.80964e+06
+[Epoch 89/100, Step 41100, ETA 1h 4m 35.18s] step time: 0.5857s (±2.268s); train time: 35.85s; valid time: 22.8s; loss: -103.392 (±2.17274); valid loss: 1.82081e+06
+[Epoch 89/100, Step 41200, ETA 1h 3m 21.7s] step time: 0.5837s (±2.254s); train time: 35.79s; valid time: 22.65s; loss: -101.964 (±2.89591); valid loss: 1.83335e+06
+[Epoch 89/100, Step 41300, ETA 1h 2m 8.573s] step time: 0.6054s (±2.238s); train time: 38.12s; valid time: 22.51s; loss: -102.746 (±2.35337); valid loss: 1.86315e+06
+train_values: (23315, 20)
+[Epoch 90/100, Step 41400, ETA 1h 55.21s] step time: 0.5812s (±2.232s); train time: 5.359s; valid time: 22.44s; loss: -103.104 (±1.89997); valid loss: 1.87446e+06
+[Epoch 90/100, Step 41500, ETA 59m 41.91s] step time: 0.5805s (±2.229s); train time: 35.73s; valid time: 22.39s; loss: -102.852 (±2.15911); valid loss: 1.9209e+06
+[Epoch 90/100, Step 41600, ETA 58m 28.72s] step time: 0.5839s (±2.269s); train time: 35.66s; valid time: 22.8s; loss: -103.433 (±2.64525); valid loss: 1.9499e+06
+[Epoch 90/100, Step 41700, ETA 57m 15.61s] step time: 0.5849s (±2.244s); train time: 36.05s; valid time: 22.52s; loss: -101.75 (±3.65782); valid loss: 1.93291e+06
+[Epoch 90/100, Step 41800, ETA 56m 2.599s] step time: 0.5875s (±2.282s); train time: 35.9s; valid time: 22.93s; loss: -103.682 (±2.1811); valid loss: 1.95176e+06
+train_values: (23315, 20)
+[Epoch 91/100, Step 41900, ETA 54m 49.69s] step time: 0.5903s (±2.31s); train time: 18.03s; valid time: 23.19s; loss: -103.163 (±2.43869); valid loss: 1.96021e+06
+[Epoch 91/100, Step 42000, ETA 53m 36.8s] step time: 0.5861s (±2.264s); train time: 35.95s; valid time: 22.74s; loss: -102.846 (±2.20991); valid loss: 1.97872e+06
+[Epoch 91/100, Step 42100, ETA 52m 23.98s] step time: 0.5865s (±2.274s); train time: 35.86s; valid time: 22.86s; loss: -103.164 (±2.49402); valid loss: 1.97687e+06
+[Epoch 91/100, Step 42200, ETA 51m 11.19s] step time: 0.5827s (±2.225s); train time: 35.98s; valid time: 22.37s; loss: -103.122 (±2.46345); valid loss: 1.97638e+06
+[Epoch 91/100, Step 42300, ETA 49m 58.48s] step time: 0.5839s (±2.239s); train time: 35.96s; valid time: 22.5s; loss: -102.963 (±2.21056); valid loss: 2.00331e+06
+train_values: (23315, 20)
+[Epoch 92/100, Step 42400, ETA 48m 45.83s] step time: 0.5829s (±2.24s); train time: 30.51s; valid time: 22.52s; loss: -103.282 (±1.98658); valid loss: 2.03119e+06
+[Epoch 92/100, Step 42500, ETA 47m 33.23s] step time: 0.5806s (±2.234s); train time: 35.69s; valid time: 22.45s; loss: -103.348 (±1.93127); valid loss: 2.01603e+06
+[Epoch 92/100, Step 42600, ETA 46m 20.69s] step time: 0.5806s (±2.227s); train time: 35.75s; valid time: 22.39s; loss: -103.065 (±2.37435); valid loss: 2.00676e+06
+[Epoch 92/100, Step 42700, ETA 45m 8.247s] step time: 0.5839s (±2.225s); train time: 36.1s; valid time: 22.36s; loss: -102.481 (±2.54243); valid loss: 2.01904e+06
+train_values: (23315, 20)
+[Epoch 93/100, Step 42800, ETA 43m 55.91s] step time: 0.5886s (±2.291s); train time: 7.673s; valid time: 23.04s; loss: -103.042 (±2.23131); valid loss: 2.03618e+06
+[Epoch 93/100, Step 42900, ETA 42m 43.83s] step time: 0.6107s (±2.415s); train time: 36.86s; valid time: 24.29s; loss: -102.726 (±2.89904); valid loss: 2.04702e+06
+[Epoch 93/100, Step 43000, ETA 41m 31.7s] step time: 0.6003s (±2.245s); train time: 37.53s; valid time: 22.57s; loss: -103.021 (±2.28739); valid loss: 2.06193e+06
+[Epoch 93/100, Step 43100, ETA 40m 19.53s] step time: 0.586s (±2.248s); train time: 36.07s; valid time: 22.6s; loss: -103.653 (±2.08071); valid loss: 2.08978e+06
+[Epoch 93/100, Step 43200, ETA 39m 7.427s] step time: 0.5884s (±2.24s); train time: 36.42s; valid time: 22.5s; loss: -103.185 (±2.03127); valid loss: 2.09266e+06
+train_values: (23315, 20)
+[Epoch 94/100, Step 43300, ETA 37m 55.34s] step time: 0.5819s (±2.246s); train time: 19.84s; valid time: 22.56s; loss: -101.442 (±4.0476); valid loss: 2.06814e+06
+[Epoch 94/100, Step 43400, ETA 36m 43.29s] step time: 0.5775s (±2.23s); train time: 35.45s; valid time: 22.38s; loss: -103.011 (±2.36516); valid loss: 2.08639e+06
+[Epoch 94/100, Step 43500, ETA 35m 31.36s] step time: 0.5854s (±2.265s); train time: 35.85s; valid time: 22.77s; loss: -103.082 (±2.36848); valid loss: 2.09774e+06
+[Epoch 94/100, Step 43600, ETA 34m 19.49s] step time: 0.5859s (±2.263s); train time: 35.93s; valid time: 22.74s; loss: -102.955 (±2.35539); valid loss: 2.11729e+06
+[Epoch 94/100, Step 43700, ETA 33m 7.682s] step time: 0.5861s (±2.257s); train time: 36s; valid time: 22.68s; loss: -102.768 (±2.51343); valid loss: 2.10592e+06
+train_values: (23315, 20)
+[Epoch 95/100, Step 43800, ETA 31m 55.92s] step time: 0.5826s (±2.275s); train time: 32.08s; valid time: 22.85s; loss: -103.294 (±2.10673); valid loss: 2.11437e+06
+[Epoch 95/100, Step 43900, ETA 30m 44.19s] step time: 0.579s (±2.28s); train time: 35.04s; valid time: 22.93s; loss: -103.745 (±1.84555); valid loss: 2.13011e+06
+[Epoch 95/100, Step 44000, ETA 29m 32.67s] step time: 0.6045s (±2.247s); train time: 37.93s; valid time: 22.6s; loss: -103.337 (±2.29152); valid loss: 2.15709e+06
+[Epoch 95/100, Step 44100, ETA 28m 21.06s] step time: 0.5799s (±2.245s); train time: 35.48s; valid time: 22.58s; loss: -103.139 (±2.38421); valid loss: 2.15921e+06
+train_values: (23315, 20)
+[Epoch 96/100, Step 44200, ETA 27m 9.545s] step time: 0.5853s (±2.242s); train time: 9.111s; valid time: 22.53s; loss: -103.678 (±2.12742); valid loss: 2.18054e+06
+[Epoch 96/100, Step 44300, ETA 25m 58.07s] step time: 0.582s (±2.268s); train time: 35.47s; valid time: 22.81s; loss: -103.39 (±1.82796); valid loss: 2.16689e+06
+[Epoch 96/100, Step 44400, ETA 24m 46.63s] step time: 0.5769s (±2.164s); train time: 36.02s; valid time: 21.75s; loss: -103.347 (±2.19938); valid loss: 2.13473e+06
+[Epoch 96/100, Step 44500, ETA 23m 35.24s] step time: 0.5743s (±2.253s); train time: 34.86s; valid time: 22.64s; loss: -103.002 (±2.22914); valid loss: 2.11513e+06
+[Epoch 96/100, Step 44600, ETA 22m 23.92s] step time: 0.575s (±2.249s); train time: 34.97s; valid time: 22.6s; loss: -102.995 (±2.03798); valid loss: 2.13882e+06
+train_values: (23315, 20)
+[Epoch 97/100, Step 44700, ETA 21m 12.64s] step time: 0.5717s (±2.247s); train time: 21.13s; valid time: 22.59s; loss: -103.44 (±2.315); valid loss: 2.1555e+06
+[Epoch 97/100, Step 44800, ETA 20m 1.457s] step time: 0.5786s (±2.228s); train time: 35.54s; valid time: 22.39s; loss: -103.08 (±2.66026); valid loss: 2.18142e+06
+[Epoch 97/100, Step 44900, ETA 18m 50.36s] step time: 0.5875s (±2.268s); train time: 36.04s; valid time: 22.78s; loss: -102.965 (±2.36431); valid loss: 2.18382e+06
+[Epoch 97/100, Step 45000, ETA 17m 39.3s] step time: 0.5826s (±2.241s); train time: 35.81s; valid time: 22.53s; loss: -103.386 (±2.43245); valid loss: 2.20008e+06
+[Epoch 97/100, Step 45100, ETA 16m 28.46s] step time: 0.6331s (±2.479s); train time: 38.49s; valid time: 24.9s; loss: -103.605 (±2.25011); valid loss: 2.20086e+06
+train_values: (23315, 20)
+[Epoch 98/100, Step 45200, ETA 15m 17.6s] step time: 0.6179s (±2.237s); train time: 37.08s; valid time: 22.5s; loss: -103.707 (±2.13773); valid loss: 2.22001e+06
+[Epoch 98/100, Step 45300, ETA 14m 6.672s] step time: 0.5742s (±2.226s); train time: 35.09s; valid time: 22.4s; loss: -103.225 (±2.34333); valid loss: 2.22091e+06
+[Epoch 98/100, Step 45400, ETA 12m 55.83s] step time: 0.5859s (±2.202s); train time: 36.52s; valid time: 22.15s; loss: -103.573 (±2.57743); valid loss: 2.2381e+06
+[Epoch 98/100, Step 45500, ETA 11m 45.03s] step time: 0.583s (±2.235s); train time: 35.89s; valid time: 22.48s; loss: -103.491 (±2.60322); valid loss: 2.24409e+06
+train_values: (23315, 20)
+[Epoch 99/100, Step 45600, ETA 10m 34.33s] step time: 0.6025s (±2.278s); train time: 12.35s; valid time: 22.82s; loss: -103.69 (±2.52091); valid loss: 2.26394e+06
+[Epoch 99/100, Step 45700, ETA 9m 23.64s] step time: 0.5842s (±2.248s); train time: 35.94s; valid time: 22.56s; loss: -103.455 (±2.5967); valid loss: 2.27377e+06
+[Epoch 99/100, Step 45800, ETA 8m 13s] step time: 0.5851s (±2.222s); train time: 36.25s; valid time: 22.34s; loss: -103.304 (±2.3629); valid loss: 2.27398e+06
+[Epoch 99/100, Step 45900, ETA 7m 2.422s] step time: 0.5884s (±2.241s); train time: 36.4s; valid time: 22.52s; loss: -103.459 (±1.94197); valid loss: 2.28082e+06
+[Epoch 99/100, Step 46000, ETA 5m 51.89s] step time: 0.5885s (±2.248s); train time: 36.34s; valid time: 22.59s; loss: -103.448 (±2.45949); valid loss: 2.26239e+06
+train_values: (23315, 20)
+[Epoch 100/100, Step 46100, ETA 4m 41.41s] step time: 0.5806s (±2.245s); train time: 22.95s; valid time: 22.6s; loss: -103.482 (±2.52321); valid loss: 2.27181e+06
+[Epoch 100/100, Step 46200, ETA 3m 30.98s] step time: 0.5844s (±2.27s); train time: 35.74s; valid time: 22.77s; loss: -103.602 (±1.88504); valid loss: 2.28261e+06
+[Epoch 100/100, Step 46300, ETA 2m 20.6s] step time: 0.5793s (±2.233s); train time: 35.54s; valid time: 22.46s; loss: -104.302 (±2.08032); valid loss: 2.33199e+06
+[Epoch 100/100, Step 46400, ETA 1m 10.27s] step time: 0.5803s (±2.226s); train time: 35.73s; valid time: 22.38s; loss: -103.391 (±2.40504); valid loss: 2.34416e+06
+[Epoch 100/100, Step 46500, ETA 0s] step time: 0.58s (±2.232s); train time: 35.64s; valid time: 22.43s; loss: -103.69 (±2.45161); valid loss: 2.3608e+06
+[Epoch 100/100, Step 46500, ETA 0s] Learning rate decreased to 3.125e-06
+INFO:tensorflow:Restoring parameters from /tmp/tmp2fcpf_m5/variables.dat-100
+2023-11-26 23:59:24,926 [INFO] tensorflow: Restoring parameters from /tmp/tmp2fcpf_m5/variables.dat-100
+------------------------------ testing ------------------------------
+search range:  -20000.0 5000.0
+cur thr:  -19990.0 [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -19490.0 [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -18990.0 [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -18490.0 [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -17990.0 [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -17490.0 [0.0, 0.0, 0.0, 0, 13703, 2, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -16990.0 [0.0, 0.0, 0.0, 0, 13703, 2, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -16490.0 [0.0, 0.0, 0.0, 0, 13703, 2, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -15990.0 [0.0, 0.0, 0.0, 0, 13703, 2, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -15490.0 [0.0, 0.0, 0.0, 0, 13703, 2, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -14990.0 [0.0, 0.0, 0.0, 0, 13703, 2, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -14490.0 [0.0, 0.0, 0.0, 0, 13703, 2, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -13990.0 [0.0, 0.0, 0.0, 0, 13702, 3, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -13490.0 [0.0, 0.0, 0.0, 0, 13702, 3, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -12990.0 [0.0, 0.0, 0.0, 0, 13702, 3, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -12490.0 [0.0, 0.0, 0.0, 0, 13700, 5, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -11990.0 [0.0, 0.0, 0.0, 0, 13700, 5, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -11490.0 [0.0, 0.0, 0.0, 0, 13700, 5, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -10990.0 [0.0, 0.0, 0.0, 0, 13698, 7, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -10490.0 [0.0, 0.0, 0.0, 0, 13696, 9, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -9990.0 [0.0, 0.0, 0.0, 0, 13696, 9, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -9490.0 [0.0, 0.0, 0.0, 0, 13694, 11, 559, 0.0] [0.0, 0.0, 0.0, 0, 13704, 1, 559, 0.0] -19990.0
+cur thr:  -8990.0 [0.024054222871765885, 0.30434769376187226, 0.012522361135557046, 7, 13689, 16, 552, 0.9999000099990001] [0.024095656095751546, 0.31818167355378474, 0.012522361135557046, 7, 13690, 15, 552, 0.9999000099990001] -9090.0
+cur thr:  -8490.0 [0.02401293189459608, 0.2916665451389395, 0.012522361135557046, 7, 13688, 17, 552, 0.9999000099990001] [0.024095656095751546, 0.31818167355378474, 0.012522361135557046, 7, 13690, 15, 552, 0.9999000099990001] -9090.0
+cur thr:  -7990.0 [0.023930773760594225, 0.2692306656805132, 0.012522361135557046, 7, 13686, 19, 552, 0.9999000099990001] [0.024095656095751546, 0.31818167355378474, 0.012522361135557046, 7, 13690, 15, 552, 0.9999000099990001] -9090.0
+cur thr:  -7490.0 [0.02356791381355327, 0.19999994285715916, 0.012522361135557046, 7, 13677, 28, 552, 0.9999000099990001] [0.024095656095751546, 0.31818167355378474, 0.012522361135557046, 7, 13690, 15, 552, 0.9999000099990001] -9090.0
+cur thr:  -6990.0 [0.023100878705944048, 0.14893613852422583, 0.012522361135557046, 7, 13665, 40, 552, 0.9999000099990001] [0.024095656095751546, 0.31818167355378474, 0.012522361135557046, 7, 13690, 15, 552, 0.9999000099990001] -9090.0
+cur thr:  -6490.0 [0.02236230522905065, 0.1044775963466274, 0.012522361135557046, 7, 13645, 60, 552, 0.9999000099990001] [0.024095656095751546, 0.31818167355378474, 0.012522361135557046, 7, 13690, 15, 552, 0.9999000099990001] -9090.0
+cur thr:  -5990.0 [0.042745588771611435, 0.1458333181423627, 0.02504472227111409, 14, 13623, 82, 545, 1.4999250037498124] [0.04367951481512536, 0.1707316864961358, 0.02504472227111409, 14, 13637, 68, 545, 1.4999250037498124] -6290.0
+cur thr:  -5490.0 [0.08831584175184069, 0.21678320162355233, 0.0554561707431812, 31, 13593, 112, 528, 3.4999125021874455] [0.08894947597724658, 0.22463766488132864, 0.0554561707431812, 31, 13598, 107, 528, 3.4999125021874455] -5520.0
+cur thr:  -4990.0 [0.08299489258299665, 0.16489360825034, 0.0554561707431812, 31, 13548, 157, 528, 3.4999125021874455] [0.08894947597724658, 0.22463766488132864, 0.0554561707431812, 31, 13598, 107, 528, 3.4999125021874455] -5520.0
+cur thr:  -4490.0 [0.07569774051617374, 0.11923076464497061, 0.0554561707431812, 31, 13476, 229, 528, 3.4999125021874455] [0.08894947597724658, 0.22463766488132864, 0.0554561707431812, 31, 13598, 107, 528, 3.4999125021874455] -5520.0
+cur thr:  -3990.0 [0.10844143362807647, 0.1299999967500001, 0.09302325414985234, 52, 13357, 348, 507, 2.4285367351894975] [0.12008779953861404, 0.16938110197455694, 0.09302325414985234, 52, 13450, 255, 507, 2.4285367351894975] -4350.0
+cur thr:  -3490.0 [0.17190990260195307, 0.16396103629933384, 0.18067978209875166, 101, 13190, 515, 458, 2.7856943878972293] [0.17458445829432828, 0.16889631824588097, 0.18067978209875166, 101, 13208, 497, 458, 2.7856943878972293] -3530.0
+cur thr:  -2990.0 [0.22064054693508275, 0.17255297504991954, 0.30590339345432216, 171, 12885, 820, 388, 2.2083241319827835] [0.22411068878793192, 0.17683557211131776, 0.30590339345432216, 171, 12909, 796, 388, 2.2083241319827835] -3020.0
+cur thr:  -2490.0 [0.2461210665473108, 0.16687897982879632, 0.4686940882165637, 262, 12397, 1308, 297, 2.3513449963648743] [0.24751618672188258, 0.16816431214271943, 0.4686940882165637, 262, 12409, 1296, 297, 2.3513449963648743] -2500.0
+cur thr:  -1990.0 [0.2560748268373383, 0.1563737127617826, 0.7066189497921476, 395, 11574, 2131, 164, 1.7678539859750249] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  -1490.0 [0.20650790324677976, 0.11740196049656382, 0.8568872834188321, 479, 10104, 3601, 80, 1.4411743512141892] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  -990.0 [0.14448632421412452, 0.07810685238370085, 0.9624328987042415, 538, 7355, 6350, 21, 0.9868408067884121] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  -490.0 [0.09353211253076683, 0.04906090920742416, 0.9999999821109127, 559, 2870, 10835, 0, 0.26582244832601476] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  10.0 [0.07542260272625614, 0.03918956811610378, 0.9999999821109127, 559, 0, 13705, 0, 0.0] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  510.0 [0.07542260272625614, 0.03918956811610378, 0.9999999821109127, 559, 0, 13705, 0, 0.0] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  1010.0 [0.07542260272625614, 0.03918956811610378, 0.9999999821109127, 559, 0, 13705, 0, 0.0] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  1510.0 [0.07542260272625614, 0.03918956811610378, 0.9999999821109127, 559, 0, 13705, 0, 0.0] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  2010.0 [0.07542260272625614, 0.03918956811610378, 0.9999999821109127, 559, 0, 13705, 0, 0.0] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  2510.0 [0.07542260272625614, 0.03918956811610378, 0.9999999821109127, 559, 0, 13705, 0, 0.0] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  3010.0 [0.07542260272625614, 0.03918956811610378, 0.9999999821109127, 559, 0, 13705, 0, 0.0] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  3510.0 [0.07542260272625614, 0.03918956811610378, 0.9999999821109127, 559, 0, 13705, 0, 0.0] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  4010.0 [0.07542260272625614, 0.03918956811610378, 0.9999999821109127, 559, 0, 13705, 0, 0.0] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+cur thr:  4510.0 [0.07542260272625614, 0.03918956811610378, 0.9999999821109127, 559, 0, 13705, 0, 0.0] [0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+[0.2736042520905221, 0.17665450663546375, 0.6064400607076913, 339, 12125, 1580, 220, 2.2291620225791196] -2280.0
+Initial threshold : 38.056145
+Number of peaks : 309
+Grimshaw maximum log-likelihood estimation ... [done]
+	γ = 0
+	σ = 276.8048
+	L = 2046.6035931552258
+Extreme quantile (probability = 0.001): 675.3690296109261
+100%|██████████| 14264/14264 [00:00<00:00, 1516310.63it/s]
+14264
+14264
+POT result:  (0.07542260272625614, 0.03918956811610378, 0.9999999821109127, 559, 0, 13705, 0) -38.056145 0.0
+==============================result==============================
+{'FN': 220,
+ 'FP': 1580,
+ 'TN': 12125,
+ 'TP': 339,
+ 'best-f1': 0.2736042520905221,
+ 'best_valid_loss': -0.13681453863255136,
+ 'latency': 2.2291620225791196,
+ 'pot-FN': 0,
+ 'pot-FP': 13705,
+ 'pot-TN': 0,
+ 'pot-TP': 559,
+ 'pot-f1': 0.07542260272625614,
+ 'pot-latency': 0.0,
+ 'pot-precision': 0.03918956811610378,
+ 'pot-recall': 0.9999999821109127,
+ 'pot-threshold': -38.056145,
+ 'precision': 0.17665450663546375,
+ 'pred_time': 0.1048752945589732,
+ 'pred_total_time': 35.14331817626953,
+ 'recall': 0.6064400607076913,
+ 'threshold': -2280.0,
+ 'train_time': 326.69313361406324,
+ 'valid_time': 0.13697604215016929}
+
+Process finished with exit code 0
