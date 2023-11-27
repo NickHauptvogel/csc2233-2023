@@ -24,7 +24,7 @@ def load_and_save(category, filename, dataset, dataset_folder):
 def load_data(dataset):
     serial_number_dict = {}
     if dataset == 'Backblaze':
-        dataset_folder = 'Backblaze'
+        dataset_folder = '/content/drive/MyDrive/CSC2233/ST12000NM0008_final_dataset_Nov26'
         filelist = os.listdir(dataset_folder)
         for filename in filelist:
             if filename.startswith('0'):
