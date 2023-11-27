@@ -27,7 +27,9 @@ def save_z(z, filename='z'):
 
 
 def get_data_dim(dataset):
-    if dataset == 'SMAP':
+    if dataset == 'Backblaze':
+        return 19
+    elif dataset == 'SMAP':
         return 25
     elif dataset == 'MSL':
         return 55
@@ -37,7 +39,7 @@ def get_data_dim(dataset):
         raise ValueError('unknown dataset '+str(dataset))
 
 
-def get_data(dataset, max_train_size=None, max_test_size=None, print_log=True, do_preprocess=True, train_start=0,
+def get_data(dataset, window_length, max_train_size=None, max_test_size=None, print_log=True, do_preprocess=True, train_start=0,
              test_start=0):
     """
     get data from pkl files
@@ -55,22 +57,48 @@ def get_data(dataset, max_train_size=None, max_test_size=None, print_log=True, d
     print('load data of:', dataset)
     print("train: ", train_start, train_end)
     print("test: ", test_start, test_end)
-    x_dim = get_data_dim(dataset)
-    f = open(os.path.join(prefix, dataset + '_train.pkl'), "rb")
-    train_data = pickle.load(f).reshape((-1, x_dim))[train_start:train_end, :]
-    f.close()
-    try:
-        f = open(os.path.join(prefix, dataset + '_test.pkl'), "rb")
-        test_data = pickle.load(f).reshape((-1, x_dim))[test_start:test_end, :]
+    # x_dim here with serial number as the first dimension (cut off later)
+    x_dim = get_data_dim(dataset) + 1
+    all_files = os.listdir(prefix)
+    train_files = [f for f in all_files if f.endswith('_train.pkl')]
+    test_files = [f for f in all_files if f.endswith('_test.pkl')]
+    test_label_files = [f for f in all_files if f.endswith('_test_label.pkl')]
+    train_data = None
+    test_data = None
+    test_label = None
+
+    for f in train_files:
+        print(f)
+        f = open(os.path.join(prefix, f), "rb")
+        single_data = pickle.load(f).reshape((-1, x_dim))[train_start:train_end, :]
+        if train_data is None:
+            train_data = single_data
+        else:
+            train_data = np.concatenate((train_data, single_data), axis=0)
         f.close()
-    except (KeyError, FileNotFoundError):
-        test_data = None
-    try:
-        f = open(os.path.join(prefix, dataset + "_test_label.pkl"), "rb")
-        test_label = pickle.load(f).reshape((-1))[test_start:test_end]
+
+    for f in test_files:
+        print(f)
+        f = open(os.path.join(prefix, f), "rb")
+        single_data = pickle.load(f).reshape((-1, x_dim))[test_start:test_end, :]
+        if test_data is None:
+            test_data = single_data
+        else:
+            test_data = np.concatenate((test_data, single_data), axis=0)
         f.close()
-    except (KeyError, FileNotFoundError):
-        test_label = None
+
+    for f in test_label_files:
+        print(f)
+        f = open(os.path.join(prefix, f), "rb")
+        single_data = pickle.load(f).reshape((-1))[test_start:test_end]
+        # Cut off first window_length data for each test sequence (not tested)
+        single_data = single_data[window_length - 1:]
+        if test_label is None:
+            test_label = single_data
+        else:
+            test_label = np.concatenate((test_label, single_data), axis=0)
+        f.close()
+
     if do_preprocess:
         train_data = preprocess(train_data)
         test_data = preprocess(test_data)
@@ -218,4 +246,18 @@ class BatchSlidingWindow(object):
                 batch_size=self._batch_size,
                 ignore_incomplete_batch=self._ignore_incomplete_batch):
             idx = self._indices[s] + self._offsets
-            yield tuple(a[idx] if len(a.shape) == 1 else a[idx, :] for a in arrays)
+            batches = tuple(a[idx] if len(a.shape) == 1 else a[idx, :] for a in arrays)
+            new_batches = []
+            # Exclude samples that are across model IDs
+            for batch in batches:
+                clean_batch = []
+                for i in range(len(batch)):
+                    if np.any(batch[i, :, 0] != batch[i, 0, 0]):
+                        continue
+                    clean_batch.append(batch[i, :, 1:])
+                batch = np.asarray(clean_batch)
+                # print('batch_x:', batch_x.shape)
+                if len(batch) == 0:
+                    continue
+                new_batches.append(batch)
+            yield tuple(new_batches)

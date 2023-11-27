@@ -23,30 +23,28 @@ from omni_anomaly.utils import get_data_dim, get_data, save_z
 
 class ExpConfig(Config):
     # dataset configuration
-    dataset = "machine-1-1"
+    dataset = "Backblaze"
     x_dim = get_data_dim(dataset)
 
     # model architecture configuration
-    use_connected_z_q = True
-    use_connected_z_p = True
+    use_connected_z_q = False
+    use_connected_z_p = False
 
     # model parameters
     z_dim = 3
     rnn_cell = 'GRU'  # 'GRU', 'LSTM' or 'Basic'
     rnn_num_hidden = 500
-    window_length = 100
+    window_length = 25
     dense_dim = 500
     posterior_flow_type = 'nf'  # 'nf' or None
     nf_layers = 20  # for nf
-    max_epoch = 10
+    max_epoch = 0 #100
     train_start = 0
     max_train_size = None  # `None` means full train set
     batch_size = 50
-    l2_reg = 0.0001
-    initial_lr = 0.001
+    initial_lr = 0.0001
     lr_anneal_factor = 0.5
-    lr_anneal_epoch_freq = 40
-    lr_anneal_step_freq = None
+    lr_anneal_epoch_freq = 20
     std_epsilon = 1e-4
 
     # evaluation parameters
@@ -57,8 +55,8 @@ class ExpConfig(Config):
 
     # the range and step-size for score for searching best-f1
     # may vary for different dataset
-    bf_search_min = -400.
-    bf_search_max = 400.
+    bf_search_min = -5000.
+    bf_search_max = 0.
     bf_search_step_size = 1.
 
     valid_step_freq = 100
@@ -79,7 +77,7 @@ class ExpConfig(Config):
     save_z = False  # whether to save sampled z in hidden space
     get_score_on_dim = False  # whether to get score on dim. If `True`, the score will be a 2-dim ndarray
     save_dir = 'model'
-    restore_dir = None  # If not None, restore variables from this dir
+    restore_dir = 'model'  # If not None, restore variables from this dir
     result_dir = 'result'  # Where to save the result file
     train_score_filename = 'train_score.pkl'
     test_score_filename = 'test_score.pkl'
@@ -93,7 +91,7 @@ def main():
 
     # prepare the data
     (x_train, _), (x_test, y_test) = \
-        get_data(config.dataset, config.max_train_size, config.max_test_size, train_start=config.train_start,
+        get_data(config.dataset, config.window_length, config.max_train_size, config.max_test_size, train_start=config.train_start,
                  test_start=config.test_start)
 
     # construct the model under `variable_scope` named 'model'
