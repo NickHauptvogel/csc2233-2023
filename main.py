@@ -38,7 +38,7 @@ class ExpConfig(Config):
     dense_dim = 500
     posterior_flow_type = 'nf'  # 'nf' or None
     nf_layers = 20  # for nf
-    max_epoch = 0 #100
+    max_epoch = 100
     train_start = 0
     max_train_size = None  # `None` means full train set
     batch_size = 50
@@ -77,7 +77,7 @@ class ExpConfig(Config):
     save_z = False  # whether to save sampled z in hidden space
     get_score_on_dim = False  # whether to get score on dim. If `True`, the score will be a 2-dim ndarray
     save_dir = 'model'
-    restore_dir = 'model'  # If not None, restore variables from this dir
+    restore_dir = None  # If not None, restore variables from this dir
     result_dir = 'result'  # Where to save the result file
     train_score_filename = 'train_score.pkl'
     test_score_filename = 'test_score.pkl'

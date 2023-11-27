@@ -28,7 +28,7 @@ def save_z(z, filename='z'):
 
 def get_data_dim(dataset):
     if dataset == 'Backblaze':
-        return 19
+        return 15
     elif dataset == 'SMAP':
         return 25
     elif dataset == 'MSL':
