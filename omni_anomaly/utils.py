@@ -67,37 +67,34 @@ def get_data(dataset, window_length, max_train_size=None, max_test_size=None, pr
     test_data = None
     test_label = None
 
+    data_list = []
     for f in train_files:
         print(f)
         f = open(os.path.join(prefix, f), "rb")
         single_data = pickle.load(f).reshape((-1, x_dim))[train_start:train_end, :]
-        if train_data is None:
-            train_data = single_data
-        else:
-            train_data = np.concatenate((train_data, single_data), axis=0)
+        data_list.append(single_data)
         f.close()
+    train_data = np.concatenate(data_list, axis=0)
 
+    data_list = []
     for f in test_files:
         print(f)
         f = open(os.path.join(prefix, f), "rb")
         single_data = pickle.load(f).reshape((-1, x_dim))[test_start:test_end, :]
-        if test_data is None:
-            test_data = single_data
-        else:
-            test_data = np.concatenate((test_data, single_data), axis=0)
+        data_list.append(single_data)
         f.close()
+    test_data = np.concatenate(data_list, axis=0)
 
+    data_list = []
     for f in test_label_files:
         print(f)
         f = open(os.path.join(prefix, f), "rb")
         single_data = pickle.load(f).reshape((-1))[test_start:test_end]
         # Cut off first window_length data for each test sequence (not tested)
         single_data = single_data[window_length - 1:]
-        if test_label is None:
-            test_label = single_data
-        else:
-            test_label = np.concatenate((test_label, single_data), axis=0)
+        data_list.append(single_data)
         f.close()
+    test_label = np.concatenate(data_list, axis=0)
 
     if do_preprocess:
         train_data = preprocess(train_data)
