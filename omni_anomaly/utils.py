@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import pickle
+import random
 
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
@@ -58,49 +59,49 @@ def get_data(dataset, dataset_folder, window_length, max_train_size=None, max_te
     # x_dim here with serial number as the first dimension (cut off later)
     x_dim = get_data_dim(dataset) + 1
     all_files = os.listdir(dataset_folder)
+    # Shuffle the files
+    random.shuffle(all_files)
     train_files = [f for f in all_files if f.endswith('_train.pkl')]
     test_files = [f for f in all_files if f.endswith('_test.pkl')]
-    test_label_files = [f for f in all_files if f.endswith('_test_label.pkl')]
 
-    data_list = []
+    train_list = []
     for f in train_files:
         print(f)
         f = open(os.path.join(dataset_folder, f), "rb")
         single_data = pickle.load(f).reshape((-1, x_dim))[train_start:train_end, :]
-        data_list.append(single_data)
+        train_list.append(single_data)
         f.close()
-    train_data = np.concatenate(data_list, axis=0)
+    train_data = np.concatenate(train_list, axis=0)
 
-    data_list = []
-    for f in test_files:
-        print(f)
-        f = open(os.path.join(dataset_folder, f), "rb")
-        single_data = pickle.load(f).reshape((-1, x_dim))[test_start:test_end, :]
-        data_list.append(single_data)
-        f.close()
-    test_data = np.concatenate(data_list, axis=0)
+    test_list = []
+    test_label_list = []
+    for file in test_files:
+        print(file)
+        f = open(os.path.join(dataset_folder, file), "rb")
+        f_label = open(os.path.join(dataset_folder, file.replace('_test.pkl', '_test_label.pkl')), "rb")
+        single_test = pickle.load(f).reshape((-1, x_dim))[test_start:test_end, :]
+        single_label = pickle.load(f_label).reshape((-1))[test_start:test_end]
 
-    data_list = []
-    for f in test_label_files:
-        print(f)
-        f = open(os.path.join(dataset_folder, f), "rb")
-        single_data = pickle.load(f).reshape((-1))[test_start:test_end]
         # Cut off first window_length data for each test sequence (not tested)
-        single_data = single_data[window_length - 1:]
-        data_list.append(single_data)
+        single_label = single_label[window_length - 1:]
+        test_list.append(single_test)
+        test_label_list.append(single_label)
         f.close()
-    test_label = np.concatenate(data_list, axis=0)
+        f_label.close()
+
+    test_data = np.concatenate(test_list, axis=0)
+    test_label = np.concatenate(test_label_list, axis=0)
 
     if do_preprocess:
-        train_data = preprocess(train_data)
-        test_data = preprocess(test_data)
+        train_data, scaler = preprocess(train_data)
+        test_data, _ = preprocess(test_data, scaler)
     print("train set shape: ", train_data.shape)
     print("test set shape: ", test_data.shape)
     print("test set label shape: ", test_label.shape)
     return (train_data, None), (test_data, test_label)
 
 
-def preprocess(df):
+def preprocess(df, scaler=None):
     """returns normalized and standardized data.
     """
 
@@ -114,10 +115,13 @@ def preprocess(df):
         df = np.nan_to_num()
 
     # normalize data
-    df = MinMaxScaler().fit_transform(df)
+    if scaler is None:
+        scaler = MinMaxScaler()
+        scaler.fit(df)
+    df = scaler.transform(df)
     print('Data normalized')
 
-    return df
+    return df, scaler
 
 
 def minibatch_slices_iterator(length, batch_size,
