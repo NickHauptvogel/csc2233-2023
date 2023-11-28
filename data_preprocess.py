@@ -43,6 +43,7 @@ def load_data(dataset, dataset_folder, output_folder):
 
         def create_files(filelist, name):
             for filename in filelist:
+                print(dataset, name, filename)
                 # Load csv file with header
                 tmp = pd.read_csv(os.path.join(dataset_folder, filename), header=0)
                 # Get serial number
@@ -79,7 +80,6 @@ def load_data(dataset, dataset_folder, output_folder):
                 # numpy array from dataframe starting from column 7
                 arr = tmp.iloc[:, 6:].values
                 # Save to pickle file
-                print(dataset, name, filename, arr.shape)
                 if len(arr) == 0:
                     print("Empty file: " + filename)
                     continue
