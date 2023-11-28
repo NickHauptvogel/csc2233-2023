@@ -234,7 +234,7 @@ class Trainer(VarScopeObject):
 
             train_batch_time = []
             valid_batch_time = []
-
+            best_valid_loss = float('inf')
             print('train_values:', train_values.shape)
             for epoch in loop.iter_epochs():
                 train_iterator = train_sliding_window.get_iterator([train_values])
@@ -269,15 +269,21 @@ class Trainer(VarScopeObject):
                         valid_batch_time.append(time.time() - start_batch_time)
                         mc.collect(loss, weight=len(b_v_x))
 
+                    if mc.mean < best_valid_loss:
+                        best_valid_loss = mc.mean
+                        loop.println(
+                            'Best valid loss updated: {:.6g}'.format(
+                                best_valid_loss),
+                            with_tag=True)
+                        if self._save_dir is not None:
+                            # save the variables
+                            var_dict = get_variables_as_dict(self._model_vs)
+                            saver = VariableSaver(var_dict, self._save_dir)
+                            saver.save()
+                            print('Model saved at {}.'.format(self._save_dir))
+
                 # print the logs of recent steps
                 loop.print_logs()
-
-                if self._save_dir is not None:
-                    # save the variables
-                    var_dict = get_variables_as_dict(self._model_vs)
-                    saver = VariableSaver(var_dict, self._save_dir)
-                    saver.save()
-                    print('Model saved at {}.'.format(self._save_dir))
 
                 # anneal the learning rate
                 if self._lr_anneal_epochs and \
