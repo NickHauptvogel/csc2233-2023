@@ -4,6 +4,7 @@ import time
 import numpy as np
 import six
 import tensorflow as tf
+from tfsnippet import VariableSaver
 from tfsnippet.scaffold import TrainLoop
 from tfsnippet.shortcuts import VarScopeObject
 from tfsnippet.utils import (reopen_variable_scope,
@@ -45,8 +46,6 @@ class Trainer(VarScopeObject):
         batch_size (int): Size of mini-batches for training. (default 256)
         valid_batch_size (int): Size of mini-batches for validation.
             (default 1024)
-        valid_step_freq (int): Run validation after every `valid_step_freq`
-            number of training steps. (default 100)
         initial_lr (float): Initial learning rate. (default 0.001)
         lr_anneal_epochs (int): Anneal the learning rate after every
             `lr_anneal_epochs` number of epochs. (default 10)
@@ -71,15 +70,16 @@ class Trainer(VarScopeObject):
                  feed_dict=None, valid_feed_dict=None,
                  use_regularization_loss=True,
                  max_epoch=256, max_step=None, batch_size=256,
-                 valid_batch_size=1024, valid_step_freq=100,
+                 valid_batch_size=1024,
                  initial_lr=0.001, lr_anneal_epochs=10, lr_anneal_factor=0.75,
                  optimizer=tf.train.AdamOptimizer, optimizer_params=None,
                  grad_clip_norm=50.0, check_numerics=True,
-                 name=None, scope=None):
+                 name=None, scope=None, save_dir=None):
         super(Trainer, self).__init__(name=name, scope=scope)
 
         # memorize the arguments
         self._model = model
+        self._model_vs = model_vs
         self._n_z = n_z
         if feed_dict is not None:
             self._feed_dict = dict(six.iteritems(feed_dict))
@@ -96,10 +96,10 @@ class Trainer(VarScopeObject):
         self._max_step = max_step
         self._batch_size = batch_size
         self._valid_batch_size = valid_batch_size
-        self._valid_step_freq = valid_step_freq
         self._initial_lr = initial_lr
         self._lr_anneal_epochs = lr_anneal_epochs
         self._lr_anneal_factor = lr_anneal_factor
+        self._save_dir = save_dir
 
         # build the trainer
         with reopen_variable_scope(self.variable_scope):
@@ -235,8 +235,8 @@ class Trainer(VarScopeObject):
             train_batch_time = []
             valid_batch_time = []
 
+            print('train_values:', train_values.shape)
             for epoch in loop.iter_epochs():
-                print('train_values:', train_values.shape)
                 train_iterator = train_sliding_window.get_iterator([train_values])
                 start_time = time.time()
                 for step, (batch_x,) in loop.iter_steps(train_iterator):
@@ -250,29 +250,34 @@ class Trainer(VarScopeObject):
                     loop.collect_metrics({'loss': loss})
                     train_batch_time.append(time.time() - start_batch_time)
 
-                    if step % self._valid_step_freq == 0:
-                        train_duration = time.time() - start_time
-                        loop.collect_metrics({'train_time': train_duration})
-                        # collect variable summaries
-                        if summary_dir is not None:
-                            loop.add_summary(sess.run(self._summary_op))
+                train_duration = time.time() - start_time
+                loop.collect_metrics({'train_time': train_duration})
+                # collect variable summaries
+                if summary_dir is not None:
+                    loop.add_summary(sess.run(self._summary_op))
 
-                        # do validation in batches
-                        with loop.timeit('valid_time'), \
-                                loop.metric_collector('valid_loss') as mc:
-                            v_it = valid_sliding_window.get_iterator([v_x])
-                            for (b_v_x,) in v_it:
-                                start_batch_time = time.time()
-                                feed_dict = dict(
-                                    six.iteritems(self._valid_feed_dict))
-                                feed_dict[self._input_x] = b_v_x
-                                loss = sess.run(self._loss, feed_dict=feed_dict)
-                                valid_batch_time.append(time.time() - start_batch_time)
-                                mc.collect(loss, weight=len(b_v_x))
+                # do validation in batches
+                with loop.timeit('valid_time'), \
+                        loop.metric_collector('valid_loss') as mc:
+                    v_it = valid_sliding_window.get_iterator([v_x])
+                    for (b_v_x,) in v_it:
+                        start_batch_time = time.time()
+                        feed_dict = dict(
+                            six.iteritems(self._valid_feed_dict))
+                        feed_dict[self._input_x] = b_v_x
+                        loss = sess.run(self._loss, feed_dict=feed_dict)
+                        valid_batch_time.append(time.time() - start_batch_time)
+                        mc.collect(loss, weight=len(b_v_x))
 
-                        # print the logs of recent steps
-                        loop.print_logs()
-                        start_time = time.time()
+                # print the logs of recent steps
+                loop.print_logs()
+
+                if self._save_dir is not None:
+                    # save the variables
+                    var_dict = get_variables_as_dict(self._model_vs)
+                    saver = VariableSaver(var_dict, self._save_dir)
+                    saver.save()
+                    print('Model saved at {}.'.format(self._save_dir))
 
                 # anneal the learning rate
                 if self._lr_anneal_epochs and \

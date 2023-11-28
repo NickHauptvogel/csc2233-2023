@@ -24,6 +24,7 @@ from omni_anomaly.utils import get_data_dim, get_data, save_z
 class ExpConfig(Config):
     # dataset configuration
     dataset = "Backblaze"
+    dataset_folder = 'processed'
     x_dim = get_data_dim(dataset)
 
     # model architecture configuration
@@ -59,7 +60,6 @@ class ExpConfig(Config):
     bf_search_max = 0.
     bf_search_step_size = 1.
 
-    valid_step_freq = 1000000
     valid_portion = 0.05
     gradient_clip_norm = 10.
 
@@ -92,7 +92,7 @@ def main():
 
     # prepare the data
     (x_train, _), (x_test, y_test) = \
-        get_data(config.dataset, config.window_length, config.max_train_size, config.max_test_size, train_start=config.train_start,
+        get_data(config.dataset, config.dataset_folder, config.window_length, config.max_train_size, config.max_test_size, train_start=config.train_start,
                  test_start=config.test_start)
 
     # construct the model under `variable_scope` named 'model'
@@ -109,7 +109,7 @@ def main():
                           lr_anneal_epochs=config.lr_anneal_epoch_freq,
                           lr_anneal_factor=config.lr_anneal_factor,
                           grad_clip_norm=config.gradient_clip_norm,
-                          valid_step_freq=config.valid_step_freq)
+                          save_dir=config.save_dir)
 
         # construct the predictor
         predictor = Predictor(model, batch_size=config.batch_size, n_z=config.test_n_z,

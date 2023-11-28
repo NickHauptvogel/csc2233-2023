@@ -5,8 +5,6 @@ import pickle
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
-prefix = '/content/drive/MyDrive/CSC2233/processed_data_pre'
-
 
 def save_z(z, filename='z'):
     """
@@ -39,7 +37,7 @@ def get_data_dim(dataset):
         raise ValueError('unknown dataset '+str(dataset))
 
 
-def get_data(dataset, window_length, max_train_size=None, max_test_size=None, print_log=True, do_preprocess=True, train_start=0,
+def get_data(dataset, dataset_folder, window_length, max_train_size=None, max_test_size=None, print_log=True, do_preprocess=True, train_start=0,
              test_start=0):
     """
     get data from pkl files
@@ -59,7 +57,7 @@ def get_data(dataset, window_length, max_train_size=None, max_test_size=None, pr
     print("test: ", test_start, test_end)
     # x_dim here with serial number as the first dimension (cut off later)
     x_dim = get_data_dim(dataset) + 1
-    all_files = os.listdir(prefix)
+    all_files = os.listdir(dataset_folder)
     train_files = [f for f in all_files if f.endswith('_train.pkl')]
     test_files = [f for f in all_files if f.endswith('_test.pkl')]
     test_label_files = [f for f in all_files if f.endswith('_test_label.pkl')]
@@ -67,7 +65,7 @@ def get_data(dataset, window_length, max_train_size=None, max_test_size=None, pr
     data_list = []
     for f in train_files:
         print(f)
-        f = open(os.path.join(prefix, f), "rb")
+        f = open(os.path.join(dataset_folder, f), "rb")
         single_data = pickle.load(f).reshape((-1, x_dim))[train_start:train_end, :]
         data_list.append(single_data)
         f.close()
@@ -76,7 +74,7 @@ def get_data(dataset, window_length, max_train_size=None, max_test_size=None, pr
     data_list = []
     for f in test_files:
         print(f)
-        f = open(os.path.join(prefix, f), "rb")
+        f = open(os.path.join(dataset_folder, f), "rb")
         single_data = pickle.load(f).reshape((-1, x_dim))[test_start:test_end, :]
         data_list.append(single_data)
         f.close()
@@ -85,7 +83,7 @@ def get_data(dataset, window_length, max_train_size=None, max_test_size=None, pr
     data_list = []
     for f in test_label_files:
         print(f)
-        f = open(os.path.join(prefix, f), "rb")
+        f = open(os.path.join(dataset_folder, f), "rb")
         single_data = pickle.load(f).reshape((-1))[test_start:test_end]
         # Cut off first window_length data for each test sequence (not tested)
         single_data = single_data[window_length - 1:]
