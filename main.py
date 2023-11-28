@@ -41,7 +41,7 @@ class ExpConfig(Config):
     max_epoch = 100
     train_start = 0
     max_train_size = None  # `None` means full train set
-    batch_size = 50
+    batch_size = 256
     initial_lr = 0.0001
     lr_anneal_factor = 0.5
     lr_anneal_epoch_freq = 20
@@ -49,7 +49,7 @@ class ExpConfig(Config):
 
     # evaluation parameters
     test_n_z = 1
-    test_batch_size = 50
+    test_batch_size = 256
     test_start = 0
     max_test_size = None  # `None` means full test set
 
