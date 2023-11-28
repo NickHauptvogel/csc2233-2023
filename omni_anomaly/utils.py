@@ -63,9 +63,6 @@ def get_data(dataset, window_length, max_train_size=None, max_test_size=None, pr
     train_files = [f for f in all_files if f.endswith('_train.pkl')]
     test_files = [f for f in all_files if f.endswith('_test.pkl')]
     test_label_files = [f for f in all_files if f.endswith('_test_label.pkl')]
-    train_data = None
-    test_data = None
-    test_label = None
 
     data_list = []
     for f in train_files:

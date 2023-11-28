@@ -59,7 +59,8 @@ class ExpConfig(Config):
     bf_search_max = 0.
     bf_search_step_size = 1.
 
-    valid_step_freq = 100
+    valid_step_freq = 1000000
+    valid_portion = 0.05
     gradient_clip_norm = 10.
 
     early_stop = True  # whether to apply early stop method
@@ -124,7 +125,7 @@ def main():
             if config.max_epoch > 0:
                 # train the model
                 train_start = time.time()
-                best_valid_metrics = trainer.fit(x_train)
+                best_valid_metrics = trainer.fit(x_train, valid_portion=config.valid_portion)
                 train_time = (time.time() - train_start) / config.max_epoch
                 best_valid_metrics.update({
                     'train_time': train_time
