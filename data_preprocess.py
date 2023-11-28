@@ -71,9 +71,10 @@ def load_data(dataset, dataset_folder, output_folder):
                     print(filename + " missing val in rows: " + str(missing_index) + "(total: " + str(len(missing_index)) + ")")
                 # Drop rows with missing values
                 tmp = tmp.dropna()
-                # If it is an anomaly disk (last row is 1), don't use last 60 days for training
-                if name == 'train' and tmp['failure'].values[-1] == 1:
-                    tmp = tmp.iloc[:-60, :]
+                # If anomaly (at least one failure value is 1), don't use last 60 days before first failure
+                if name == 'train' and tmp['failure'].sum() > 0:
+                    first_anomaly_index = np.where(tmp['failure'].values == 1)[0][0]
+                    tmp = tmp.iloc[:first_anomaly_index - 60, :]
                 if tmp.shape[0] == 0:
                     print("Empty file: " + filename)
                     continue
