@@ -72,23 +72,23 @@ def load_data(dataset, dataset_folder, output_folder):
                 # Drop rows with missing values
                 tmp = tmp.dropna()
                 # If it is an anomaly disk (last row is 1), don't use last 60 days for training
-                if name == 'train' and tmp.iloc[-1, 5] == 1:
+                if name == 'train' and tmp['failure'].values[-1] == 1:
                     tmp = tmp.iloc[:-60, :]
+                if tmp.shape[0] == 0:
+                    print("Empty file: " + filename)
+                    continue
                 # assert that label is always 0
                 if name == 'train':
-                    assert tmp.iloc[:, 5].sum() == 0
+                    assert tmp['failure'].sum() == 0
                 # numpy array from dataframe starting from column 7
                 arr = tmp.iloc[:, 6:].values
                 # Save to pickle file
-                if len(arr) == 0:
-                    print("Empty file: " + filename)
-                    continue
                 with open(os.path.join(output_folder, filename.strip('.csv') + "_" + name + ".pkl"), "wb") as file:
                     dump(arr, file)
 
                 if name == 'test':
                     # Get label
-                    label = tmp.iloc[:, 5].values
+                    label = tmp['failure'].values
                     # Set 7 days before failure as anomaly
                     if label[-1] == 1:
                         label[-7:] = 1
