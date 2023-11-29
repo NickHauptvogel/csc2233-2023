@@ -49,48 +49,62 @@ def get_data(dataset, dataset_folder, window_length, max_train_size=None, max_te
         train_end = None
     else:
         train_end = train_start + max_train_size
-    if max_test_size is None:
-        test_end = None
-    else:
-        test_end = test_start + max_test_size
     print('load data of:', dataset)
     print("train: ", train_start, train_end)
-    print("test: ", test_start, test_end)
     # x_dim here with serial number as the first dimension (cut off later)
     x_dim = get_data_dim(dataset) + 1
     all_files = os.listdir(dataset_folder)
-    # Shuffle the files
-    random.shuffle(all_files)
-    train_files = [f for f in all_files if f.endswith('_train.pkl')]
-    test_files = [f for f in all_files if f.endswith('_test.pkl')]
 
-    train_list = []
-    for f in train_files:
-        print(f)
-        f = open(os.path.join(dataset_folder, f), "rb")
-        single_data = pickle.load(f).reshape((-1, x_dim))[train_start:train_end, :]
-        train_list.append(single_data)
-        f.close()
-    train_data = np.concatenate(train_list, axis=0)
+    if 'full_train_data.pkl' in all_files and 'full_test_data.pkl' in all_files and 'full_test_label.pkl' in all_files:
+        print('Found full saved data!')
+        with open(os.path.join(dataset_folder, 'full_train_data.pkl'), 'rb') as f:
+            train_data = pickle.load(f)
+        with open(os.path.join(dataset_folder, 'full_test_data.pkl'), 'rb') as f:
+            test_data = pickle.load(f)
+        with open(os.path.join(dataset_folder, 'full_test_label.pkl'), 'rb') as f:
+            test_label = pickle.load(f)
 
-    test_list = []
-    test_label_list = []
-    for file in test_files:
-        print(file)
-        f = open(os.path.join(dataset_folder, file), "rb")
-        f_label = open(os.path.join(dataset_folder, file.replace('_test.pkl', '_test_label.pkl')), "rb")
-        single_test = pickle.load(f).reshape((-1, x_dim))[test_start:test_end, :]
-        single_label = pickle.load(f_label).reshape((-1))[test_start:test_end]
+    else:
+        train_files = [f for f in all_files if f.endswith('_train.pkl')]
+        test_files = [f for f in all_files if f.endswith('_test.pkl')]
 
-        # Cut off first window_length data for each test sequence (not tested)
-        single_label = single_label[window_length - 1:]
-        test_list.append(single_test)
-        test_label_list.append(single_label)
-        f.close()
-        f_label.close()
+        train_list = []
+        for f in train_files:
+            print(f)
+            f = open(os.path.join(dataset_folder, f), "rb")
+            single_data = pickle.load(f).reshape((-1, x_dim))
+            train_list.append(single_data)
+            f.close()
+        train_data = np.concatenate(train_list, axis=0)
 
-    test_data = np.concatenate(test_list, axis=0)
-    test_label = np.concatenate(test_label_list, axis=0)
+        test_list = []
+        test_label_list = []
+        for file in test_files:
+            print(file)
+            f = open(os.path.join(dataset_folder, file), "rb")
+            f_label = open(os.path.join(dataset_folder, file.replace('_test.pkl', '_test_label.pkl')), "rb")
+            single_test = pickle.load(f).reshape((-1, x_dim))
+            single_label = pickle.load(f_label).reshape((-1))
+
+            # Cut off first window_length data for each test sequence (not tested)
+            single_label = single_label[window_length - 1:]
+            test_list.append(single_test)
+            test_label_list.append(single_label)
+            f.close()
+            f_label.close()
+
+        test_data = np.concatenate(test_list, axis=0)
+        test_label = np.concatenate(test_label_list, axis=0)
+
+        # Save full data for later use
+        with open(os.path.join(dataset_folder, 'full_train_data.pkl'), 'wb') as f:
+            pickle.dump(train_data, f)
+        with open(os.path.join(dataset_folder, 'full_test_data.pkl'), 'wb') as f:
+            pickle.dump(test_data, f)
+        with open(os.path.join(dataset_folder, 'full_test_label.pkl'), 'wb') as f:
+            pickle.dump(test_label, f)
+
+    train_data = train_data[train_start:train_end]
 
     if do_preprocess:
         train_data, scaler = preprocess(train_data)
@@ -98,6 +112,7 @@ def get_data(dataset, dataset_folder, window_length, max_train_size=None, max_te
     print("train set shape: ", train_data.shape)
     print("test set shape: ", test_data.shape)
     print("test set label shape: ", test_label.shape)
+
     return (train_data, None), (test_data, test_label)
 
 

@@ -121,6 +121,7 @@ def main():
                 # Restore variables from `save_dir`.
                 saver = VariableSaver(get_variables_as_dict(model_vs), config.restore_dir)
                 saver.restore()
+                print('Variables restored from {}.'.format(config.restore_dir))
 
             if config.max_epoch > 0:
                 # train the model
