@@ -182,7 +182,7 @@ class Trainer(VarScopeObject):
         return self._model
 
     def fit(self, values,
-            valid_portion=0.3, summary_dir=None):
+            valid_portion=0.3, summary_dir=None, start_val_loss=float('inf')):
         """
         Train the :class:`OmniAnomaly` model with given data.
 
@@ -234,7 +234,7 @@ class Trainer(VarScopeObject):
 
             train_batch_time = []
             valid_batch_time = []
-            best_valid_loss = float('inf')
+            best_valid_loss = start_val_loss
             print('train_values:', train_values.shape)
             for epoch in loop.iter_epochs():
                 train_iterator = train_sliding_window.get_iterator([train_values])
@@ -270,11 +270,11 @@ class Trainer(VarScopeObject):
                         mc.collect(loss, weight=len(b_v_x))
 
                     if mc.mean < best_valid_loss:
-                        best_valid_loss = mc.mean
                         loop.println(
-                            'Best valid loss updated: {:.6g}'.format(
-                                best_valid_loss),
+                            'Best valid loss updated: from {:.6f} to {:.6f}'.format(
+                                best_valid_loss, mc.mean),
                             with_tag=True)
+                        best_valid_loss = mc.mean
                         if self._save_dir is not None:
                             # save the variables
                             var_dict = get_variables_as_dict(self._model_vs)

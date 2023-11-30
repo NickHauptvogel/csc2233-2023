@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import logging
 import os
 import pickle
@@ -122,11 +123,17 @@ def main():
                 saver = VariableSaver(get_variables_as_dict(model_vs), config.restore_dir)
                 saver.restore()
                 print('Variables restored from {}.'.format(config.restore_dir))
+                # Open results
+                results = json.load(open(os.path.join(config.result_dir, 'result.json'), 'r'))
+                start_val_loss = results['best_valid_loss']
+            else:
+                start_val_loss = float('inf')
+            print('Start val loss: {}'.format(start_val_loss))
 
             if config.max_epoch > 0:
                 # train the model
                 train_start = time.time()
-                best_valid_metrics = trainer.fit(x_train, valid_portion=config.valid_portion)
+                best_valid_metrics = trainer.fit(x_train, valid_portion=config.valid_portion, start_val_loss=start_val_loss)
                 train_time = (time.time() - train_start) / config.max_epoch
                 best_valid_metrics.update({
                     'train_time': train_time
