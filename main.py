@@ -60,6 +60,7 @@ class ExpConfig(Config):
     bf_search_min = -5000.
     bf_search_max = 0.
     bf_search_step_size = 1.
+    display_freq = 50
 
     valid_portion = 0.05
     gradient_clip_norm = 10.
@@ -179,7 +180,7 @@ def main():
                                       end=config.bf_search_max,
                                       step_num=int(abs(config.bf_search_max - config.bf_search_min) /
                                                    config.bf_search_step_size),
-                                      display_freq=50)
+                                      display_freq=config.display_freq)
                     # get pot results
                     pot_result = pot_eval(train_score, test_score, y_test[-len(test_score):], level=config.level)
 
