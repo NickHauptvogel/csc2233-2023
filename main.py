@@ -124,8 +124,11 @@ def main():
                 saver.restore()
                 print('Variables restored from {}.'.format(config.restore_dir))
                 # Open results
-                results = json.load(open(os.path.join(config.result_dir, 'result.json'), 'r'))
-                start_val_loss = results['best_valid_loss']
+                try:
+                    results = json.load(open(os.path.join(config.result_dir, 'result.json'), 'r'))
+                    start_val_loss = results['best_valid_loss']
+                except:
+                    start_val_loss = float('inf')
             else:
                 start_val_loss = float('inf')
             print('Start val loss: {}'.format(start_val_loss))
