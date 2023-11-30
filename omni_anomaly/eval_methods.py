@@ -19,7 +19,9 @@ def calc_point2point(predict, actual):
     precision = TP / (TP + FP + 0.00001)
     recall = TP / (TP + FN + 0.00001)
     f1 = 2 * precision * recall / (precision + recall + 0.00001)
-    return f1, precision, recall, TP, TN, FP, FN
+    fdr = TP / (TP + FN)
+    far = FP / (FP + TN)
+    return f1, fdr, far, precision, recall, TP, TN, FP, FN
 
 
 def adjust_predicts(score, label,

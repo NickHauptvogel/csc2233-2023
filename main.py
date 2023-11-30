@@ -125,8 +125,8 @@ def main():
                 print('Variables restored from {}.'.format(config.restore_dir))
                 # Open results
                 try:
-                    results = json.load(open(os.path.join(config.result_dir, 'result.json'), 'r'))
-                    start_val_loss = results['best_valid_loss']
+                    results_json = json.load(open(os.path.join(config.result_dir, 'result.json'), 'r'))
+                    start_val_loss = results_json['best_valid_loss']
                 except:
                     start_val_loss = float('inf')
             else:
