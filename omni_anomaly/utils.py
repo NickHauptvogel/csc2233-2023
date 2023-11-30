@@ -38,8 +38,7 @@ def get_data_dim(dataset):
         raise ValueError('unknown dataset '+str(dataset))
 
 
-def get_data(dataset, dataset_folder, window_length, max_train_size=None, max_test_size=None, print_log=True, do_preprocess=True, train_start=0,
-             test_start=0):
+def get_data(dataset, dataset_folder, window_length, max_train_size=None, do_preprocess=True, train_start=0):
     """
     get data from pkl files
 

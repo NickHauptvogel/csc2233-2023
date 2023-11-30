@@ -53,8 +53,6 @@ class ExpConfig(Config):
     # evaluation parameters
     test_n_z = 1
     test_batch_size = 256
-    test_start = 0
-    max_test_size = None  # `None` means full test set
 
     # the range and step-size for score for searching best-f1
     # may vary for different dataset
@@ -93,8 +91,7 @@ def main(result_dir):
 
     # prepare the data
     (x_train, _), (x_test, y_test) = \
-        get_data(config.dataset, config.dataset_folder, config.window_length, config.max_train_size, config.max_test_size, train_start=config.train_start,
-                 test_start=config.test_start)
+        get_data(config.dataset, config.dataset_folder, config.window_length, max_train_size=config.max_train_size, train_start=config.train_start)
 
     # construct the model under `variable_scope` named 'model'
     with tf.variable_scope('model') as model_vs:
@@ -144,7 +141,6 @@ def main(result_dir):
             else:
                 best_valid_metrics = {}
 
-            # get score of train set for POT algorithm
             train_score, train_z, train_pred_speed = predictor.get_score(x_train)
             if config.train_score_filename is not None:
                 with open(os.path.join(result_dir, config.train_score_filename), 'wb') as file:
@@ -167,14 +163,13 @@ def main(result_dir):
                     with open(os.path.join(result_dir, config.test_score_filename), 'wb') as file:
                         pickle.dump(test_score, file)
 
-                if y_test is not None and len(y_test) >= len(test_score):
+                if y_test is not None and len(y_test) == len(test_score):
                     if config.get_score_on_dim:
                         # get the joint score
                         test_score = np.sum(test_score, axis=-1)
-                        train_score = np.sum(train_score, axis=-1)
 
                     # get best f1
-                    t, th, arr = bf_search(test_score, y_test[-len(test_score):],
+                    t, th, arr = bf_search(test_score, y_test,
                                       start=config.bf_search_min,
                                       end=config.bf_search_max,
                                       step_num=int(abs(config.bf_search_max - config.bf_search_min) /
@@ -182,8 +177,6 @@ def main(result_dir):
                                       display_freq=config.display_freq)
                     # Save array in result folder
                     pickle.dump(arr, open(os.path.join(result_dir, 'bf_search.pkl'), 'wb'))
-                    # get pot results
-                    pot_result = pot_eval(train_score, test_score, y_test[-len(test_score):], level=config.level)
 
                     # output the results
                     best_valid_metrics.update({
@@ -199,7 +192,6 @@ def main(result_dir):
                         'latency': t[-1],
                         'threshold': th
                     })
-                    best_valid_metrics.update(pot_result)
                 results.update_metrics(best_valid_metrics)
 
             if config.save_dir is not None:
