@@ -1,0 +1,1 @@
+{"batch_size": 512, "bf_search_max": 100.0, "bf_search_min": -3000.0, "dataset_folder": "/content/drive/MyDrive/CSC2233/processed_data", "max_epoch": 0, "restore_dir": "model"}
