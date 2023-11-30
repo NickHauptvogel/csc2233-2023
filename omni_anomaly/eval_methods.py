@@ -107,16 +107,20 @@ def bf_search(score, label, start, end=None, step_num=1, display_freq=1, verbose
     threshold = search_lower_bound
     m = (-1., -1., -1.)
     m_t = 0.0
+    result_array = []
     for i in range(search_step):
         threshold += search_range / float(search_step)
         target = calc_seq(score, label, threshold, calc_latency=True)
+        target.append(threshold)
+        result_array.append(target)
         if target[0] > m[0]:
             m_t = threshold
             m = target
         if verbose and i % display_freq == 0:
             print("cur thr: ", threshold, target, m, m_t)
     print(m, m_t)
-    return m, m_t
+    result_array = np.array(result_array)
+    return m, m_t, result_array
 
 
 def pot_eval(init_score, score, label, q=1e-3, level=0.02):

@@ -7,6 +7,7 @@ import sys
 import time
 import warnings
 from argparse import ArgumentParser
+from datetime import datetime
 from pprint import pformat, pprint
 
 import numpy as np
@@ -65,8 +66,6 @@ class ExpConfig(Config):
     valid_portion = 0.05
     gradient_clip_norm = 10.
 
-    early_stop = True  # whether to apply early stop method
-
     # pot parameters
     # recommend values for `level`:
     # SMAP: 0.07
@@ -81,12 +80,12 @@ class ExpConfig(Config):
     get_score_on_dim = False  # whether to get score on dim. If `True`, the score will be a 2-dim ndarray
     save_dir = 'model'
     restore_dir = None  # If not None, restore variables from this dir
-    result_dir = 'result'  # Where to save the result file
     train_score_filename = 'train_score.pkl'
     test_score_filename = 'test_score.pkl'
 
 
-def main():
+def main(result_dir):
+
     logging.basicConfig(
         level='INFO',
         format='%(asctime)s [%(levelname)s] %(name)s: %(message)s'
@@ -126,7 +125,7 @@ def main():
                 print('Variables restored from {}.'.format(config.restore_dir))
                 # Open results
                 try:
-                    results_json = json.load(open(os.path.join(config.result_dir, 'result.json'), 'r'))
+                    results_json = json.load(open(os.path.join(result_dir, 'result.json'), 'r'))
                     start_val_loss = results_json['best_valid_loss']
                 except:
                     start_val_loss = float('inf')
@@ -148,7 +147,7 @@ def main():
             # get score of train set for POT algorithm
             train_score, train_z, train_pred_speed = predictor.get_score(x_train)
             if config.train_score_filename is not None:
-                with open(os.path.join(config.result_dir, config.train_score_filename), 'wb') as file:
+                with open(os.path.join(result_dir, config.train_score_filename), 'wb') as file:
                     pickle.dump(train_score, file)
             if config.save_z:
                 save_z(train_z, 'train_z')
@@ -165,7 +164,7 @@ def main():
                     'pred_total_time': test_time
                 })
                 if config.test_score_filename is not None:
-                    with open(os.path.join(config.result_dir, config.test_score_filename), 'wb') as file:
+                    with open(os.path.join(result_dir, config.test_score_filename), 'wb') as file:
                         pickle.dump(test_score, file)
 
                 if y_test is not None and len(y_test) >= len(test_score):
@@ -175,12 +174,14 @@ def main():
                         train_score = np.sum(train_score, axis=-1)
 
                     # get best f1
-                    t, th = bf_search(test_score, y_test[-len(test_score):],
+                    t, th, arr = bf_search(test_score, y_test[-len(test_score):],
                                       start=config.bf_search_min,
                                       end=config.bf_search_max,
                                       step_num=int(abs(config.bf_search_max - config.bf_search_min) /
                                                    config.bf_search_step_size),
                                       display_freq=config.display_freq)
+                    # Save array in result folder
+                    pickle.dump(arr, open(os.path.join(result_dir, 'bf_search.pkl'), 'wb'))
                     # get pot results
                     pot_result = pot_eval(train_score, test_score, y_test[-len(test_score):], level=config.level)
 
@@ -221,11 +222,14 @@ if __name__ == '__main__':
 
     print_with_title('Configurations', pformat(config.to_dict()), after='\n')
 
+    config.save_dir = os.path.join('results', config.save_dir + "_" + datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
+    result_directory = os.path.join(config.save_dir, 'results')
+
     # open the result object and prepare for result directories if specified
-    results = MLResults(config.result_dir)
+    results = MLResults(result_directory)
     results.save_config(config)  # save experiment settings for review
     results.make_dirs(config.save_dir, exist_ok=True)
     with warnings.catch_warnings():
         # suppress DeprecationWarning from NumPy caused by codes in TensorFlow-Probability
         warnings.filterwarnings("ignore", category=DeprecationWarning, module='numpy')
-        main()
+        main(result_directory)
