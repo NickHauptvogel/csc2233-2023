@@ -188,12 +188,14 @@ def main(result_dir):
                     # output the results
                     best_valid_metrics.update({
                         'best-f1': t[0],
-                        'precision': t[1],
-                        'recall': t[2],
-                        'TP': t[3],
-                        'TN': t[4],
-                        'FP': t[5],
-                        'FN': t[6],
+                        'fdr': t[1],
+                        'far': t[2],
+                        'precision': t[3],
+                        'recall': t[4],
+                        'TP': t[5],
+                        'TN': t[6],
+                        'FP': t[7],
+                        'FN': t[8],
                         'latency': t[-1],
                         'threshold': th
                     })
