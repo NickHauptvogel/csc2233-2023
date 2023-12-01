@@ -1,1 +1,0 @@
-{"batch_size": 512, "dataset_folder": "/content/drive/MyDrive/CSC2233/processed_data_st8000", "initial_lr": 5e-05, "max_epoch": 80, "restore_dir": "/content/drive/MyDrive/CSC2233/csc2233-2023/results/model_st8000_2_2023-11-30_23-25-46", "save_dir": "results/model_st8000_2_2023-12-01_03-24-27", "valid_portion": 0.2}

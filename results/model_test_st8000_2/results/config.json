@@ -1,1 +1,0 @@
-{"batch_size": 512, "bf_search_max": 100.0, "bf_search_min": -200.0, "dataset_folder": "/content/drive/MyDrive/CSC2233/processed_data_st8000", "display_freq": 1, "max_epoch": 0, "restore_dir": "results/model_st8000_2_2023-11-30_23-25-46", "save_dir": "results/model_st8000_2_2023-12-01_15-43-41"}
