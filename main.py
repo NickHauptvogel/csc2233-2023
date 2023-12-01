@@ -80,6 +80,7 @@ class ExpConfig(Config):
     restore_dir = None  # If not None, restore variables from this dir
     train_score_filename = 'train_score.pkl'
     test_score_filename = 'test_score.pkl'
+    scaler_path = None # Path to pickle file containing the scaler
 
 
 def main(result_dir):
@@ -90,8 +91,9 @@ def main(result_dir):
     )
 
     # prepare the data
-    (x_train, _), (x_test, y_test) = \
-        get_data(config.dataset, config.dataset_folder, config.window_length, max_train_size=config.max_train_size, train_start=config.train_start)
+    (x_train, _), (x_test, y_test), scaler = \
+        get_data(config.dataset, config.dataset_folder, config.window_length, max_train_size=config.max_train_size, train_start=config.train_start, scaler_path=config.scaler_path)
+    pickle.dump(scaler, open(os.path.join(result_dir, 'scaler.pkl'), 'wb'))
 
     # construct the model under `variable_scope` named 'model'
     with tf.variable_scope('model') as model_vs:

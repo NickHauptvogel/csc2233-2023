@@ -38,7 +38,7 @@ def get_data_dim(dataset):
         raise ValueError('unknown dataset '+str(dataset))
 
 
-def get_data(dataset, dataset_folder, window_length, max_train_size=None, do_preprocess=True, train_start=0):
+def get_data(dataset, dataset_folder, window_length, max_train_size=None, do_preprocess=True, train_start=0, scaler_path=None):
     """
     get data from pkl files
 
@@ -106,13 +106,19 @@ def get_data(dataset, dataset_folder, window_length, max_train_size=None, do_pre
     train_data = train_data[train_start:train_end]
 
     if do_preprocess:
-        train_data, scaler = preprocess(train_data)
+        if scaler_path is not None:
+            with open(scaler_path, 'rb') as f:
+                scaler = pickle.load(f)
+
+            train_data, _ = preprocess(train_data, scaler)
+        else:
+            train_data, scaler = preprocess(train_data)
         test_data, _ = preprocess(test_data, scaler)
     print("train set shape: ", train_data.shape)
     print("test set shape: ", test_data.shape)
     print("test set label shape: ", test_label.shape)
 
-    return (train_data, None), (test_data, test_label)
+    return (train_data, None), (test_data, test_label), scaler
 
 
 def preprocess(df, scaler=None):
