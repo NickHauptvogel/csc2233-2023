@@ -44,6 +44,7 @@ class ExpConfig(Config):
     max_epoch = 100
     train_start = 0
     max_train_size = None  # `None` means full train set
+    train_days_per_disk = None  # `None` means full train set. Each disk only gets `train_no_days` days of data
     batch_size = 256
     initial_lr = 0.0001
     lr_anneal_factor = 0.5
@@ -91,9 +92,15 @@ def main(result_dir):
     )
 
     # prepare the data
-    (x_train, _), (x_test, y_test), scaler = \
-        get_data(config.dataset, config.dataset_folder, config.window_length, max_train_size=config.max_train_size, train_start=config.train_start, scaler_path=config.scaler_path)
-    pickle.dump(scaler, open(os.path.join(result_dir, 'scaler.pkl'), 'wb'))
+    (x_train, _), (x_test, y_test), scaler = get_data(config.dataset,
+                                                      config.dataset_folder,
+                                                      config.window_length,
+                                                      max_train_size=config.max_train_size,
+                                                      train_start=config.train_start,
+                                                      scaler_path=config.scaler_path,
+                                                      train_days_per_disk=config.train_days_per_disk)
+    with open(os.path.join(result_dir, 'scaler.pkl'), 'wb') as f:
+        pickle.dump(scaler, f)
 
     # construct the model under `variable_scope` named 'model'
     with tf.variable_scope('model') as model_vs:

@@ -38,7 +38,7 @@ def get_data_dim(dataset):
         raise ValueError('unknown dataset '+str(dataset))
 
 
-def get_data(dataset, dataset_folder, window_length, max_train_size=None, do_preprocess=True, train_start=0, scaler_path=None):
+def get_data(dataset, dataset_folder, window_length, max_train_size=None, do_preprocess=True, train_start=0, scaler_path=None, train_days_per_disk=None):
     """
     get data from pkl files
 
@@ -54,13 +54,18 @@ def get_data(dataset, dataset_folder, window_length, max_train_size=None, do_pre
     x_dim = get_data_dim(dataset) + 1
     all_files = os.listdir(dataset_folder)
 
-    if 'full_train_data.pkl' in all_files and 'full_test_data.pkl' in all_files and 'full_test_label.pkl' in all_files:
+    if train_days_per_disk is not None:
+        suffix = "_" + str(train_days_per_disk) + "_days_per_disk"
+    else:
+        suffix = ""
+
+    if f'full_train_data{suffix}.pkl' in all_files and f'full_test_data{suffix}.pkl' in all_files and f'full_test_label{suffix}.pkl' in all_files:
         print('Found full saved data!')
-        with open(os.path.join(dataset_folder, 'full_train_data.pkl'), 'rb') as f:
+        with open(os.path.join(dataset_folder, f'full_train_data{suffix}.pkl'), 'rb') as f:
             train_data = pickle.load(f)
-        with open(os.path.join(dataset_folder, 'full_test_data.pkl'), 'rb') as f:
+        with open(os.path.join(dataset_folder, f'full_test_data{suffix}.pkl'), 'rb') as f:
             test_data = pickle.load(f)
-        with open(os.path.join(dataset_folder, 'full_test_label.pkl'), 'rb') as f:
+        with open(os.path.join(dataset_folder, f'full_test_label{suffix}.pkl'), 'rb') as f:
             test_label = pickle.load(f)
 
     else:
@@ -72,6 +77,8 @@ def get_data(dataset, dataset_folder, window_length, max_train_size=None, do_pre
             print(f)
             f = open(os.path.join(dataset_folder, f), "rb")
             single_data = pickle.load(f).reshape((-1, x_dim))
+            if train_days_per_disk is not None:
+                single_data = single_data[:int(train_days_per_disk)]
             train_list.append(single_data)
             f.close()
         train_data = np.concatenate(train_list, axis=0)
@@ -96,11 +103,11 @@ def get_data(dataset, dataset_folder, window_length, max_train_size=None, do_pre
         test_label = np.concatenate(test_label_list, axis=0)
 
         # Save full data for later use
-        with open(os.path.join(dataset_folder, 'full_train_data.pkl'), 'wb') as f:
+        with open(os.path.join(dataset_folder, f'full_train_data{suffix}.pkl'), 'wb') as f:
             pickle.dump(train_data, f)
-        with open(os.path.join(dataset_folder, 'full_test_data.pkl'), 'wb') as f:
+        with open(os.path.join(dataset_folder, f'full_test_data{suffix}.pkl'), 'wb') as f:
             pickle.dump(test_data, f)
-        with open(os.path.join(dataset_folder, 'full_test_label.pkl'), 'wb') as f:
+        with open(os.path.join(dataset_folder, f'full_test_label{suffix}.pkl'), 'wb') as f:
             pickle.dump(test_label, f)
 
     train_data = train_data[train_start:train_end]
