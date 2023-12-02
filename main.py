@@ -83,6 +83,7 @@ class ExpConfig(Config):
     lr_anneal_factor = 0.5
     lr_anneal_epoch_freq = 20
     std_epsilon = 1e-4
+    early_stopping_patience = 10
 
     hyperparameter_search = False
 
@@ -149,6 +150,7 @@ def main():
                           initial_lr=config.initial_lr,
                           lr_anneal_epochs=config.lr_anneal_epoch_freq,
                           lr_anneal_factor=config.lr_anneal_factor,
+                          early_stopping_patience=config.early_stopping_patience,
                           grad_clip_norm=config.gradient_clip_norm,
                           save_dir=config.save_dir)
 

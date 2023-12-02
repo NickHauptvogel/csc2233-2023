@@ -73,7 +73,7 @@ class Trainer(VarScopeObject):
                  use_regularization_loss=True,
                  max_epoch=256, max_step=None, batch_size=256,
                  valid_batch_size=1024,
-                 initial_lr=0.001, lr_anneal_epochs=10, lr_anneal_factor=0.75,
+                 initial_lr=0.001, lr_anneal_epochs=10, lr_anneal_factor=0.75, early_stopping_patience=10,
                  optimizer=tf.train.AdamOptimizer, optimizer_params=None,
                  grad_clip_norm=50.0, check_numerics=True,
                  name=None, scope=None, save_dir=None):
@@ -102,6 +102,7 @@ class Trainer(VarScopeObject):
         self._lr_anneal_epochs = lr_anneal_epochs
         self._lr_anneal_factor = lr_anneal_factor
         self._save_dir = save_dir
+        self._early_stopping_patience = early_stopping_patience
 
         # build the trainer
         with reopen_variable_scope(self.variable_scope):
@@ -238,6 +239,7 @@ class Trainer(VarScopeObject):
             valid_batch_time = []
             best_valid_loss = start_val_loss
             print('train_values:', train_values.shape)
+            not_improved_count = 0
             for epoch in loop.iter_epochs():
                 train_iterator = train_sliding_window.get_iterator([train_values])
                 start_time = time.time()
@@ -288,6 +290,16 @@ class Trainer(VarScopeObject):
                             saver = VariableSaver(var_dict, self._save_dir)
                             saver.save()
                             print('Model saved at {}.'.format(self._save_dir))
+                        not_improved_count = 0
+                    else:
+                        not_improved_count += 1
+                        if not_improved_count >= self._early_stopping_patience:
+                            loop.println(
+                                'Early stopping patience reached. '
+                                'Stopping training. Best loss {:.6f}'.format(
+                                    best_valid_loss),
+                                with_tag=True)
+                            break
 
                 # print the logs of recent steps
                 loop.print_logs()
