@@ -2,6 +2,7 @@
 import os
 import pickle
 import random
+import pandas as pd
 
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
@@ -51,64 +52,34 @@ def get_data(dataset, dataset_folder, window_length, max_train_size=None, do_pre
     print('load data of:', dataset)
     print("train: ", train_start, train_end)
     # x_dim here with serial number as the first dimension (cut off later)
-    x_dim = get_data_dim(dataset) + 1
     all_files = os.listdir(dataset_folder)
 
+    if not 'train.pkl' in all_files or not 'test.pkl' in all_files:
+        raise ValueError('train.pkl or test.pkl not found in dataset folder!')
+
+    with open(os.path.join(dataset_folder, f'train.pkl'), 'rb') as f:
+        train_data = pickle.load(f)
+    with open(os.path.join(dataset_folder, f'test.pkl'), 'rb') as f:
+        test_data = pickle.load(f)
+
     if train_days_per_disk is not None:
-        suffix = "_" + str(train_days_per_disk) + "_days_per_disk"
-    else:
-        suffix = ""
+        # Convert train data to DataFrame
+        train_df = pd.DataFrame(train_data)
+        # Group train_data by first column (serial number) and use first train_days_per_disk days
+        train_df = train_df.groupby(train_df.columns[0], sort=False).apply(lambda x: x.iloc[:train_days_per_disk, :])
+        # Reset index
+        train_df = train_df.reset_index(drop=True)
+        train_data = train_df.values
 
-    if f'full_train_data{suffix}.pkl' in all_files and f'full_test_data{suffix}.pkl' in all_files and f'full_test_label{suffix}.pkl' in all_files:
-        print('Found full saved data!')
-        with open(os.path.join(dataset_folder, f'full_train_data{suffix}.pkl'), 'rb') as f:
-            train_data = pickle.load(f)
-        with open(os.path.join(dataset_folder, f'full_test_data{suffix}.pkl'), 'rb') as f:
-            test_data = pickle.load(f)
-        with open(os.path.join(dataset_folder, f'full_test_label{suffix}.pkl'), 'rb') as f:
-            test_label = pickle.load(f)
-
-    else:
-        train_files = [f for f in all_files if f.endswith('_train.pkl')]
-        test_files = [f for f in all_files if f.endswith('_test.pkl')]
-
-        train_list = []
-        for f in train_files:
-            print(f)
-            f = open(os.path.join(dataset_folder, f), "rb")
-            single_data = pickle.load(f).reshape((-1, x_dim))
-            if train_days_per_disk is not None:
-                single_data = single_data[:int(train_days_per_disk)]
-            train_list.append(single_data)
-            f.close()
-        train_data = np.concatenate(train_list, axis=0)
-
-        test_list = []
-        test_label_list = []
-        for file in test_files:
-            print(file)
-            f = open(os.path.join(dataset_folder, file), "rb")
-            f_label = open(os.path.join(dataset_folder, file.replace('_test.pkl', '_test_label.pkl')), "rb")
-            single_test = pickle.load(f).reshape((-1, x_dim))
-            single_label = pickle.load(f_label).reshape((-1))
-
-            # Cut off first window_length data for each test sequence (not tested)
-            single_label = single_label[window_length - 1:]
-            test_list.append(single_test)
-            test_label_list.append(single_label)
-            f.close()
-            f_label.close()
-
-        test_data = np.concatenate(test_list, axis=0)
-        test_label = np.concatenate(test_label_list, axis=0)
-
-        # Save full data for later use
-        with open(os.path.join(dataset_folder, f'full_train_data{suffix}.pkl'), 'wb') as f:
-            pickle.dump(train_data, f)
-        with open(os.path.join(dataset_folder, f'full_test_data{suffix}.pkl'), 'wb') as f:
-            pickle.dump(test_data, f)
-        with open(os.path.join(dataset_folder, f'full_test_label{suffix}.pkl'), 'wb') as f:
-            pickle.dump(test_label, f)
+    # Convert test data to DataFrame
+    test_df = pd.DataFrame(test_data)
+    # Group test_data by first column (serial number) and cut off first window_length rows
+    test_df = test_df.groupby(test_df.columns[0], sort=False).apply(lambda x: x.iloc[window_length - 1:, :])
+    # Reset index
+    test_df = test_df.reset_index(drop=True)
+    # Use last row as label
+    test_label = test_df.iloc[:, -1].values
+    test_data = test_df.iloc[:, :-1].values
 
     train_data = train_data[train_start:train_end]
 
