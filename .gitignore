@@ -109,3 +109,4 @@ venv.bak/
 
 processed/
 processed*
+wandb/

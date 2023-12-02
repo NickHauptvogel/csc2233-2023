@@ -16,18 +16,51 @@ from tfsnippet.examples.utils import MLResults, print_with_title
 from tfsnippet.scaffold import VariableSaver
 from tfsnippet.utils import get_variables_as_dict, register_config_arguments, Config
 
-from omni_anomaly.eval_methods import pot_eval, bf_search
 from omni_anomaly.model import OmniAnomaly
 from omni_anomaly.prediction import Predictor
 from omni_anomaly.training import Trainer
-from omni_anomaly.utils import get_data_dim, get_data, save_z
+from omni_anomaly.utils import get_data, save_z
 
+import wandb
+
+def get_sweepID():
+    # Define hyperparameter search space
+    sweep_configuration = {
+        "method": "grid",
+        "name": "CSC2233 Hyperparameter Search 1",
+        "metric": {
+            "name": "best_valid_loss",
+            "goal": "minimize"
+        },
+        "parameters": {
+            "rnn_cell": {
+                "values": ['GRU', 'LSTM']
+            },
+            "rnn_num_hidden": {
+                "values": [100, 500]
+            },
+            "window_length": {
+                "values": [15, 25, 50]
+            },
+            "dense_dim": {
+                "values": [100, 500]
+            },
+            "posterior_flow_type": {
+                "values": ['nf', None]
+            },
+            "nf_layers": {
+                "values": [5, 20]
+            }
+        }
+    }
+    sweepID = wandb.sweep(sweep_configuration, project="csc2233")
+
+    return sweepID
 
 class ExpConfig(Config):
     # dataset configuration
-    dataset = "Backblaze"
     dataset_folder = 'processed'
-    x_dim = get_data_dim(dataset)
+    x_dim = 15
 
     # model architecture configuration
     use_connected_z_q = False
@@ -43,36 +76,22 @@ class ExpConfig(Config):
     nf_layers = 20  # for nf
     max_epoch = 100
     train_start = 0
-    max_train_size = None  # `None` means full train set
+    train_portion = None  # `None` means full train set
     train_days_per_disk = None  # `None` means full train set. Each disk only gets `train_no_days` days of data
-    batch_size = 256
+    batch_size = 512
     initial_lr = 0.0001
     lr_anneal_factor = 0.5
     lr_anneal_epoch_freq = 20
     std_epsilon = 1e-4
 
+    hyperparameter_search = False
+
     # evaluation parameters
     test_n_z = 1
-    test_batch_size = 256
+    test_batch_size = 512
 
-    # the range and step-size for score for searching best-f1
-    # may vary for different dataset
-    bf_search_min = -5000.
-    bf_search_max = 0.
-    bf_search_step_size = 1.
-    display_freq = 50
-
-    valid_portion = 0.05
+    valid_portion = 0.2
     gradient_clip_norm = 10.
-
-    # pot parameters
-    # recommend values for `level`:
-    # SMAP: 0.07
-    # MSL: 0.01
-    # SMD group 1: 0.0050
-    # SMD group 2: 0.0075
-    # SMD group 3: 0.0001
-    level = 0.01
 
     # outputs config
     save_z = False  # whether to save sampled z in hidden space
@@ -84,7 +103,23 @@ class ExpConfig(Config):
     scaler_path = None # Path to pickle file containing the scaler
 
 
-def main(result_dir):
+def main():
+    if config.hyperparameter_search:
+        run = wandb.init()
+        for k, v in wandb.config.items():
+            config.__setattr__(k, v)
+
+    config.save_dir = os.path.join('results', config.save_dir + "_" + datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
+    config.result_dir = os.path.join(config.save_dir, 'results')
+    # open the result object and prepare for result directories if specified
+    results = MLResults(config.result_dir)
+    results.save_config(config)  # save experiment settings for review
+    results.make_dirs(config.save_dir, exist_ok=True)
+
+    print_with_title('Configurations', pformat(config.to_dict()), after='\n')
+
+    if config.hyperparameter_search:
+        wandb.log({"config": config.to_dict()})
 
     logging.basicConfig(
         level='INFO',
@@ -92,14 +127,13 @@ def main(result_dir):
     )
 
     # prepare the data
-    (x_train, _), (x_test, y_test), scaler = get_data(config.dataset,
-                                                      config.dataset_folder,
+    (x_train, _), (x_test, y_test), scaler = get_data(config.dataset_folder,
                                                       config.window_length,
-                                                      max_train_size=config.max_train_size,
+                                                      train_portion=config.train_portion,
                                                       train_start=config.train_start,
                                                       scaler_path=config.scaler_path,
                                                       train_days_per_disk=config.train_days_per_disk)
-    with open(os.path.join(result_dir, 'scaler.pkl'), 'wb') as f:
+    with open(os.path.join(config.result_dir, 'scaler.pkl'), 'wb') as f:
         pickle.dump(scaler, f)
 
     # construct the model under `variable_scope` named 'model'
@@ -131,7 +165,7 @@ def main(result_dir):
                 print('Variables restored from {}.'.format(config.restore_dir))
                 # Open results
                 try:
-                    results_json = json.load(open(os.path.join(result_dir, 'result.json'), 'r'))
+                    results_json = json.load(open(os.path.join(config.result_dir, 'result.json'), 'r'))
                     start_val_loss = results_json['best_valid_loss']
                 except:
                     start_val_loss = float('inf')
@@ -142,7 +176,7 @@ def main(result_dir):
             if config.max_epoch > 0:
                 # train the model
                 train_start = time.time()
-                best_valid_metrics = trainer.fit(x_train, valid_portion=config.valid_portion, start_val_loss=start_val_loss)
+                best_valid_metrics = trainer.fit(x_train, valid_portion=config.valid_portion, start_val_loss=start_val_loss, wandb_log=config.hyperparameter_search)
                 train_time = (time.time() - train_start) / config.max_epoch
                 best_valid_metrics.update({
                     'train_time': train_time
@@ -152,7 +186,7 @@ def main(result_dir):
 
             train_score, train_z, train_pred_speed = predictor.get_score(x_train)
             if config.train_score_filename is not None:
-                with open(os.path.join(result_dir, config.train_score_filename), 'wb') as file:
+                with open(os.path.join(config.result_dir, config.train_score_filename), 'wb') as file:
                     pickle.dump(train_score, file)
             if config.save_z:
                 save_z(train_z, 'train_z')
@@ -169,39 +203,8 @@ def main(result_dir):
                     'pred_total_time': test_time
                 })
                 if config.test_score_filename is not None:
-                    with open(os.path.join(result_dir, config.test_score_filename), 'wb') as file:
+                    with open(os.path.join(config.result_dir, config.test_score_filename), 'wb') as file:
                         pickle.dump(test_score, file)
-
-                if y_test is not None and len(y_test) == len(test_score):
-                    if config.get_score_on_dim:
-                        # get the joint score
-                        test_score = np.sum(test_score, axis=-1)
-
-                    # get best f1
-                    t, th, arr = bf_search(test_score, y_test,
-                                      start=config.bf_search_min,
-                                      end=config.bf_search_max,
-                                      step_num=int(abs(config.bf_search_max - config.bf_search_min) /
-                                                   config.bf_search_step_size),
-                                      display_freq=config.display_freq)
-                    # Save array in result folder
-                    pickle.dump(arr, open(os.path.join(result_dir, 'bf_search.pkl'), 'wb'))
-
-                    # output the results
-                    best_valid_metrics.update({
-                        'best-f1': t[0],
-                        'fdr': t[1],
-                        'far': t[2],
-                        'precision': t[3],
-                        'recall': t[4],
-                        'TP': t[5],
-                        'TN': t[6],
-                        'FP': t[7],
-                        'FN': t[8],
-                        'latency': t[-1],
-                        'threshold': th
-                    })
-                results.update_metrics(best_valid_metrics)
 
             if config.save_dir is not None:
                 # save the variables
@@ -210,29 +213,27 @@ def main(result_dir):
                 saver.save()
             print('=' * 30 + 'result' + '=' * 30)
             pprint(best_valid_metrics)
+            if config.hyperparameter_search:
+                wandb.log(best_valid_metrics)
+                run.finish()
 
 
 if __name__ == '__main__':
 
     # get config obj
     config = ExpConfig()
-
     # parse the arguments
     arg_parser = ArgumentParser()
     register_config_arguments(config, arg_parser)
     arg_parser.parse_args(sys.argv[1:])
-    config.x_dim = get_data_dim(config.dataset)
 
-    print_with_title('Configurations', pformat(config.to_dict()), after='\n')
-
-    config.save_dir = os.path.join('results', config.save_dir + "_" + datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
-    result_directory = os.path.join(config.save_dir, 'results')
-
-    # open the result object and prepare for result directories if specified
-    results = MLResults(result_directory)
-    results.save_config(config)  # save experiment settings for review
-    results.make_dirs(config.save_dir, exist_ok=True)
     with warnings.catch_warnings():
         # suppress DeprecationWarning from NumPy caused by codes in TensorFlow-Probability
         warnings.filterwarnings("ignore", category=DeprecationWarning, module='numpy')
-        main(result_directory)
+        # get sweep id for hyperparameter optimization
+        if config.hyperparameter_search:
+            sweep_ID = get_sweepID()
+            print('Sweep ID: {}'.format(sweep_ID))
+            wandb.agent(sweep_ID, function=main, project="csc2233")
+        else:
+            main()

@@ -1,5 +1,3 @@
-import ast
-import csv
 import os
 import pandas as pd
 import argparse
@@ -94,6 +92,8 @@ def load_data(dataset_folder, output_folder):
 
 
 if __name__ == '__main__':
+    args.output_folder = "/mnt/g/Meine Ablage/CSC2233/processed_st12000"
+    args.dataset_folder = "/mnt/g/Meine Ablage/CSC2233/ST12000NM0008_final_dataset_Nov26"
     # Delete output folder if exists
     if os.path.exists(args.output_folder):
         shutil.rmtree(args.output_folder)

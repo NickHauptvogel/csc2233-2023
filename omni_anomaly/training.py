@@ -14,6 +14,8 @@ from tfsnippet.utils import (reopen_variable_scope,
 
 from omni_anomaly.utils import BatchSlidingWindow
 
+import wandb
+
 __all__ = ['Trainer']
 
 
@@ -182,7 +184,7 @@ class Trainer(VarScopeObject):
         return self._model
 
     def fit(self, values,
-            valid_portion=0.3, summary_dir=None, start_val_loss=float('inf')):
+            valid_portion=0.3, summary_dir=None, start_val_loss=float('inf'), wandb_log=False):
         """
         Train the :class:`OmniAnomaly` model with given data.
 
@@ -239,6 +241,7 @@ class Trainer(VarScopeObject):
             for epoch in loop.iter_epochs():
                 train_iterator = train_sliding_window.get_iterator([train_values])
                 start_time = time.time()
+                batch_losses = []
                 for step, (batch_x,) in loop.iter_steps(train_iterator):
                     # run a training step
                     start_batch_time = time.time()
@@ -248,6 +251,7 @@ class Trainer(VarScopeObject):
                     loss, _ = sess.run(
                         [self._loss, self._train_op], feed_dict=feed_dict)
                     loop.collect_metrics({'loss': loss})
+                    batch_losses.append(loss)
                     train_batch_time.append(time.time() - start_batch_time)
 
                 train_duration = time.time() - start_time
@@ -268,6 +272,9 @@ class Trainer(VarScopeObject):
                         loss = sess.run(self._loss, feed_dict=feed_dict)
                         valid_batch_time.append(time.time() - start_batch_time)
                         mc.collect(loss, weight=len(b_v_x))
+
+                    if wandb_log:
+                        wandb.log({'train_loss': np.mean(batch_losses), 'valid_loss': mc.mean})
 
                     if mc.mean < best_valid_loss:
                         loop.println(

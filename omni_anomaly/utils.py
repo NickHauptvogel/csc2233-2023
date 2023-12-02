@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 import pickle
-import random
 import pandas as pd
 
 import numpy as np
@@ -25,32 +24,13 @@ def save_z(z, filename='z'):
                 file.write('%f ' % (z[j][i][k]))
             file.write('\n')
 
-
-def get_data_dim(dataset):
-    if dataset == 'Backblaze':
-        return 15
-    elif dataset == 'SMAP':
-        return 25
-    elif dataset == 'MSL':
-        return 55
-    elif str(dataset).startswith('machine'):
-        return 38
-    else:
-        raise ValueError('unknown dataset '+str(dataset))
-
-
-def get_data(dataset, dataset_folder, window_length, max_train_size=None, do_preprocess=True, train_start=0, scaler_path=None, train_days_per_disk=None):
+def get_data(dataset_folder, window_length, train_portion=None, do_preprocess=True, train_start=0, scaler_path=None, train_days_per_disk=None):
     """
     get data from pkl files
 
     return shape: (([train_size, x_dim], [train_size] or None), ([test_size, x_dim], [test_size]))
     """
-    if max_train_size is None:
-        train_end = None
-    else:
-        train_end = train_start + max_train_size
-    print('load data of:', dataset)
-    print("train: ", train_start, train_end)
+
     # x_dim here with serial number as the first dimension (cut off later)
     all_files = os.listdir(dataset_folder)
 
@@ -61,6 +41,11 @@ def get_data(dataset, dataset_folder, window_length, max_train_size=None, do_pre
         train_data = pickle.load(f)
     with open(os.path.join(dataset_folder, f'test.pkl'), 'rb') as f:
         test_data = pickle.load(f)
+
+    if train_portion is None:
+        train_end = None
+    else:
+        train_end = train_start + int(len(train_data) * train_portion)
 
     if train_days_per_disk is not None:
         # Convert train data to DataFrame
