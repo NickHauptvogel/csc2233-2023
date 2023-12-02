@@ -9,7 +9,7 @@ tensorflow_probability == 0.5.0
 tqdm == 4.28.1
 imageio == 2.4.1
 fs == 2.3.0
-click == 7.0
+click == 8.0
 ipykernel
 pyyaml==5.4.1
 wandb==0.15.11
