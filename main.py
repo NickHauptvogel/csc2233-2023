@@ -86,6 +86,7 @@ class ExpConfig(Config):
     early_stopping_patience = 10
 
     hyperparameter_search = False
+    sweepID = None
 
     # evaluation parameters
     test_n_z = 1
@@ -110,12 +111,12 @@ def main():
         for k, v in wandb.config.items():
             config.__setattr__(k, v)
 
-    config.save_dir = os.path.join('results', config.save_dir + "_" + datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
-    config.result_dir = os.path.join(config.save_dir, 'results')
+    save_dir = os.path.join('results', config.save_dir + "_" + datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
+    result_dir = os.path.join(save_dir, 'results')
     # open the result object and prepare for result directories if specified
-    results = MLResults(config.result_dir)
+    results = MLResults(result_dir)
     results.save_config(config)  # save experiment settings for review
-    results.make_dirs(config.save_dir, exist_ok=True)
+    results.make_dirs(save_dir, exist_ok=True)
 
     print_with_title('Configurations', pformat(config.to_dict()), after='\n')
 
@@ -134,7 +135,7 @@ def main():
                                                       train_start=config.train_start,
                                                       scaler_path=config.scaler_path,
                                                       train_days_per_disk=config.train_days_per_disk)
-    with open(os.path.join(config.result_dir, 'scaler.pkl'), 'wb') as f:
+    with open(os.path.join(result_dir, 'scaler.pkl'), 'wb') as f:
         pickle.dump(scaler, f)
 
     # construct the model under `variable_scope` named 'model'
@@ -152,7 +153,7 @@ def main():
                           lr_anneal_factor=config.lr_anneal_factor,
                           early_stopping_patience=config.early_stopping_patience,
                           grad_clip_norm=config.gradient_clip_norm,
-                          save_dir=config.save_dir)
+                          save_dir=save_dir)
 
         # construct the predictor
         predictor = Predictor(model, batch_size=config.batch_size, n_z=config.test_n_z,
@@ -167,7 +168,7 @@ def main():
                 print('Variables restored from {}.'.format(config.restore_dir))
                 # Open results
                 try:
-                    results_json = json.load(open(os.path.join(config.result_dir, 'result.json'), 'r'))
+                    results_json = json.load(open(os.path.join(result_dir, 'result.json'), 'r'))
                     start_val_loss = results_json['best_valid_loss']
                 except:
                     start_val_loss = float('inf')
@@ -188,7 +189,7 @@ def main():
 
             train_score, train_z, train_pred_speed = predictor.get_score(x_train)
             if config.train_score_filename is not None:
-                with open(os.path.join(config.result_dir, config.train_score_filename), 'wb') as file:
+                with open(os.path.join(result_dir, config.train_score_filename), 'wb') as file:
                     pickle.dump(train_score, file)
             if config.save_z:
                 save_z(train_z, 'train_z')
@@ -205,13 +206,13 @@ def main():
                     'pred_total_time': test_time
                 })
                 if config.test_score_filename is not None:
-                    with open(os.path.join(config.result_dir, config.test_score_filename), 'wb') as file:
+                    with open(os.path.join(result_dir, config.test_score_filename), 'wb') as file:
                         pickle.dump(test_score, file)
 
-            if config.save_dir is not None:
+            if save_dir is not None:
                 # save the variables
                 var_dict = get_variables_as_dict(model_vs)
-                saver = VariableSaver(var_dict, config.save_dir)
+                saver = VariableSaver(var_dict, save_dir)
                 saver.save()
             print('=' * 30 + 'result' + '=' * 30)
             pprint(best_valid_metrics)
@@ -234,7 +235,10 @@ if __name__ == '__main__':
         warnings.filterwarnings("ignore", category=DeprecationWarning, module='numpy')
         # get sweep id for hyperparameter optimization
         if config.hyperparameter_search:
-            sweep_ID = get_sweepID()
+            if config.sweepID is not None:
+                sweep_ID = config.sweepID
+            else:
+                sweep_ID = get_sweepID()
             print('Sweep ID: {}'.format(sweep_ID))
             wandb.agent(sweep_ID, function=main, project="csc2233")
         else:
