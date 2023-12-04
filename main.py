@@ -46,7 +46,7 @@ def get_sweepID():
                 "values": [100, 500]
             },
             "posterior_flow_type": {
-                "values": ['nf', None]
+                "values": ['nf', 'None']
             },
             "nf_layers": {
                 "values": [5, 20]
