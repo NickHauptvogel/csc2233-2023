@@ -68,11 +68,11 @@ class ExpConfig(Config):
 
     # model parameters
     z_dim = 3
-    rnn_cell = 'GRU'  # 'GRU', 'LSTM' or 'Basic'
-    rnn_num_hidden = 500
+    rnn_cell = 'LSTM'  # 'GRU', 'LSTM' or 'Basic'
+    rnn_num_hidden = 100
     window_length = 25
     dense_dim = 500
-    posterior_flow_type = 'nf'  # 'nf' or None
+    posterior_flow_type = 'nf'  # 'nf' or 'None'
     nf_layers = 20  # for nf
     max_epoch = 100
     train_start = 0
