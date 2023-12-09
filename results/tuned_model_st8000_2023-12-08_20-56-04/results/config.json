@@ -1,0 +1,1 @@
+{"dataset_folder": "/content/processed_st8000", "early_stopping_patience": 20, "save_dir": "tuned_model_st8000"}
