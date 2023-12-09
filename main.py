@@ -132,7 +132,6 @@ def main():
 
     # prepare the data
     x_train, x_test, scaler = get_data(config.dataset_folder,
-                                       config.window_length,
                                        train_portion=config.train_portion,
                                        train_start=config.train_start,
                                        scaler_path=config.scaler_path,

@@ -24,7 +24,7 @@ def save_z(z, filename='z'):
                 file.write('%f ' % (z[j][i][k]))
             file.write('\n')
 
-def get_data(dataset_folder, window_length, train_portion=None, do_preprocess=True, train_start=0, scaler_path=None, train_days_per_disk=None):
+def get_data(dataset_folder, train_portion=None, do_preprocess=True, train_start=0, scaler_path=None, train_days_per_disk=None):
     """
     get data from pkl files
 
