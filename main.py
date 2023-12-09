@@ -23,6 +23,7 @@ from omni_anomaly.utils import get_data, save_z
 
 import wandb
 
+
 def get_sweepID():
     # Define hyperparameter search space
     sweep_configuration = {
@@ -57,6 +58,7 @@ def get_sweepID():
 
     return sweepID
 
+
 class ExpConfig(Config):
     # dataset configuration
     dataset_folder = 'processed'
@@ -83,7 +85,7 @@ class ExpConfig(Config):
     lr_anneal_factor = 0.5
     lr_anneal_epoch_freq = 20
     std_epsilon = 1e-4
-    early_stopping_patience = 10
+    early_stopping_patience = 20
 
     hyperparameter_search = False
     sweepID = None
@@ -102,7 +104,7 @@ class ExpConfig(Config):
     restore_dir = None  # If not None, restore variables from this dir
     train_score_filename = 'train_score.pkl'
     test_score_filename = 'test_score.pkl'
-    scaler_path = None # Path to pickle file containing the scaler
+    scaler_path = None  # Path to pickle file containing the scaler
 
 
 def main():
@@ -129,12 +131,12 @@ def main():
     )
 
     # prepare the data
-    (x_train, _), (x_test, y_test), scaler = get_data(config.dataset_folder,
-                                                      config.window_length,
-                                                      train_portion=config.train_portion,
-                                                      train_start=config.train_start,
-                                                      scaler_path=config.scaler_path,
-                                                      train_days_per_disk=config.train_days_per_disk)
+    x_train, x_test, scaler = get_data(config.dataset_folder,
+                                       config.window_length,
+                                       train_portion=config.train_portion,
+                                       train_start=config.train_start,
+                                       scaler_path=config.scaler_path,
+                                       train_days_per_disk=config.train_days_per_disk)
     with open(os.path.join(result_dir, 'scaler.pkl'), 'wb') as f:
         pickle.dump(scaler, f)
 
@@ -179,7 +181,8 @@ def main():
             if config.max_epoch > 0:
                 # train the model
                 train_start = time.time()
-                best_valid_metrics = trainer.fit(x_train, valid_portion=config.valid_portion, start_val_loss=start_val_loss, wandb_log=config.hyperparameter_search)
+                best_valid_metrics = trainer.fit(x_train, valid_portion=config.valid_portion,
+                                                 start_val_loss=start_val_loss, wandb_log=config.hyperparameter_search)
                 train_time = (time.time() - train_start) / config.max_epoch
                 best_valid_metrics.update({
                     'train_time': train_time

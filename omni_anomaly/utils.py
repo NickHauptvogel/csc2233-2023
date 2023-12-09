@@ -56,15 +56,8 @@ def get_data(dataset_folder, window_length, train_portion=None, do_preprocess=Tr
         train_df = train_df.reset_index(drop=True)
         train_data = train_df.values
 
-    # Convert test data to DataFrame
-    test_df = pd.DataFrame(test_data)
-    # Group test_data by first column (serial number) and cut off first window_length rows
-    test_df = test_df.groupby(test_df.columns[0], sort=False).apply(lambda x: x.iloc[window_length - 1:, :])
-    # Reset index
-    test_df = test_df.reset_index(drop=True)
-    # Use last row as label
-    test_label = test_df.iloc[:, -1].values
-    test_data = test_df.iloc[:, :-1].values
+    # Cut off last row in test data (label)
+    test_data = test_data[:, :-1]
 
     train_data = train_data[train_start:train_end]
 
@@ -79,9 +72,8 @@ def get_data(dataset_folder, window_length, train_portion=None, do_preprocess=Tr
         test_data, _ = preprocess(test_data, scaler)
     print("train set shape: ", train_data.shape)
     print("test set shape: ", test_data.shape)
-    print("test set label shape: ", test_label.shape)
 
-    return (train_data, None), (test_data, test_label), scaler
+    return train_data, test_data, scaler
 
 
 def preprocess(df, scaler=None):
