@@ -71,17 +71,17 @@ class ExpConfig(Config):
     # model parameters
     z_dim = 3
     rnn_cell = 'LSTM'  # 'GRU', 'LSTM' or 'Basic'
-    rnn_num_hidden = 100
+    rnn_num_hidden = 500
     window_length = 25
     dense_dim = 500
-    posterior_flow_type = 'nf'  # 'nf' or 'None'
+    posterior_flow_type = 'None'  # 'nf' or 'None'
     nf_layers = 20  # for nf
     max_epoch = 100
     train_start = 0
     train_portion = None  # `None` means full train set
     train_days_per_disk = None  # `None` means full train set. Each disk only gets `train_no_days` days of data
     batch_size = 512
-    initial_lr = 0.0001
+    initial_lr = 0.00005
     lr_anneal_factor = 0.5
     lr_anneal_epoch_freq = 20
     std_epsilon = 1e-4
