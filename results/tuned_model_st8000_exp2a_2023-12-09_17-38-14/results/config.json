@@ -1,0 +1,1 @@
+{"dataset_folder": "/content/processed_st12000", "initial_lr": 1e-05, "restore_dir": "results/tuned_model_st8000", "save_dir": "tuned_model_st8000_exp2a", "scaler_path": "results/tuned_model_st8000/results/scaler.pkl", "train_days_per_disk": 30}

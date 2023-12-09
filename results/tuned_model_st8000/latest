@@ -1,2 +1,2 @@
-model_checkpoint_path: "/content/csc2233-2023/results/tuned_model_st8000_2023-12-08_20-56-04/variables.dat"
-all_model_checkpoint_paths: "/content/csc2233-2023/results/tuned_model_st8000_2023-12-08_20-56-04/variables.dat"
+model_checkpoint_path: "/content/csc2233-2023/results/tuned_model_st8000/variables.dat"
+all_model_checkpoint_paths: "/content/csc2233-2023/results/tuned_model_st8000/variables.dat"
