@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import numpy as np
+from tqdm import tqdm
 
 from omni_anomaly.spot import SPOT
 
@@ -108,7 +109,7 @@ def bf_search(score, label, start, end=None, step_num=1, display_freq=1, verbose
     m = (-1., -1., -1.)
     m_t = 0.0
     result_array = []
-    for i in range(search_step):
+    for i in tqdm(range(search_step)):
         threshold += search_range / float(search_step)
         target = calc_seq(score, label, threshold, calc_latency=True)
         target.append(threshold)

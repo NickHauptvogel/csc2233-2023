@@ -113,7 +113,7 @@ def main():
         for k, v in wandb.config.items():
             config.__setattr__(k, v)
 
-    save_dir = os.path.join('results', config.save_dir + "_" + datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
+    save_dir = os.path.join(config.save_dir + "_" + datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
     result_dir = os.path.join(save_dir, 'results')
     # open the result object and prepare for result directories if specified
     results = MLResults(result_dir)
@@ -163,7 +163,7 @@ def main():
         with tf.Session().as_default():
 
             if config.restore_dir is not None:
-                # Restore variables from `save_dir`.
+                # Restore variables from `restore_dir`.
                 saver = VariableSaver(get_variables_as_dict(model_vs), config.restore_dir)
                 saver.restore()
                 print('Variables restored from {}.'.format(config.restore_dir))
