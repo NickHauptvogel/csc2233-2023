@@ -1,0 +1,1 @@
+{"dataset_folder": "/content/processed_st12000", "restore_dir": "results/tuned_model_st8000_2", "save_dir": "results/tuned_model_st8000_2_exp2b_1p", "train_portion": 0.01}
