@@ -1,0 +1,1 @@
+{"dataset_folder": "/content/processed_st12000", "max_epoch": 0, "restore_dir": "results/tuned_model_st8000_2_exp3", "save_dir": "results/tuned_model_st8000_2_exp3_test", "scaler_path": "results/tuned_model_st8000_2_exp3/results/scaler.pkl"}
