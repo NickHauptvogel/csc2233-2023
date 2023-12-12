@@ -110,6 +110,7 @@ if __name__ == '__main__':
     st8000_exp1, thr1 = get_bf_search_score('results/tuned_model_st8000_2_exp1/results', 'processed_st12000/test.pkl', 'st8000_exp1', thr0, days=anomaly_days)
     st8000_exp2a, thr2a = get_bf_search_score('results/tuned_model_st8000_2_exp2a/results', 'processed_st12000/test.pkl', 'st8000_exp2a', thr0, days=anomaly_days)
     st8000_exp2b, thr2b = get_bf_search_score('results/tuned_model_st8000_2_exp2b/results', 'processed_st12000/test.pkl', 'st8000_exp2b', thr0, days=anomaly_days)
+    st8000_exp3, thr3 = get_bf_search_score('results/tuned_model_st8000_2_exp3/results', 'processed_st12000/test.pkl', 'st8000_exp3', thr0, days=anomaly_days)
 
     fig, ax = plt.subplots(1, 1)
 
@@ -117,6 +118,7 @@ if __name__ == '__main__':
     ax.plot(st8000_exp1[:, 2], st8000_exp1[:, 1], label='st8000 TFL st12000 no train')
     ax.plot(st8000_exp2a[:, 2], st8000_exp2a[:, 1], label='st8000 TFL st12000 train 30 days per disk')
     ax.plot(st8000_exp2b[:, 2], st8000_exp2b[:, 1], label='st8000 TFL st12000 train 10% data')
+    ax.plot(st8000_exp3[:, 2], st8000_exp3[:, 1], label='st8000 TFL st12000 full data')
     # Vertical line at 0.01
     ax.axvline(x=0.01, color='r', linestyle='--')
     ax.legend()
