@@ -2,8 +2,6 @@
 import numpy as np
 from tqdm import tqdm
 
-from omni_anomaly.spot import SPOT
-
 
 def calc_point2point(predict, actual):
     """
@@ -90,73 +88,36 @@ def calc_seq(score, label, threshold, calc_latency=False):
         return calc_point2point(predict, label)
 
 
-def bf_search(score, label, start, end=None, step_num=1, display_freq=1, verbose=True):
+def bf_search(score, label, min):
     """
-    Find the best-f1 score by searching best `threshold` in [`start`, `end`).
-
+    Find all scores by using all scores as threshold.
 
     Returns:
-        list: list for results
-        float: the `threshold` for best-f1
+        array: array for results
     """
-    if step_num is None or end is None:
-        end = start
-        step_num = 1
-    search_step, search_range, search_lower_bound = step_num, end - start, start
-    if verbose:
-        print("search range: ", search_lower_bound, search_lower_bound + search_range)
-    threshold = search_lower_bound
-    m = (-1., -1., -1.)
-    m_t = 0.0
     result_array = []
-    for i in tqdm(range(search_step)):
-        threshold += search_range / float(search_step)
+    thresholds = list(set([int(i) for i in score if i > min]))
+    thresholds.sort()
+    for threshold in tqdm(thresholds):
         target = calc_seq(score, label, threshold, calc_latency=True)
         target.append(threshold)
         result_array.append(target)
-        if target[0] > m[0]:
-            m_t = threshold
-            m = target
-        if verbose and i % display_freq == 0:
-            print("cur thr: ", threshold, target, m, m_t)
-    print(m, m_t)
     result_array = np.array(result_array)
-    return m, m_t, result_array
+    return result_array
 
 
-def pot_eval(init_score, score, label, q=1e-3, level=0.02):
-    """
-    Run POT method on given score.
-    Args:
-        init_score (np.ndarray): The data to get init threshold.
-            For `OmniAnomaly`, it should be the anomaly score of train set.
-        score (np.ndarray): The data to run POT method.
-            For `OmniAnomaly`, it should be the anomaly score of test set.
-        label:
-        q (float): Detection level (risk)
-        level (float): Probability associated with the initial threshold t
+def bf_search_binary(score, label, min):
+    # Search for threshold with FAR = 0.01 with binary search
+    thresholds = list(set([int(i) for i in score if i > min]))
+    thresholds.sort()
+    max, min = thresholds[-1], thresholds[0]
+    while max - min > 1:
+        mid = int((max + min) / 2)
+        target = calc_seq(score, label, mid)
+        if target[2] > 0.01:
+            max = mid
+        else:
+            min = mid
 
-    Returns:
-        dict: pot result dict
-    """
-    s = SPOT(q)  # SPOT object
-    s.fit(init_score, score)  # data import
-    s.initialize(level=level, min_extrema=True)  # initialization step
-    ret = s.run(dynamic=False)  # run
-    print(len(ret['alarms']))
-    print(len(ret['thresholds']))
-    pot_th = -np.mean(ret['thresholds'])
-    pred, p_latency = adjust_predicts(score, label, pot_th, calc_latency=True)
-    p_t = calc_point2point(pred, label)
-    print('POT result: ', p_t, pot_th, p_latency)
-    return {
-        'pot-f1': p_t[0],
-        'pot-precision': p_t[1],
-        'pot-recall': p_t[2],
-        'pot-TP': p_t[3],
-        'pot-TN': p_t[4],
-        'pot-FP': p_t[5],
-        'pot-FN': p_t[6],
-        'pot-threshold': pot_th,
-        'pot-latency': p_latency
-    }
+    target = calc_seq(score, label, min)
+    print("Threshold: ", min, " Result: ", target)
