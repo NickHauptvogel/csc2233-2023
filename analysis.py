@@ -48,9 +48,6 @@ def get_bf_search_score(result_dir, test_data_path, name, thr=None, days=14, min
         test_df = test_df.groupby(test_df.columns[0], sort=False).apply(lambda x: x.iloc[window_length - 1:, :])
         # Reset index
         test_df = test_df.reset_index(drop=True)
-        # Group by serial number, if last row is anomaly, label as anomaly
-        anomaly_count = test_df.groupby(test_df.columns[0], sort=False).apply(lambda x: x.iloc[-1, -1]).value_counts()
-        #print(name + ": Anomaly count: ", anomaly_count)
         def change_label(x):
             if x.iloc[-1, -1] == 1:
                 x.iloc[:, -1] = 0
