@@ -30,12 +30,14 @@ def plot_histogram(test_score, test_label, name):
     ax.set_ylabel('Density')
     ax.legend(['Anomalies', 'Normal'])
     ax.set_title('Histogram of anomaly scores for ' + name)
+    plt.tight_layout()
+    plt.savefig(name + '_histogram.pdf')
     plt.show()
 
 
-def get_bf_search_score(result_dir, test_data_path, name, thr=None, days=14, min=-2000):
+def get_bf_search_score(result_dir, test_data_path, name, thr=None, days=14, min=-2000, plot_hist=False):
     # If bf_search.pkl does not exist, generate it
-    if not os.path.exists(os.path.join(result_dir, 'bf_search.pkl')):
+    if not os.path.exists(os.path.join(result_dir, 'bf_search.pkl')) or plot_hist:
         test_score = pickle.load(open(os.path.join(result_dir, 'test_score.pkl'), 'rb'))
         test_data = pickle.load(open(test_data_path, 'rb'))
         config = json.load(open(os.path.join(result_dir, 'config.defaults.json'), 'r'))
@@ -52,7 +54,7 @@ def get_bf_search_score(result_dir, test_data_path, name, thr=None, days=14, min
         def change_label(x):
             if x.iloc[-1, -1] == 1:
                 x.iloc[:, -1] = 0
-                x.iloc[:-days, -1] = 1
+                x.iloc[-days:, -1] = 1
             return x
         test_df = test_df.groupby(test_df.columns[0], sort=False).apply(change_label)
         # Concatenate test_score
@@ -60,8 +62,11 @@ def get_bf_search_score(result_dir, test_data_path, name, thr=None, days=14, min
         # Use last row as label
         test_label = test_df.iloc[:, -2].values
         # Generate bf_search.pkl
-        arr = bf_search(test_score, test_label, min)
-        pickle.dump(arr, open(os.path.join(result_dir, 'bf_search.pkl'), 'wb'))
+        if not os.path.exists(os.path.join(result_dir, 'bf_search.pkl')):
+            arr = bf_search(test_score, test_label, min)
+            pickle.dump(arr, open(os.path.join(result_dir, 'bf_search.pkl'), 'wb'))
+
+        plot_histogram(test_score, test_label, name)
 
     bf_search_score = pickle.load(open(os.path.join(result_dir, 'bf_search.pkl'), 'rb'))
 
@@ -74,8 +79,6 @@ def get_bf_search_score(result_dir, test_data_path, name, thr=None, days=14, min
         fdr = bf_search_score[:, 1][np.where(bf_search_score[:, -1] > thr)][0]
         far = bf_search_score[:, 2][np.where(bf_search_score[:, -1] > thr)][0]
         print(name + f":\tFAR = {round(far, 4)} \t FDR = ", round(fdr, 4), "\t with threshold: ", thr)
-
-    #plot_histogram(test_score, test_label, name)
 
     return bf_search_score, thr_001
 
@@ -111,28 +114,27 @@ def search_anomaly_days_threshold(result_dir, test_data_path, days=14, min=-2000
 
 if __name__ == '__main__':
 
-    anomaly_days = 30
+    anomaly_days = 7
 
-    search_anomaly_days_threshold('results/tuned_model_st8000_2/results', 'processed_st8000/test.pkl', days=anomaly_days, min=-20000)
-    1/0
+    #search_anomaly_days_threshold('results/tuned_model_st8000_2/results', 'processed_st8000/test.pkl', days=anomaly_days, min=-20000)
 
-    st8000, thr0 = get_bf_search_score('results/tuned_model_st8000_2/results', 'processed_st8000/test.pkl', 'st8000_pre', days=anomaly_days)
-    st8000_exp1, thr1 = get_bf_search_score('results/tuned_model_st8000_2_exp1/results', 'processed_st12000/test.pkl', 'st8000_exp1', thr0, days=anomaly_days)
-    st8000_exp2a, thr2a = get_bf_search_score('results/tuned_model_st8000_2_exp2a/results', 'processed_st12000/test.pkl', 'st8000_exp2a', thr0, days=anomaly_days)
-    st8000_exp2b, thr2b = get_bf_search_score('results/tuned_model_st8000_2_exp2b/results', 'processed_st12000/test.pkl', 'st8000_exp2b', thr0, days=anomaly_days)
-    st8000_exp2b_1p, thr2b_1p = get_bf_search_score('results/tuned_model_st8000_2_exp2b_1p/results', 'processed_st12000/test.pkl', 'st8000_exp2b_1p', thr0, days=anomaly_days)
-    st8000_exp2b_0_1p, thr2b_0_1p = get_bf_search_score('results/tuned_model_st8000_2_exp2b_0_1p/results', 'processed_st12000/test.pkl', 'st8000_exp2b_0_1p', thr0, days=anomaly_days)
-    st8000_exp3, thr3 = get_bf_search_score('results/tuned_model_st8000_2_exp3/results', 'processed_st12000/test.pkl', 'st8000_exp3', thr0, days=anomaly_days)
-    st8000_exp4, thr4 = get_bf_search_score('results/tuned_model_st8000_2_exp4/results', 'processed_st12000/test.pkl', 'st8000_exp4', thr0, days=anomaly_days)
-    st8000_exp4_1p, thr4_1p = get_bf_search_score('results/tuned_model_st8000_2_exp4_1p/results', 'processed_st12000/test.pkl', 'st8000_exp4_1p', thr0, days=anomaly_days)
-    st8000_exp4_0_1p, thr4_0_1p = get_bf_search_score('results/tuned_model_st8000_2_exp4_0_1p/results', 'processed_st12000/test.pkl', 'st8000_exp4_0_1p', thr0, days=anomaly_days)
+    st8000, thr0 = get_bf_search_score('results/tuned_model_st8000_2/results', 'processed_st8000/test.pkl', 'Pre-Train', days=anomaly_days)
+    st8000_exp1, thr1 = get_bf_search_score('results/tuned_model_st8000_2_exp1/results', 'processed_st12000/test.pkl', 'Experiment 1', thr0, days=anomaly_days)
+    st8000_exp2a, thr2a = get_bf_search_score('results/tuned_model_st8000_2_exp2a/results', 'processed_st12000/test.pkl', 'Experiment 2 - 30 days', thr0, days=anomaly_days)
+    st8000_exp2b, thr2b = get_bf_search_score('results/tuned_model_st8000_2_exp2b/results', 'processed_st12000/test.pkl', 'Experiment 2 - 10%', thr0, days=anomaly_days)
+    st8000_exp2b_1p, thr2b_1p = get_bf_search_score('results/tuned_model_st8000_2_exp2b_1p/results', 'processed_st12000/test.pkl', 'Experiment 2 - 1%', thr0, days=anomaly_days, plot_hist=True)
+    st8000_exp2b_0_1p, thr2b_0_1p = get_bf_search_score('results/tuned_model_st8000_2_exp2b_0_1p/results', 'processed_st12000/test.pkl', 'Experiment 2 - 0.1%', thr0, days=anomaly_days)
+    st8000_exp3, thr3 = get_bf_search_score('results/tuned_model_st8000_2_exp3/results', 'processed_st12000/test.pkl', 'Experiment 3', thr0, days=anomaly_days)
+    st8000_exp4, thr4 = get_bf_search_score('results/tuned_model_st8000_2_exp4/results', 'processed_st12000/test.pkl', 'Experiment 4 - 10%', thr0, days=anomaly_days)
+    st8000_exp4_1p, thr4_1p = get_bf_search_score('results/tuned_model_st8000_2_exp4_1p/results', 'processed_st12000/test.pkl', 'Experiment 4 - 1%', thr0, days=anomaly_days)
+    st8000_exp4_0_1p, thr4_0_1p = get_bf_search_score('results/tuned_model_st8000_2_exp4_0_1p/results', 'processed_st12000/test.pkl', 'Experiment 4 - 0.1%', thr0, days=anomaly_days)
 
-    fig, ax = plt.subplots(1, 1, figsize=(10, 8))
-    ax.plot(st8000[:, 2], st8000[:, 1], label='st8000 pre-train', color='blue')
-    ax.plot(st8000_exp1[:, 2], st8000_exp1[:, 1], label='st8000 TFL st12000 no train', color='red')
-    ax.plot(st8000_exp2a[:, 2], st8000_exp2a[:, 1], label='st8000 TFL st12000 train 30 days per disk', color='purple')
-    ax.plot(st8000_exp2b[:, 2], st8000_exp2b[:, 1], label='st8000 TFL st12000 train 10% data', color='green')
-    ax.plot(st8000_exp3[:, 2], st8000_exp3[:, 1], label='st8000 TFL st12000 train full data', color='orange')
+    fig, ax = plt.subplots(1, 1, figsize=(7, 6))
+    ax.plot(st8000[:, 2], st8000[:, 1], label='Pre-Train', color='blue')
+    ax.plot(st8000_exp1[:, 2], st8000_exp1[:, 1], label='Exp. 1 - No Train', color='red')
+    ax.plot(st8000_exp2a[:, 2], st8000_exp2a[:, 1], label='Exp. 2 - 30d/disk', color='purple')
+    ax.plot(st8000_exp2b[:, 2], st8000_exp2b[:, 1], label='Exp. 2 - 10% data', color='green')
+    ax.plot(st8000_exp3[:, 2], st8000_exp3[:, 1], label='Exp. 3 - 100% data', color='orange')
     # Vertical line at 0.01
     ax.axvline(x=0.01, color='grey', linestyle='--')
     ax.legend(loc='lower right')
@@ -140,14 +142,17 @@ if __name__ == '__main__':
     ax.set_ylabel('FDR')
     ax.set_title('FDR-FAR Tradeoff')
     ax.set_xlim([0, 0.1])
+    ax.set_ylim([0, 1])
+    plt.tight_layout()
+    plt.savefig('exp1_exp2a_exp2b_exp3.pdf')
     plt.show()
 
-    fig, ax = plt.subplots(1, 1, figsize=(10, 8))
-    ax.plot(st8000_exp2b[:, 2], st8000_exp2b[:, 1], label='st8000 TFL st12000 train 10% data', color='green')
-    ax.plot(st8000_exp2b_1p[:, 2], st8000_exp2b_1p[:, 1], label='st8000 TFL st12000 train 1% data', color='red')
-    ax.plot(st8000_exp2b_0_1p[:, 2], st8000_exp2b_0_1p[:, 1], label='st8000 TFL st12000 train 0.1% data', color='orange')
-    ax.plot(st8000_exp4[:, 2], st8000_exp4[:, 1], label='st12000 train 10% data', color='green', linestyle='--')
-    ax.plot(st8000_exp4_1p[:, 2], st8000_exp4_1p[:, 1], label='st12000 train 1% data', color='red', linestyle='--')
+    fig, ax = plt.subplots(1, 1, figsize=(7, 6))
+    ax.plot(st8000_exp2b[:, 2], st8000_exp2b[:, 1], label='Exp. 2 - 10% data', color='green')
+    ax.plot(st8000_exp2b_1p[:, 2], st8000_exp2b_1p[:, 1], label='Exp. 2 - 1% data', color='red')
+    ax.plot(st8000_exp2b_0_1p[:, 2], st8000_exp2b_0_1p[:, 1], label='Exp. 2 - 0.1% data', color='orange')
+    ax.plot(st8000_exp4[:, 2], st8000_exp4[:, 1], label='Exp. 4 - 10% data', color='green', linestyle='--')
+    ax.plot(st8000_exp4_1p[:, 2], st8000_exp4_1p[:, 1], label='Exp. 4 - 1% data', color='red', linestyle='--')
     # Vertical line at 0.01
     ax.axvline(x=0.01, color='grey', linestyle='--')
     ax.legend(loc='lower right')
@@ -155,4 +160,7 @@ if __name__ == '__main__':
     ax.set_ylabel('FDR')
     ax.set_title('FDR-FAR Tradeoff')
     ax.set_xlim([0, 0.1])
+    ax.set_ylim([0, 1])
+    plt.tight_layout()
+    plt.savefig('exp2_exp4.pdf')
     plt.show()
