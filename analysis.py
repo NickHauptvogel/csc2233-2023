@@ -111,10 +111,10 @@ def search_anomaly_days_threshold(result_dir, test_data_path, days=14, min=-2000
 
 if __name__ == '__main__':
 
+    # Define anomaly days
     anomaly_days = 7
 
-    #search_anomaly_days_threshold('results/tuned_model_st8000_2/results', 'processed_st8000/test.pkl', days=anomaly_days, min=-20000)
-
+    # Get far-fdr for each experiment
     st8000, thr0 = get_bf_search_score('results/tuned_model_st8000_2/results', 'processed_st8000/test.pkl', 'Pre-Train', days=anomaly_days)
     st8000_exp1, thr1 = get_bf_search_score('results/tuned_model_st8000_2_exp1/results', 'processed_st12000/test.pkl', 'Experiment 1', thr0, days=anomaly_days)
     st8000_exp2a, thr2a = get_bf_search_score('results/tuned_model_st8000_2_exp2a/results', 'processed_st12000/test.pkl', 'Experiment 2 - 30 days', thr0, days=anomaly_days)
@@ -126,6 +126,7 @@ if __name__ == '__main__':
     st8000_exp4_1p, thr4_1p = get_bf_search_score('results/tuned_model_st8000_2_exp4_1p/results', 'processed_st12000/test.pkl', 'Experiment 4 - 1%', thr0, days=anomaly_days)
     st8000_exp4_0_1p, thr4_0_1p = get_bf_search_score('results/tuned_model_st8000_2_exp4_0_1p/results', 'processed_st12000/test.pkl', 'Experiment 4 - 0.1%', thr0, days=anomaly_days)
 
+    # Plot 1: FAR-FDR for experiment 1, 2, 3
     fig, ax = plt.subplots(1, 1, figsize=(7, 6))
     ax.plot(st8000[:, 2], st8000[:, 1], label='Pre-Train', color='blue')
     ax.plot(st8000_exp1[:, 2], st8000_exp1[:, 1], label='Exp. 1 - No Train', color='red')
@@ -144,6 +145,7 @@ if __name__ == '__main__':
     plt.savefig('exp1_exp2a_exp2b_exp3.pdf')
     plt.show()
 
+    # Plot 2: FAR-FDR for experiment 2, 4
     fig, ax = plt.subplots(1, 1, figsize=(7, 6))
     ax.plot(st8000_exp2b[:, 2], st8000_exp2b[:, 1], label='Exp. 2 - 10% data', color='green')
     ax.plot(st8000_exp2b_1p[:, 2], st8000_exp2b_1p[:, 1], label='Exp. 2 - 1% data', color='red')
