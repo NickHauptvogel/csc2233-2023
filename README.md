@@ -44,6 +44,13 @@ python data_preprocess.py --dataset_folder <dataset_folder> --output_folder <out
 
 where `<dataset_folder>` is the folder of the dataset, and `<output_folder>` is the folder to save the preprocessed data.
 
+```shell
+# Use PCA to remove drives with high deviation 
+python pca.py --dataset_folder <dataset_folder>
+```
+
+where `<dataset_folder>` is the folder of the dataset (same as output_folder in data_preprocess.py).
+
 #### Run the code
 
 Use the provided jupyter notebook `ModelTraining.ipynb` to run the code (either locally, then skip the checkout in the notebook). 

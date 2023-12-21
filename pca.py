@@ -6,10 +6,15 @@ import pickle
 import matplotlib.pyplot as plt
 import pandas as pd
 import os
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--dataset_folder', type=str, default='processed_st12000', help='dataset used for training')
+args = parser.parse_args()
 
 if __name__ == '__main__':
 
-    train_data_path = 'processed_st12000'
+    train_data_path = args.dataset_folder
     train_data = pickle.load(open(os.path.join(train_data_path, 'train.pkl'), 'rb'))
 
     train_data_bare = train_data[:, 1:]
