@@ -1,1 +1,0 @@
-{"batch_size": 512, "dataset_folder": "/content/drive/MyDrive/CSC2233/processed_data_st12000", "initial_lr": 5e-05, "max_epoch": 80, "restore_dir": "results/model_st8000", "save_dir": "results/model_test_st8000_st12000_2months_2023-12-01_18-18-37", "scaler_path": "results/model_st8000/result_st8000/scaler.pkl", "train_days_per_disk": 60, "valid_portion": 0.2}

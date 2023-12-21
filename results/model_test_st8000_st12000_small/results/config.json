@@ -1,1 +1,0 @@
-{"batch_size": 512, "bf_search_max": 100.0, "bf_search_min": -100.0, "dataset_folder": "/content/drive/MyDrive/CSC2233/processed_data_st12000", "display_freq": 1, "max_epoch": 0, "restore_dir": "results/model_st8000_st12000_2months", "save_dir": "results/model_test_st8000_st12000_small_2023-12-02_05-19-49", "scaler_path": "results/model_st8000/result_st8000/scaler.pkl"}
