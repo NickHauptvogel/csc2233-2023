@@ -37,7 +37,8 @@ pip install -r requirements.txt
 
 ```shell
 # Convert the data to csv per drive
-python TODO
+python processing_raw.py
+python processing_quarters.py
 # Convert data into a single pickle file with train/test split
 python data_preprocess.py --dataset_folder <dataset_folder> --output_folder <output_folder>
 ```
